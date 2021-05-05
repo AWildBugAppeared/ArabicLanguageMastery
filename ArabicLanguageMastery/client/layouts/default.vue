@@ -77,8 +77,8 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          title: 'Write Arabic',
+          to: '/english-to-arabic',
         },
       ],
       miniVariant: false,
