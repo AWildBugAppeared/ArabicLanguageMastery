@@ -13,7 +13,7 @@ import { phoneticConverterService } from '@/services/service-exporter';
 describe('English-To-Arabic.vue', () => {
   const mockArabicText = 'mockArabicText';
 
-  const convertSpy = (phoneticConverterService.convert = jest
+  const convertSpy = (phoneticConverterService.convertToArabic = jest
     .fn()
     .mockReturnValue(mockArabicText));
 
