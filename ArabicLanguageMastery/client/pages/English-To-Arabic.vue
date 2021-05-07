@@ -9,7 +9,7 @@
         ></v-textarea>
       </v-col>
       <v-col cols="12" class="text-right">
-        <div data-arabic>{{ convertedInput }}</div>
+        <div data-arabic class="arabic">{{ convertedInput }}</div>
       </v-col>
     </v-row>
   </v-container>
@@ -31,7 +31,7 @@ export default Vue.extend({
 
   watch: {
     input(value) {
-      this.convertedInput = phoneticConverterService.convert(value);
+      this.convertedInput = phoneticConverterService.convertToArabic(value);
     },
   },
 });

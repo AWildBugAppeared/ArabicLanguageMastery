@@ -27,5 +27,21 @@ export enum EnglishLetters {
   z = 'z',
 }
 
+export enum PhoneticArabicDipthongs {
+}
+
+export enum PhoneticArabicVowels {
+  a = 'a',
+  aa = 'aa',
+  e = 'e',
+  ee = 'ee',
+  i = 'i',
+  ii = 'ii',
+  u = 'u',
+  uu = 'uu',
+  o = 'o',
+  oo = 'oo',
+}
+
 export const dualCharacterMappingsFirstLetters = ['d', 'g', 's', 't', 'k', 'z'];
 export const dualCharacterMappingsSecondLetter = 'h';

@@ -33,3 +33,15 @@ export enum ArabicLetters {
   hamzaSmall = 'ء',
   yaa = 'ي',
 }
+
+export enum ArabicVowels {
+  dammah = 'ُ',
+  dammatain = 'ٌ',
+  fathah = 'َ',
+  fathatain = 'ً',
+  harfIllahAlif = 'َا',
+  harfIllahWaw = 'ُوْ',
+  harfIllahYaa = 'ِيْ',
+  kasrah = 'ِ',
+  kasratain = 'ٍ',
+}
