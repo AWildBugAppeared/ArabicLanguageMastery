@@ -21,15 +21,27 @@ export class PhoneticConverterService {
 
     let arabic = '';
 
+    let thirdLastArabicCharacter = '';
+    let secondLastArabicCharacter = '';
     let lastArabicCharacter = '';
     let character = '';
     let nextCharacter = '';
 
     for (let i = 0; i < characterArray.length; i++) {
+      thirdLastArabicCharacter = arabic[arabic.length - 3];
+      secondLastArabicCharacter = arabic[arabic.length - 2];
       lastArabicCharacter = arabic[arabic.length - 1];
       character = characterArray[i];
       nextCharacter =
         i + 1 === characterArray.length ? '' : characterArray[i + 1];
+
+      if (
+        lastArabicCharacter === thirdLastArabicCharacter &&
+        secondLastArabicCharacter === ArabicMiscCharacter.sukoon
+      ) {
+        arabic = arabic.substr(0, arabic.length - 2);
+        arabic += ArabicMiscCharacter.shaddah;
+      }
 
       if (
         character === ' ' &&
@@ -62,7 +74,13 @@ export class PhoneticConverterService {
               : this.convertToVowel(character);
           continue;
         }
-        if (this.isEnglishConsonant(character)) {
+        if (
+          this.isEnglishConsonant(character) ||
+          (character === ' ' &&
+            Object.values(ArabicVowel).includes(
+              arabic[arabic.length - 2] as ArabicVowel
+            ))
+        ) {
           arabic += ArabicMiscCharacter.sukoon;
         }
       }

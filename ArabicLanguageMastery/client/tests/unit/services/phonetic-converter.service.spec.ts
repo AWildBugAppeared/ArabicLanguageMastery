@@ -38,12 +38,17 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should process sukoons', () => {
-    const english = 'jurju';
-    const expectedArabic = 'جُرْجُ';
+    const words = ['jurju', 'Aay '];
 
-    const arabic = service.convertToArabic(english);
+    const jurju = 'جُرْجُ';
+    const ay = 'أَيْ ';
 
-    expect(arabic).toEqual(expectedArabic);
+    const expectedArabicWords = [jurju, ay];
+
+    words.forEach((word: string, index: number) => {
+      const arabic = service.convertToArabic(word);
+      expect(arabic).toEqual(expectedArabicWords[index]);
+    });
   });
 
   it('should not put sukoon on alif', () => {
@@ -82,6 +87,24 @@ describe('PhoneticConverterService', () => {
       const arabic = service.convertToArabic(word);
       expect(arabic).toEqual(expectedArabicWords[index]);
     });
+  });
+
+  it('should add shaddahs to repeated letters', () => {
+    const english = 'layusakhkhiranna';
+    const expectedArabic = 'لَيُسَخِّرَنَّ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+  /*
+  it('should ', () => {
+  });
+  /*
+  it('should ', () => {
+  });
+  /*
+  it('should ', () => {
   });
   /*
   it('should ', () => {

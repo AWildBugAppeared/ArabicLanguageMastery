@@ -35,6 +35,7 @@ export enum ArabicLetter {
 }
 
 export enum ArabicMiscCharacter {
+  shaddah = 'ّ',
   sukoon = 'ْ',
 }
 
