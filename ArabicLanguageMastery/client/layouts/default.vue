@@ -71,11 +71,6 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
           icon: 'mdi-chart-bubble',
           title: 'Write Arabic',
           to: '/english-to-arabic',
@@ -84,7 +79,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'Phonetic English to Arabic',
     };
   },
 };
