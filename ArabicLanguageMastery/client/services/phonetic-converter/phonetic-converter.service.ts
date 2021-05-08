@@ -1,7 +1,14 @@
-import { ArabicLetters, ArabicVowels } from './arabic-constants';
+import {
+  ArabicLetter,
+  arabicLettersWhichDontAcceptAlif,
+  ArabicMiscCharacter,
+  ArabicVowel,
+} from './arabic-constants';
 import {
   dualCharacterMappingsFirstLetters,
   dualCharacterMappingsSecondLetter,
+  PhoneticArabicLetter,
+  PhoneticArabicTanween,
 } from './english-constants';
 import {
   phoneticLetterDictionary,
@@ -25,15 +32,41 @@ export class PhoneticConverterService {
         i + 1 === characterArray.length ? '' : characterArray[i + 1];
 
       if (
-        this.isArabicConsonant(lastArabicCharacter) &&
-        this.isPhoneticVowel(character)
+        character === ' ' &&
+        i > 2 &&
+        this.isLastWordEndingInTanween(english, i)
       ) {
+        const secondLastLetter = english[i - 2];
+        const lastLetter = english[i - 1];
+        const tanweenSyllable = `${secondLastLetter}${lastLetter}`;
+
+        arabic = arabic.substr(0, arabic.length - 2);
+        arabic += this.convertToVowel(tanweenSyllable);
         arabic +=
-          character === nextCharacter
-            ? this.convertToVowel(`${character}${characterArray[++i]}`)
-            : this.convertToVowel(character);
+          tanweenSyllable === PhoneticArabicTanween.an &&
+          !arabicLettersWhichDontAcceptAlif.includes(arabic[arabic.length - 2])
+            ? `${ArabicLetter.alif} `
+            : ' ';
+
         continue;
       }
+
+      if (
+        this.isArabicLetter(lastArabicCharacter) &&
+        lastArabicCharacter !== ArabicLetter.alif
+      ) {
+        if (this.isPhoneticVowel(character)) {
+          arabic +=
+            character === nextCharacter
+              ? this.convertToVowel(`${character}${characterArray[++i]}`)
+              : this.convertToVowel(character);
+          continue;
+        }
+        if (this.isEnglishConsonant(character)) {
+          arabic += ArabicMiscCharacter.sukoon;
+        }
+      }
+
       if (
         nextCharacter &&
         dualCharacterMappingsFirstLetters.includes(character) &&
@@ -41,7 +74,9 @@ export class PhoneticConverterService {
       ) {
         arabic += this.convertToConsonant(`${character}${characterArray[++i]}`);
         continue;
-      } else arabic += this.convertToConsonant(character);
+      }
+
+      arabic += this.convertToConsonant(character);
     }
 
     return arabic;
@@ -55,10 +90,34 @@ export class PhoneticConverterService {
     return phoneticVowelDictionary[character] ?? character;
   }
 
-  isArabicConsonant(character: string): boolean {
+  isArabicLetter(character: string): boolean {
     return (
-      !Object.values(ArabicVowels).includes(character as ArabicVowels) &&
-      Object.values(ArabicLetters).includes(character as ArabicLetters)
+      !Object.values(ArabicVowel).includes(character as ArabicVowel) &&
+      Object.values(ArabicLetter).includes(character as ArabicLetter)
+    );
+  }
+
+  isEnglishConsonant(character: string): boolean {
+    return !!Object.values(PhoneticArabicLetter).includes(
+      character as PhoneticArabicLetter
+    );
+  }
+
+  isLastWordEndingInTanween(
+    english: string,
+    spaceCharacterIndex: number
+  ): boolean {
+    const englishTrimmed = english.substr(0, spaceCharacterIndex);
+
+    const secondLastLetter = englishTrimmed[englishTrimmed.length - 2];
+    const lastLetter = englishTrimmed[englishTrimmed.length - 1];
+
+    if (!secondLastLetter || !lastLetter) return false;
+
+    const tanweenSyllable = `${secondLastLetter}${lastLetter}`;
+
+    return !!Object.values(PhoneticArabicTanween).includes(
+      tanweenSyllable as PhoneticArabicTanween
     );
   }
 

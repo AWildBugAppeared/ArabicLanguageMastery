@@ -1,46 +1,70 @@
-export enum EnglishLetters {
+export enum PhoneticArabicLetter {
+  alif = 'a',
+  baa = 'b',
+  taa = 't',
+  thaa = 'th',
+  jeem = 'j',
+  Haa = 'H',
+  khaa = 'kh',
+  dhaal = 'd',
+  zhaal = 'zh',
+  raa = 'r',
+  zaa = 'z',
+  seen = 's',
+  sheen = 'sh',
+  saad = 'S',
+  daad = 'D',
+  Tha = 'T',
+  Zha = 'Z',
+  ayn = '3',
+  ghaynShort = 'g',
+  ghayn = 'gh',
+  faa = 'f',
+  qaaf = 'q',
+  kaaf = 'k',
+  laam = 'l',
+  meem = 'm',
+  noon = 'n',
+  waw = 'w',
+  wawHamzah = 'W',
+  haa = 'h',
+  hamzah = 'A',
+  hamzahKasrah = 'I',
+  hamzahSmall = "'",
+  yaa = 'y',
+  alifMaqsoor = 'Y',
+}
+
+export enum EnglishVowel {
   a = 'a',
-  b = 'b',
-  c = 'c',
-  d = 'd',
   e = 'e',
-  f = 'f',
-  g = 'g',
-  h = 'h',
   i = 'i',
-  j = 'j',
-  k = 'k',
-  l = 'l',
-  m = 'm',
-  n = 'n',
   o = 'o',
-  p = 'p',
-  q = 'q',
-  r = 'r',
-  s = 's',
-  t = 't',
   u = 'u',
-  v = 'v',
-  w = 'w',
-  x = 'x',
-  y = 'y',
-  z = 'z',
 }
 
-export enum PhoneticArabicDipthongs {
+export enum PhoneticArabicDipthong {
 }
 
-export enum PhoneticArabicVowels {
+export enum PhoneticArabicTanween {
+  an = 'an',
+  en = 'en',
+  in = 'in',
+  on = 'on',
+  un = 'un',
+}
+
+export enum PhoneticArabicVowel {
   a = 'a',
   aa = 'aa',
   e = 'e',
   ee = 'ee',
   i = 'i',
   ii = 'ii',
-  u = 'u',
-  uu = 'uu',
   o = 'o',
   oo = 'oo',
+  u = 'u',
+  uu = 'uu',
 }
 
 export const dualCharacterMappingsFirstLetters = ['d', 'g', 's', 't', 'k', 'z'];

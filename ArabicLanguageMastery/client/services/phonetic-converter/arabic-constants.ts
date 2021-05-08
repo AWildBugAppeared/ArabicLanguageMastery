@@ -1,6 +1,4 @@
-// Alphabet/Letters
-
-export enum ArabicLetters {
+export enum ArabicLetter {
   alif = 'ا',
   baa = 'ب',
   taa = 'ت',
@@ -25,16 +23,22 @@ export enum ArabicLetters {
   kaaf = 'ك',
   laam = 'ل',
   meem = 'م',
-  nuun = 'ن',
+  noon = 'ن',
   waw = 'و',
+  wawHamzah = 'ؤ',
   haa = 'ه',
   hamza = 'أ',
   hamzaKasrah = 'إ',
   hamzaSmall = 'ء',
   yaa = 'ي',
+  alifMaqsoor = 'ى',
 }
 
-export enum ArabicVowels {
+export enum ArabicMiscCharacter {
+  sukoon = 'ْ',
+}
+
+export enum ArabicVowel {
   dammah = 'ُ',
   dammatain = 'ٌ',
   fathah = 'َ',
@@ -45,3 +49,5 @@ export enum ArabicVowels {
   kasrah = 'ِ',
   kasratain = 'ٍ',
 }
+
+export const arabicLettersWhichDontAcceptAlif = ['ى', 'ء', 'إ', 'أ', 'ا'];
