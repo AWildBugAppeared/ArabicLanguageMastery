@@ -9,7 +9,7 @@ describe('PhoneticConverterService', () => {
 
   it('should return the arabic alphabet', () => {
     const english =
-      "a b t th j H kh d zh r z s sh S D T Z 3 g gh f q k l m n w W h A I ' y Y";
+      'a b t th j H kh d zh r z s sh S D T Z 3 g gh f q k l m n w W h A I á y Y';
     const expectedArabic =
       'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ غ ف ق ك ل م ن و ؤ ه أ إ ء ي ى';
 
@@ -27,14 +27,13 @@ describe('PhoneticConverterService', () => {
     expect(arabic).toEqual(expectedArabic);
   });
 
-  it('should return the dipthongs', () => {
-    const words = ['suuqiinaa', 'sooqeenaa'];
+  it('should return the long vowels', () => {
+    const english = 'sooqeenaa';
     const expectedArabic = 'سُوْقِيْنَا';
 
-    words.forEach((word: string) => {
-      const arabic = service.convertToArabic(word);
-      expect(arabic).toEqual(expectedArabic);
-    });
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
   });
 
   it('should process sukoons', () => {
@@ -76,7 +75,7 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should not add alif after kasratain for letters which do not accept alif', () => {
-    const words = ['maljaAan ', "samaa'an "];
+    const words = ['maljaAan ', 'samaaáan '];
 
     const maljaAn = 'مَلْجَأً ';
     const sky = 'سَمَاءً ';
@@ -97,14 +96,37 @@ describe('PhoneticConverterService', () => {
 
     expect(arabic).toEqual(expectedArabic);
   });
-  /*
-  it('should ', () => {
+
+  it('should write standing alifs', () => {
+    const english = "Iiil'f";
+    const expectedArabic = 'إٖلٰف';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
   });
-  /*
-  it('should ', () => {
+
+  it('should write inverted dammah', () => {
+    const english = 'kitaabuhuu';
+    const expectedArabic = 'كِتَابُهٗ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
   });
-  /*
-  it('should ', () => {
+
+  it('should not add tanween to two letter words', () => {
+    const words = ['man ', 'min '];
+
+    const maljaAn = 'مَنْ ';
+    const sky = 'مِنْ ';
+
+    const expectedArabicWords = [maljaAn, sky];
+
+    words.forEach((word: string, index: number) => {
+      const arabic = service.convertToArabic(word);
+      expect(arabic).toEqual(expectedArabicWords[index]);
+    });
   });
   /*
   it('should ', () => {

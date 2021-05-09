@@ -30,7 +30,7 @@ export enum PhoneticArabicLetter {
   haa = 'h',
   hamzah = 'A',
   hamzahKasrah = 'I',
-  hamzahSmall = "'",
+  hamzahSmall = 'á',
   yaa = 'y',
   alifMaqsoor = 'Y',
 }
@@ -43,7 +43,9 @@ export enum EnglishVowel {
   u = 'u',
 }
 
-export enum PhoneticArabicDipthong {
+export enum PhoneticArabicSpecialWords {
+  Allah = 'Allah',
+  Allahumma = 'Allahumma',
 }
 
 export enum PhoneticArabicTanween {
@@ -57,6 +59,7 @@ export enum PhoneticArabicTanween {
 export enum PhoneticArabicVowel {
   a = 'a',
   aa = 'aa',
+  standingAlif = "'",
   e = 'e',
   ee = 'ee',
   i = 'i',
@@ -69,3 +72,4 @@ export enum PhoneticArabicVowel {
 
 export const dualCharacterMappingsFirstLetters = ['d', 'g', 's', 't', 'k', 'z'];
 export const dualCharacterMappingsSecondLetter = 'h';
+export const specialWordPrefixTag = '##';

@@ -13,10 +13,12 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+      },
+      {
         rel: 'stylesheet',
-        type: 'text/css',
-        href:
-          'http://db.onlinewebfonts.com/c/2c1ce06a505728976c1d2993407312b5?family=KFGQPC+Uthmanic+Script+HAFS',
+        href: 'https://fonts.googleapis.com/css2?family=Scheherazade&display=swap',
       },
     ],
   },

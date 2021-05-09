@@ -34,13 +34,23 @@ export enum ArabicLetter {
   alifMaqsoor = 'ى',
 }
 
+export enum ArabicLigature {
+  Allah = '\uFDF2',
+}
+
 export enum ArabicMiscCharacter {
   shaddah = 'ّ',
   sukoon = 'ْ',
 }
 
+export enum ArabicSpecialWords {
+  Allah = '\uFDF2',
+  Allahumma = 'اللهُمَّ',
+}
+
 export enum ArabicVowel {
   dammah = 'ُ',
+  dammahInverted = '\u0657',
   dammatain = 'ٌ',
   fathah = 'َ',
   fathatain = 'ً',
@@ -49,6 +59,9 @@ export enum ArabicVowel {
   harfIllahYaa = 'ِيْ',
   kasrah = 'ِ',
   kasratain = 'ٍ',
+  standingAlifSuper = '\u0670',
+  standingAlifSub = '\u0656',
 }
 
 export const arabicLettersWhichDontAcceptAlif = ['ى', 'ء', 'إ', 'أ', 'ا'];
+export const arabicStandingHamzahs = ['إ', 'أ'];

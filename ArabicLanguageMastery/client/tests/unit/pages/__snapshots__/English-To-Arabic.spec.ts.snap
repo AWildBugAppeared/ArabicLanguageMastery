@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`English-To-Arabic.vue should convert phonetic English to Arabic 1`] = `"<div data-arabic=\\"\\" class=\\"arabic\\">وَ ﷲُ أَكْبَرُ</div>"`;
