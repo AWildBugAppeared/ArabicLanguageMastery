@@ -12,129 +12,112 @@ import {
   PhoneticArabicVowel,
 } from './english-constants';
 
-const phoneticLetterDictionary: { [id: string]: string } = {};
+const phoneticDictionary: { [id: string]: string } = {};
 
 // #region Alphabet/Letters
-phoneticLetterDictionary[PhoneticArabicLetter.alif] = ArabicLetter.alif;
-phoneticLetterDictionary[PhoneticArabicLetter.baa] = ArabicLetter.baa;
-phoneticLetterDictionary[PhoneticArabicLetter.taa] = ArabicLetter.taa;
-phoneticLetterDictionary[PhoneticArabicLetter.thaa] = ArabicLetter.thaa;
-phoneticLetterDictionary[PhoneticArabicLetter.jeem] = ArabicLetter.jeem;
-phoneticLetterDictionary[PhoneticArabicLetter.Haa] = ArabicLetter.Haa;
-phoneticLetterDictionary[PhoneticArabicLetter.khaa] = ArabicLetter.khaa;
-phoneticLetterDictionary[PhoneticArabicLetter.dhaal] = ArabicLetter.dhaal;
-phoneticLetterDictionary[PhoneticArabicLetter.zhaal] = ArabicLetter.zhaal;
-phoneticLetterDictionary[PhoneticArabicLetter.raa] = ArabicLetter.raa;
-phoneticLetterDictionary[PhoneticArabicLetter.zaa] = ArabicLetter.zaa;
-phoneticLetterDictionary[PhoneticArabicLetter.seen] = ArabicLetter.seen;
-phoneticLetterDictionary[PhoneticArabicLetter.sheen] = ArabicLetter.sheen;
-phoneticLetterDictionary[PhoneticArabicLetter.saad] = ArabicLetter.saad;
-phoneticLetterDictionary[PhoneticArabicLetter.daad] = ArabicLetter.daad;
-phoneticLetterDictionary[PhoneticArabicLetter.Tha] = ArabicLetter.Tha;
-phoneticLetterDictionary[PhoneticArabicLetter.Zha] = ArabicLetter.Zha;
-phoneticLetterDictionary[PhoneticArabicLetter.ayn] = ArabicLetter.ein;
-phoneticLetterDictionary[PhoneticArabicLetter.ghayn] = ArabicLetter.ghayn;
-phoneticLetterDictionary[PhoneticArabicLetter.ghaynShort] = ArabicLetter.ghayn;
-phoneticLetterDictionary[PhoneticArabicLetter.faa] = ArabicLetter.faa;
-phoneticLetterDictionary[PhoneticArabicLetter.qaaf] = ArabicLetter.qaaf;
-phoneticLetterDictionary[PhoneticArabicLetter.kaaf] = ArabicLetter.kaaf;
-phoneticLetterDictionary[PhoneticArabicLetter.laam] = ArabicLetter.laam;
-phoneticLetterDictionary[PhoneticArabicLetter.meem] = ArabicLetter.meem;
-phoneticLetterDictionary[PhoneticArabicLetter.noon] = ArabicLetter.noon;
-phoneticLetterDictionary[PhoneticArabicLetter.waw] = ArabicLetter.waw;
-phoneticLetterDictionary[PhoneticArabicLetter.wawHamzah] =
-  ArabicLetter.wawHamzah;
-phoneticLetterDictionary[PhoneticArabicLetter.haa] = ArabicLetter.haa;
-phoneticLetterDictionary[PhoneticArabicLetter.hamzah] = ArabicLetter.hamza;
-phoneticLetterDictionary[PhoneticArabicLetter.hamzahKasrah] =
+phoneticDictionary[PhoneticArabicLetter.alif] = ArabicLetter.alif;
+phoneticDictionary[PhoneticArabicLetter.baa] = ArabicLetter.baa;
+phoneticDictionary[PhoneticArabicLetter.taa] = ArabicLetter.taa;
+phoneticDictionary[PhoneticArabicLetter.thaa] = ArabicLetter.thaa;
+phoneticDictionary[PhoneticArabicLetter.jeem] = ArabicLetter.jeem;
+phoneticDictionary[PhoneticArabicLetter.Haa] = ArabicLetter.Haa;
+phoneticDictionary[PhoneticArabicLetter.khaa] = ArabicLetter.khaa;
+phoneticDictionary[PhoneticArabicLetter.dhaal] = ArabicLetter.dhaal;
+phoneticDictionary[PhoneticArabicLetter.zhaal] = ArabicLetter.zhaal;
+phoneticDictionary[PhoneticArabicLetter.raa] = ArabicLetter.raa;
+phoneticDictionary[PhoneticArabicLetter.zaa] = ArabicLetter.zaa;
+phoneticDictionary[PhoneticArabicLetter.seen] = ArabicLetter.seen;
+phoneticDictionary[PhoneticArabicLetter.sheen] = ArabicLetter.sheen;
+phoneticDictionary[PhoneticArabicLetter.saad] = ArabicLetter.saad;
+phoneticDictionary[PhoneticArabicLetter.daad] = ArabicLetter.daad;
+phoneticDictionary[PhoneticArabicLetter.Tha] = ArabicLetter.Tha;
+phoneticDictionary[PhoneticArabicLetter.Zha] = ArabicLetter.Zha;
+phoneticDictionary[PhoneticArabicLetter.ayn] = ArabicLetter.ein;
+phoneticDictionary[PhoneticArabicLetter.ghayn] = ArabicLetter.ghayn;
+phoneticDictionary[PhoneticArabicLetter.ghaynShort] = ArabicLetter.ghayn;
+phoneticDictionary[PhoneticArabicLetter.faa] = ArabicLetter.faa;
+phoneticDictionary[PhoneticArabicLetter.qaaf] = ArabicLetter.qaaf;
+phoneticDictionary[PhoneticArabicLetter.kaaf] = ArabicLetter.kaaf;
+phoneticDictionary[PhoneticArabicLetter.laam] = ArabicLetter.laam;
+phoneticDictionary[PhoneticArabicLetter.meem] = ArabicLetter.meem;
+phoneticDictionary[PhoneticArabicLetter.noon] = ArabicLetter.noon;
+phoneticDictionary[PhoneticArabicLetter.waw] = ArabicLetter.waw;
+phoneticDictionary[PhoneticArabicLetter.wawHamzah] = ArabicLetter.wawHamzah;
+phoneticDictionary[PhoneticArabicLetter.haa] = ArabicLetter.haa;
+phoneticDictionary[PhoneticArabicLetter.hamzah] = ArabicLetter.hamza;
+phoneticDictionary[PhoneticArabicLetter.hamzahKasrah] =
   ArabicLetter.hamzaKasrah;
-phoneticLetterDictionary[PhoneticArabicLetter.hamzahSmall] =
-  ArabicLetter.hamzaSmall;
-phoneticLetterDictionary[PhoneticArabicLetter.yaa] = ArabicLetter.yaa;
-phoneticLetterDictionary[PhoneticArabicLetter.alifMaqsoor] =
-  ArabicLetter.alifMaqsoor;
+phoneticDictionary[PhoneticArabicLetter.hamzahSmall] = ArabicLetter.hamzaSmall;
+phoneticDictionary[PhoneticArabicLetter.yaa] = ArabicLetter.yaa;
+phoneticDictionary[PhoneticArabicLetter.alifMaqsoor] = ArabicLetter.alifMaqsoor;
 // #endregion
 
 // #region Punctuation
-phoneticLetterDictionary[EnglishPunctuation.asterisk] =
-  ArabicPunctuation.asterisk;
-phoneticLetterDictionary[EnglishPunctuation.at] = ArabicPunctuation.at;
-phoneticLetterDictionary[EnglishPunctuation.backslash] =
-  ArabicPunctuation.backslash;
-phoneticLetterDictionary[EnglishPunctuation.carrot] = ArabicPunctuation.carrot;
-phoneticLetterDictionary[EnglishPunctuation.colon] = ArabicPunctuation.colon;
-phoneticLetterDictionary[EnglishPunctuation.comma] = ArabicPunctuation.comma;
-phoneticLetterDictionary[EnglishPunctuation.dollar] = ArabicPunctuation.dollar;
-phoneticLetterDictionary[EnglishPunctuation.equal] = ArabicPunctuation.equal;
-phoneticLetterDictionary[EnglishPunctuation.exclamationMark] =
+phoneticDictionary[EnglishPunctuation.asterisk] = ArabicPunctuation.asterisk;
+phoneticDictionary[EnglishPunctuation.at] = ArabicPunctuation.at;
+phoneticDictionary[EnglishPunctuation.backslash] = ArabicPunctuation.backslash;
+phoneticDictionary[EnglishPunctuation.carrot] = ArabicPunctuation.carrot;
+phoneticDictionary[EnglishPunctuation.colon] = ArabicPunctuation.colon;
+phoneticDictionary[EnglishPunctuation.comma] = ArabicPunctuation.comma;
+phoneticDictionary[EnglishPunctuation.dollar] = ArabicPunctuation.dollar;
+phoneticDictionary[EnglishPunctuation.equal] = ArabicPunctuation.equal;
+phoneticDictionary[EnglishPunctuation.exclamationMark] =
   ArabicPunctuation.exclamationMark;
-phoneticLetterDictionary[EnglishPunctuation.forwardSlash] =
+phoneticDictionary[EnglishPunctuation.forwardSlash] =
   ArabicPunctuation.forwardSlash;
-phoneticLetterDictionary[EnglishPunctuation.fullStop] =
-  ArabicPunctuation.fullStop;
-phoneticLetterDictionary[EnglishPunctuation.leftAngleBracket] =
+phoneticDictionary[EnglishPunctuation.fullStop] = ArabicPunctuation.fullStop;
+phoneticDictionary[EnglishPunctuation.leftAngleBracket] =
   ArabicPunctuation.leftAngleBracket;
-phoneticLetterDictionary[EnglishPunctuation.leftBrace] =
-  ArabicPunctuation.leftBrace;
-phoneticLetterDictionary[EnglishPunctuation.leftBracket] =
+phoneticDictionary[EnglishPunctuation.leftBrace] = ArabicPunctuation.leftBrace;
+phoneticDictionary[EnglishPunctuation.leftBracket] =
   ArabicPunctuation.leftBracket;
-phoneticLetterDictionary[EnglishPunctuation.leftSquareBracket] =
+phoneticDictionary[EnglishPunctuation.leftSquareBracket] =
   ArabicPunctuation.leftSquareBracket;
-phoneticLetterDictionary[EnglishPunctuation.line] = ArabicPunctuation.line;
-phoneticLetterDictionary[EnglishPunctuation.minus] = ArabicPunctuation.minus;
-phoneticLetterDictionary[EnglishPunctuation.percentage] =
+phoneticDictionary[EnglishPunctuation.line] = ArabicPunctuation.line;
+phoneticDictionary[EnglishPunctuation.minus] = ArabicPunctuation.minus;
+phoneticDictionary[EnglishPunctuation.percentage] =
   ArabicPunctuation.percentage;
-phoneticLetterDictionary[EnglishPunctuation.plus] = ArabicPunctuation.plus;
-phoneticLetterDictionary[EnglishPunctuation.questionMark] =
+phoneticDictionary[EnglishPunctuation.plus] = ArabicPunctuation.plus;
+phoneticDictionary[EnglishPunctuation.questionMark] =
   ArabicPunctuation.questionMark;
-phoneticLetterDictionary[EnglishPunctuation.rightAngleBracket] =
+phoneticDictionary[EnglishPunctuation.rightAngleBracket] =
   ArabicPunctuation.rightAngleBracket;
-phoneticLetterDictionary[EnglishPunctuation.rightBrace] =
+phoneticDictionary[EnglishPunctuation.rightBrace] =
   ArabicPunctuation.rightBrace;
-phoneticLetterDictionary[EnglishPunctuation.rightBracket] =
+phoneticDictionary[EnglishPunctuation.rightBracket] =
   ArabicPunctuation.rightBracket;
-phoneticLetterDictionary[EnglishPunctuation.rightSquareBracket] =
+phoneticDictionary[EnglishPunctuation.rightSquareBracket] =
   ArabicPunctuation.rightSquareBracket;
-phoneticLetterDictionary[EnglishPunctuation.semicolon] =
-  ArabicPunctuation.semicolon;
-phoneticLetterDictionary[EnglishPunctuation.underscore] =
+phoneticDictionary[EnglishPunctuation.semicolon] = ArabicPunctuation.semicolon;
+phoneticDictionary[EnglishPunctuation.underscore] =
   ArabicPunctuation.underscore;
 
 // #endregion
 
 // #region Special words
-const phoneticSpecialWordsDictionary: { [id: string]: ArabicSpecialWords } = {};
-
-phoneticSpecialWordsDictionary[PhoneticArabicSpecialWords.Allah] =
-  ArabicSpecialWords.Allah;
-phoneticSpecialWordsDictionary[PhoneticArabicSpecialWords.Allahumma] =
+phoneticDictionary[PhoneticArabicSpecialWords.Allah] = ArabicSpecialWords.Allah;
+phoneticDictionary[PhoneticArabicSpecialWords.Allahumma] =
   ArabicSpecialWords.Allahumma;
 // #endregion
 
 // #region Vowels
-const phoneticVowelDictionary: { [id: string]: ArabicVowel } = {};
-
-phoneticVowelDictionary[PhoneticArabicVowel.a] = ArabicVowel.fathah;
-phoneticVowelDictionary[PhoneticArabicVowel.aa] = ArabicVowel.harfIllahAlif;
-phoneticVowelDictionary[PhoneticArabicVowel.standingAlif] =
+phoneticDictionary[PhoneticArabicVowel.a] = ArabicVowel.fathah;
+phoneticDictionary[PhoneticArabicVowel.aa] = ArabicVowel.harfIllahAlif;
+phoneticDictionary[PhoneticArabicVowel.standingAlif] =
   ArabicVowel.standingAlifSuper;
-phoneticVowelDictionary[PhoneticArabicTanween.an] = ArabicVowel.fathatain;
-phoneticVowelDictionary[PhoneticArabicVowel.e] = ArabicVowel.kasrah;
-phoneticVowelDictionary[PhoneticArabicVowel.ee] = ArabicVowel.harfIllahYaa;
-phoneticVowelDictionary[PhoneticArabicTanween.en] = ArabicVowel.kasratain;
-phoneticVowelDictionary[PhoneticArabicVowel.ii] = ArabicVowel.standingAlifSub;
-phoneticVowelDictionary[PhoneticArabicTanween.in] = ArabicVowel.kasratain;
-phoneticVowelDictionary[PhoneticArabicVowel.i] = ArabicVowel.kasrah;
-phoneticVowelDictionary[PhoneticArabicVowel.o] = ArabicVowel.dammah;
-phoneticVowelDictionary[PhoneticArabicVowel.oo] = ArabicVowel.harfIllahWaw;
-phoneticVowelDictionary[PhoneticArabicTanween.on] = ArabicVowel.dammatain;
-phoneticVowelDictionary[PhoneticArabicVowel.u] = ArabicVowel.dammah;
-phoneticVowelDictionary[PhoneticArabicVowel.uu] = ArabicVowel.dammahInverted;
-phoneticVowelDictionary[PhoneticArabicTanween.un] = ArabicVowel.dammatain;
+phoneticDictionary[PhoneticArabicTanween.an] = ArabicVowel.fathatain;
+phoneticDictionary[PhoneticArabicVowel.e] = ArabicVowel.kasrah;
+phoneticDictionary[PhoneticArabicVowel.ee] = ArabicVowel.harfIllahYaa;
+phoneticDictionary[PhoneticArabicTanween.en] = ArabicVowel.kasratain;
+phoneticDictionary[PhoneticArabicVowel.ii] = ArabicVowel.standingAlifSub;
+phoneticDictionary[PhoneticArabicTanween.in] = ArabicVowel.kasratain;
+phoneticDictionary[PhoneticArabicVowel.i] = ArabicVowel.kasrah;
+phoneticDictionary[PhoneticArabicVowel.o] = ArabicVowel.dammah;
+phoneticDictionary[PhoneticArabicVowel.oo] = ArabicVowel.harfIllahWaw;
+phoneticDictionary[PhoneticArabicTanween.on] = ArabicVowel.dammatain;
+phoneticDictionary[PhoneticArabicVowel.u] = ArabicVowel.dammah;
+phoneticDictionary[PhoneticArabicVowel.uu] = ArabicVowel.dammahInverted;
+phoneticDictionary[PhoneticArabicTanween.un] = ArabicVowel.dammatain;
 // #endregion
 
-export {
-  phoneticSpecialWordsDictionary,
-  phoneticLetterDictionary,
-  phoneticVowelDictionary,
-};
+export { phoneticDictionary };

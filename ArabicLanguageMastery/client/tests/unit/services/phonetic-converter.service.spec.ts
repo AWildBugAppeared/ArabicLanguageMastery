@@ -60,13 +60,27 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should process tanweens', () => {
-    const words = ['zaydun ', 'zaydan ', 'zaydin '];
+    const words = ['Aabun ', 'Aaban ', 'Aabin '];
 
-    const zaydun = 'زَيْدٌ ';
-    const zaydan = 'زَيْدًا ';
-    const zaydin = 'زَيْدٍ ';
+    const zaydun = 'أَبٌ ';
+    const zaydan = 'أَبًا ';
+    const zaydin = 'أَبٍ ';
 
     const expectedArabicWords = [zaydun, zaydan, zaydin];
+
+    words.forEach((word: string, index: number) => {
+      const arabic = service.convertToArabic(word);
+      expect(arabic).toEqual(expectedArabicWords[index]);
+    });
+  });
+
+  it('should not add tanween to two letter words', () => {
+    const words = ['man ', 'min '];
+
+    const maljaAn = 'مَنْ ';
+    const sky = 'مِنْ ';
+
+    const expectedArabicWords = [maljaAn, sky];
 
     words.forEach((word: string, index: number) => {
       const arabic = service.convertToArabic(word);
@@ -113,20 +127,6 @@ describe('PhoneticConverterService', () => {
     const arabic = service.convertToArabic(english);
 
     expect(arabic).toEqual(expectedArabic);
-  });
-
-  it('should not add tanween to two letter words', () => {
-    const words = ['man ', 'min '];
-
-    const maljaAn = 'مَنْ ';
-    const sky = 'مِنْ ';
-
-    const expectedArabicWords = [maljaAn, sky];
-
-    words.forEach((word: string, index: number) => {
-      const arabic = service.convertToArabic(word);
-      expect(arabic).toEqual(expectedArabicWords[index]);
-    });
   });
 
   it('should display punctuation', () => {

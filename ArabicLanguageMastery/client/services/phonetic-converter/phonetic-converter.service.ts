@@ -9,15 +9,13 @@ import {
 import {
   dualCharacterMappingsFirstLetters,
   dualCharacterMappingsSecondLetter,
+  EnglishVowel,
   PhoneticArabicLetter,
   PhoneticArabicTanween,
+  PhoneticArabicVowel,
   specialWordPrefixTag,
 } from './english-constants';
-import {
-  phoneticLetterDictionary,
-  phoneticSpecialWordsDictionary,
-  phoneticVowelDictionary,
-} from './phonetic-dictionary';
+import { phoneticDictionary } from './phonetic-dictionary';
 
 export class PhoneticConverterService {
   public convertToArabic(english: string): string {
@@ -28,6 +26,7 @@ export class PhoneticConverterService {
     let thirdLastArabicCharacter = '';
     let secondLastArabicCharacter = '';
     let lastArabicCharacter = '';
+    let previousCharacter = '';
     let character = '';
     let nextCharacter = '';
 
@@ -35,6 +34,7 @@ export class PhoneticConverterService {
       thirdLastArabicCharacter = arabic[arabic.length - 3];
       secondLastArabicCharacter = arabic[arabic.length - 2];
       lastArabicCharacter = arabic[arabic.length - 1];
+      previousCharacter = characterArray[i - 1];
       character = characterArray[i];
       nextCharacter = characterArray[i + 1];
 
@@ -44,7 +44,7 @@ export class PhoneticConverterService {
 
         if (results && results?.length > 0) {
           const specialWord = results[0];
-          arabic += this.convertSpecialWords(specialWord);
+          arabic += this.convert(specialWord);
           // ##Allah##
           // ^Current character index which needs to be placed at the end
           i += specialWord.length + specialWordPrefixTag.length + 1;
@@ -52,6 +52,16 @@ export class PhoneticConverterService {
         }
       }
 
+      // Check for Hamzatul Wasl
+      if (
+        (!previousCharacter || previousCharacter === ' ') &&
+        character === EnglishVowel.a
+      ) {
+        arabic += ArabicLetter.alif;
+        continue;
+      }
+
+      // Check for shaddah
       if (
         lastArabicCharacter === thirdLastArabicCharacter &&
         secondLastArabicCharacter === ArabicMiscCharacter.sukoon
@@ -60,11 +70,11 @@ export class PhoneticConverterService {
         arabic += ArabicMiscCharacter.shaddah;
       }
 
+      // Check for tanween
       if (
         character === ' ' &&
-        // i > 2 &&
-        english[i - 6] &&
-        english[i - 6] !== ' ' &&
+        english[i - 5] &&
+        english[i - 5] !== ' ' &&
         this.isLastWordEndingInTanween(english, i)
       ) {
         const secondLastLetter = english[i - 2];
@@ -72,7 +82,7 @@ export class PhoneticConverterService {
         const tanweenSyllable = `${secondLastLetter}${lastLetter}`;
 
         arabic = arabic.substr(0, arabic.length - 2);
-        arabic += this.convertToVowel(tanweenSyllable);
+        arabic += this.convert(tanweenSyllable);
         arabic +=
           tanweenSyllable === PhoneticArabicTanween.an &&
           !arabicLettersWhichDontAcceptAlif.includes(arabic[arabic.length - 2])
@@ -82,6 +92,7 @@ export class PhoneticConverterService {
         continue;
       }
 
+      // Check for vowels & sukoon
       if (
         (this.isArabicLigature(lastArabicCharacter) ||
           this.isArabicLetter(lastArabicCharacter)) &&
@@ -95,7 +106,7 @@ export class PhoneticConverterService {
               ? `${character}${characterArray[++i]}`
               : character;
 
-          arabic += this.convertToVowel(vowel);
+          arabic += this.convert(vowel);
           continue;
         }
         if (
@@ -114,26 +125,18 @@ export class PhoneticConverterService {
         dualCharacterMappingsFirstLetters.includes(character) &&
         dualCharacterMappingsSecondLetter === nextCharacter
       ) {
-        arabic += this.convertToConsonant(`${character}${characterArray[++i]}`);
+        arabic += this.convert(`${character}${characterArray[++i]}`);
         continue;
       }
 
-      arabic += this.convertToConsonant(character);
+      arabic += this.convert(character);
     }
 
     return arabic;
   }
 
-  convertSpecialWords(word: string): string {
-    return phoneticSpecialWordsDictionary[word] ?? word;
-  }
-
-  convertToConsonant(character: string): string {
-    return phoneticLetterDictionary[character] ?? character;
-  }
-
-  convertToVowel(character: string): string {
-    return phoneticVowelDictionary[character] ?? character;
+  convert(character: string): string {
+    return phoneticDictionary[character] ?? character;
   }
 
   deleteLastCharacter(input: string): string {
@@ -177,7 +180,9 @@ export class PhoneticConverterService {
   }
 
   isPhoneticVowel(character: string): boolean {
-    return !!phoneticVowelDictionary[character];
+    return Object.values(PhoneticArabicVowel).includes(
+      character as PhoneticArabicVowel
+    );
   }
 
   isStandingHamzah(character: string): boolean {
