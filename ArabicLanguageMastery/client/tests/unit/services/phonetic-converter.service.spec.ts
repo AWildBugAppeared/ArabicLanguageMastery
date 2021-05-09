@@ -128,8 +128,15 @@ describe('PhoneticConverterService', () => {
       expect(arabic).toEqual(expectedArabicWords[index]);
     });
   });
-  /*
-  it('should ', () => {
+
+  it('should display punctuation', () => {
+    const english = '. , ? < > / : ; [ ] { } ! ( ) - + _ = * @ $ % ^ | \\';
+    const expectedArabic =
+      '. ، ؟ < > / : ؛ [ ] { } ! ( ) - + _ = * @ $ % ^ | \\';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
   });
   /*
   it('should ', () => {

@@ -43,6 +43,35 @@ export enum EnglishVowel {
   u = 'u',
 }
 
+export enum EnglishPunctuation {
+  asterisk = '*',
+  at = '@',
+  backslash = '\\',
+  carrot = '^',
+  colon = ':',
+  comma = ',',
+  dollar = '$',
+  equal = '=',
+  exclamationMark = '!',
+  forwardSlash = '/',
+  fullStop = '.',
+  leftAngleBracket = '<',
+  leftBrace = '{',
+  leftBracket = '(',
+  leftSquareBracket = '[',
+  line = '|',
+  rightAngleBracket = '>',
+  rightBrace = '}',
+  rightBracket = ')',
+  rightSquareBracket = ']',
+  semicolon = ';',
+  minus = '-',
+  percentage = '%',
+  plus = '+',
+  questionMark = '?',
+  underscore = '_',
+}
+
 export enum PhoneticArabicSpecialWords {
   Allah = 'Allah',
   Allahumma = 'Allahumma',

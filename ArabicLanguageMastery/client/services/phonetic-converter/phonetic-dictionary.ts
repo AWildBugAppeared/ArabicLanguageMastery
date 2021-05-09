@@ -1,9 +1,11 @@
 import {
   ArabicLetter,
+  ArabicPunctuation,
   ArabicSpecialWords,
   ArabicVowel,
 } from './arabic-constants';
 import {
+  EnglishPunctuation,
   PhoneticArabicLetter,
   PhoneticArabicSpecialWords,
   PhoneticArabicTanween,
@@ -51,6 +53,53 @@ phoneticLetterDictionary[PhoneticArabicLetter.hamzahSmall] =
 phoneticLetterDictionary[PhoneticArabicLetter.yaa] = ArabicLetter.yaa;
 phoneticLetterDictionary[PhoneticArabicLetter.alifMaqsoor] =
   ArabicLetter.alifMaqsoor;
+// #endregion
+
+// #region Punctuation
+phoneticLetterDictionary[EnglishPunctuation.asterisk] =
+  ArabicPunctuation.asterisk;
+phoneticLetterDictionary[EnglishPunctuation.at] = ArabicPunctuation.at;
+phoneticLetterDictionary[EnglishPunctuation.backslash] =
+  ArabicPunctuation.backslash;
+phoneticLetterDictionary[EnglishPunctuation.carrot] = ArabicPunctuation.carrot;
+phoneticLetterDictionary[EnglishPunctuation.colon] = ArabicPunctuation.colon;
+phoneticLetterDictionary[EnglishPunctuation.comma] = ArabicPunctuation.comma;
+phoneticLetterDictionary[EnglishPunctuation.dollar] = ArabicPunctuation.dollar;
+phoneticLetterDictionary[EnglishPunctuation.equal] = ArabicPunctuation.equal;
+phoneticLetterDictionary[EnglishPunctuation.exclamationMark] =
+  ArabicPunctuation.exclamationMark;
+phoneticLetterDictionary[EnglishPunctuation.forwardSlash] =
+  ArabicPunctuation.forwardSlash;
+phoneticLetterDictionary[EnglishPunctuation.fullStop] =
+  ArabicPunctuation.fullStop;
+phoneticLetterDictionary[EnglishPunctuation.leftAngleBracket] =
+  ArabicPunctuation.leftAngleBracket;
+phoneticLetterDictionary[EnglishPunctuation.leftBrace] =
+  ArabicPunctuation.leftBrace;
+phoneticLetterDictionary[EnglishPunctuation.leftBracket] =
+  ArabicPunctuation.leftBracket;
+phoneticLetterDictionary[EnglishPunctuation.leftSquareBracket] =
+  ArabicPunctuation.leftSquareBracket;
+phoneticLetterDictionary[EnglishPunctuation.line] = ArabicPunctuation.line;
+phoneticLetterDictionary[EnglishPunctuation.minus] = ArabicPunctuation.minus;
+phoneticLetterDictionary[EnglishPunctuation.percentage] =
+  ArabicPunctuation.percentage;
+phoneticLetterDictionary[EnglishPunctuation.plus] = ArabicPunctuation.plus;
+phoneticLetterDictionary[EnglishPunctuation.questionMark] =
+  ArabicPunctuation.questionMark;
+phoneticLetterDictionary[EnglishPunctuation.rightAngleBracket] =
+  ArabicPunctuation.rightAngleBracket;
+phoneticLetterDictionary[EnglishPunctuation.rightBrace] =
+  ArabicPunctuation.rightBrace;
+phoneticLetterDictionary[EnglishPunctuation.rightBracket] =
+  ArabicPunctuation.rightBracket;
+phoneticLetterDictionary[EnglishPunctuation.rightSquareBracket] =
+  ArabicPunctuation.rightSquareBracket;
+phoneticLetterDictionary[EnglishPunctuation.semicolon] =
+  ArabicPunctuation.semicolon;
+phoneticLetterDictionary[EnglishPunctuation.underscore] =
+  ArabicPunctuation.underscore;
+
 // #endregion
 
 // #region Special words

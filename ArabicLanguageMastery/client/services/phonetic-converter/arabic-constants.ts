@@ -43,6 +43,35 @@ export enum ArabicMiscCharacter {
   sukoon = 'ْ',
 }
 
+export enum ArabicPunctuation {
+  asterisk = '*',
+  at = '@',
+  backslash = '\\',
+  carrot = '^',
+  colon = ':',
+  comma = '،',
+  dollar = '$',
+  equal = '=',
+  exclamationMark = '!',
+  forwardSlash = '/',
+  fullStop = '.',
+  leftAngleBracket = '<',
+  leftBrace = '{',
+  leftBracket = '(',
+  leftSquareBracket = '[',
+  line = '|',
+  minus = '-',
+  percentage = '%',
+  plus = '+',
+  questionMark = '؟',
+  rightAngleBracket = '>',
+  rightSquareBracket = ']',
+  rightBrace = '}',
+  rightBracket = ')',
+  semicolon = '؛',
+  underscore = '_',
+}
+
 export enum ArabicSpecialWords {
   Allah = '\uFDF2',
   Allahumma = 'اللهُمَّ',

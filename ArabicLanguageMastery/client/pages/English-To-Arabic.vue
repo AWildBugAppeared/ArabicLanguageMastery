@@ -9,7 +9,7 @@
         ></v-textarea>
       </v-col>
       <v-col cols="12" class="text-right">
-        <div data-arabic class="arabic">{{ convertedInput }}</div>
+        <div dir="rtl" class="arabic" data-arabic>{{ convertedInput }}</div>
       </v-col>
     </v-row>
   </v-container>
