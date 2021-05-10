@@ -107,7 +107,6 @@ phoneticDictionary[PhoneticArabicVowel.aa] = ArabicVowel.harfIllahAlif;
 phoneticDictionary[PhoneticArabicVowel.standingAlif] =
   ArabicVowel.standingAlifSuper;
 phoneticDictionary[PhoneticArabicTanween.an] = ArabicVowel.fathatain;
-phoneticDictionary[PhoneticArabicVowel.e] = ArabicVowel.kasrah;
 phoneticDictionary[PhoneticArabicVowel.ee] = ArabicVowel.harfIllahYaa;
 phoneticDictionary[PhoneticArabicTanween.en] = ArabicVowel.kasratain;
 phoneticDictionary[PhoneticArabicVowel.ii] = ArabicVowel.standingAlifSub;
@@ -119,6 +118,7 @@ phoneticDictionary[PhoneticArabicTanween.on] = ArabicVowel.dammatain;
 phoneticDictionary[PhoneticArabicVowel.u] = ArabicVowel.dammah;
 phoneticDictionary[PhoneticArabicVowel.uu] = ArabicVowel.dammahInverted;
 phoneticDictionary[PhoneticArabicTanween.un] = ArabicVowel.dammatain;
+phoneticDictionary[PhoneticArabicVowel.x] = '';
 // #endregion
 
 export { phoneticDictionary };

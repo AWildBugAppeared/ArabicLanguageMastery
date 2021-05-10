@@ -16,7 +16,7 @@ export enum PhoneticArabicLetter {
   daad = 'D',
   Tha = 'T',
   Zha = 'Z',
-  ayn = '3',
+  ayn = 'e',
   ghaynShort = 'g',
   ghayn = 'gh',
   faa = 'f',
@@ -90,7 +90,6 @@ export enum PhoneticArabicVowel {
   a = 'a',
   aa = 'aa',
   standingAlif = "'",
-  e = 'e',
   ee = 'ee',
   i = 'i',
   ii = 'ii',
@@ -98,6 +97,7 @@ export enum PhoneticArabicVowel {
   oo = 'oo',
   u = 'u',
   uu = 'uu',
+  x = 'x',
 }
 
 export const dualCharacterMappingsFirstLetters = [

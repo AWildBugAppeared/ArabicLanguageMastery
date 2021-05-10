@@ -98,7 +98,10 @@ export class PhoneticConverterService {
           this.isArabicLetter(lastArabicCharacter)) &&
         lastArabicCharacter !== ArabicLetter.alif
       ) {
-        if (this.isPhoneticVowel(character)) {
+        if (
+          this.isPhoneticVowel(character) ||
+          `${character}${nextCharacter}` === PhoneticArabicVowel.ee
+        ) {
           let vowel = '';
 
           vowel =

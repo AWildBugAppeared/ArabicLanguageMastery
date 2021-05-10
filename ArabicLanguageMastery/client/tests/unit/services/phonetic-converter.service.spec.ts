@@ -9,7 +9,7 @@ describe('PhoneticConverterService', () => {
 
   it('should return the arabic alphabet', () => {
     const english =
-      'a b t th j H kh d zh r z s sh S D T Z 3 g gh f q k l m n w W h A I á y Y yh';
+      'a b t th j H kh d zh r z s sh S D T Z e g gh f q k l m n w W h A I á y Y yh';
     const expectedArabic =
       'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ غ ف ق ك ل م ن و ؤ ه أ إ ء ي ى ئ';
 
@@ -53,6 +53,15 @@ describe('PhoneticConverterService', () => {
   it('should not put sukoon on alif', () => {
     const english = 'waaHid';
     const expectedArabic = 'وَاحِد';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+
+  it('should differentiate between وَشِرٌ and وَسْهِرٌ', () => {
+    const english = 'washirun wasxhirun ';
+    const expectedArabic = 'وَشِرٌ وَسْهِرٌ ';
 
     const arabic = service.convertToArabic(english);
 
