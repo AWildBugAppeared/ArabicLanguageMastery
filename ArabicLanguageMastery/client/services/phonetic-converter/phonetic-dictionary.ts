@@ -50,6 +50,7 @@ phoneticDictionary[PhoneticArabicLetter.hamzahKasrah] =
 phoneticDictionary[PhoneticArabicLetter.hamzahSmall] = ArabicLetter.hamzaSmall;
 phoneticDictionary[PhoneticArabicLetter.yaa] = ArabicLetter.yaa;
 phoneticDictionary[PhoneticArabicLetter.alifMaqsoor] = ArabicLetter.alifMaqsoor;
+phoneticDictionary[PhoneticArabicLetter.yaaHamzah] = ArabicLetter.yaaHamzah;
 // #endregion
 
 // #region Punctuation

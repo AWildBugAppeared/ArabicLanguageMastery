@@ -32,6 +32,7 @@ export enum ArabicLetter {
   hamzaSmall = 'ء',
   yaa = 'ي',
   alifMaqsoor = 'ى',
+  yaaHamzah = 'ئ',
 }
 
 export enum ArabicLigature {
