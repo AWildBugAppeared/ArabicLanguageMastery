@@ -80,6 +80,18 @@ export class PhoneticConverterService {
         arabic += ArabicMiscCharacter.shaddah;
       }
 
+      if (
+        secondLastArabicCharacter === ArabicLetter.hamzaSmall &&
+        Object.values(PhoneticArabicLetter).includes(
+          character as PhoneticArabicLetter
+        ) &&
+        nextCharacter !== ' '
+      ) {
+        arabic = `${arabic.substr(0, arabic.length - 2)}${
+          ArabicLetter.yaaHamzah
+        }${arabic.substr(arabic.length - 1)}`;
+      }
+
       // Check for tanween
       if (
         character === ' ' &&
@@ -121,11 +133,12 @@ export class PhoneticConverterService {
           continue;
         }
         if (
-          this.isEnglishConsonant(character) ||
-          (character === ' ' &&
-            Object.values(ArabicVowel).includes(
-              arabic[arabic.length - 2] as ArabicVowel
-            ))
+          lastArabicCharacter !== ArabicVowel.maddah &&
+          (this.isEnglishConsonant(character) ||
+            (character === ' ' &&
+              Object.values(ArabicVowel).includes(
+                arabic[arabic.length - 2] as ArabicVowel
+              )))
         ) {
           arabic += ArabicMiscCharacter.sukoon;
         }

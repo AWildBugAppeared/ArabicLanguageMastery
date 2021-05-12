@@ -94,6 +94,7 @@ export enum PhoneticArabicVowel {
   ee = 'ee',
   i = 'i',
   ii = 'ii',
+  maddah = '~',
   o = 'o',
   oo = 'oo',
   u = 'u',

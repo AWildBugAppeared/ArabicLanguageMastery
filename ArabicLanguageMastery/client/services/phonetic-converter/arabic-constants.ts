@@ -90,9 +90,18 @@ export enum ArabicVowel {
   harfIllahYaa = 'ِيْ',
   kasrah = 'ِ',
   kasratain = 'ٍ',
+  maddah = '\u0653',
   standingAlifSuper = '\u0670',
   standingAlifSub = '\u0656',
 }
 
-export const arabicLettersWhichDontAcceptAlif = ['ى', 'ء', 'إ', 'أ', 'ا', 'ة'];
+export const arabicLettersWhichDontAcceptAlif = [
+  'ئ',
+  'ى',
+  'ء',
+  'إ',
+  'أ',
+  'ا',
+  'ة',
+];
 export const arabicStandingHamzahs = ['إ', 'أ'];

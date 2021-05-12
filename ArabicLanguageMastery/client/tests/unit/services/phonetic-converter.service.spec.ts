@@ -156,8 +156,13 @@ describe('PhoneticConverterService', () => {
 
     expect(arabic).toEqual(expectedArabic);
   });
-  /*
-  it('should ', () => {
+
+  it('should support maddah', () => {
+    const english = 'Iinnaa~ siy~áat';
+    const expectedArabic = 'إِنَّآ سِيٓئَت';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
   });
-  */
 });

@@ -114,6 +114,7 @@ phoneticDictionary[PhoneticArabicTanween.en] = ArabicVowel.kasratain;
 phoneticDictionary[PhoneticArabicVowel.ii] = ArabicVowel.standingAlifSub;
 phoneticDictionary[PhoneticArabicTanween.in] = ArabicVowel.kasratain;
 phoneticDictionary[PhoneticArabicVowel.i] = ArabicVowel.kasrah;
+phoneticDictionary[PhoneticArabicVowel.maddah] = ArabicVowel.maddah;
 phoneticDictionary[PhoneticArabicVowel.o] = ArabicVowel.dammah;
 phoneticDictionary[PhoneticArabicVowel.oo] = ArabicVowel.harfIllahWaw;
 phoneticDictionary[PhoneticArabicTanween.on] = ArabicVowel.dammatain;
