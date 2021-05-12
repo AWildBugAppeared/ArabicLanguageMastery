@@ -158,8 +158,17 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should support maddah', () => {
-    const english = 'Iinnaa~ siy~áat';
-    const expectedArabic = 'إِنَّآ سِيٓئَت';
+    const english = 'Iinnaa~';
+    const expectedArabic = 'إِنَّآ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+
+  it('should support writing hamza joined in the middle using standard phonetic letter for small hamzah', () => {
+    const english = 'siy~áat jiánaa siy~áat';
+    const expectedArabic = 'سِيٓئَتْ جِئْنَا سِيٓئَت';
 
     const arabic = service.convertToArabic(english);
 

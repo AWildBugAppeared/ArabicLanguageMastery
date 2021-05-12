@@ -69,7 +69,13 @@
             </v-col>
           </v-row>
 
-          <div class="py-5">*This is an apostrophe</div>
+          <div class="py-5">
+            <div>*This is an apostrophe</div>
+            <div>
+              Note - For tanween, you will need to add a space after the word
+              for the tanween to take effect
+            </div>
+          </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -119,17 +125,11 @@ export default Vue.extend({
 
   methods: {
     getPhoneticMap(value: string): string | undefined {
-      let phoneticMaps = '';
-
-      const keys = Object.keys(phoneticDictionary).filter(
+      const phoneticMap = Object.keys(phoneticDictionary).find(
         (key) => phoneticDictionary[key] === value
       );
 
-      keys.forEach((key, index) => {
-        phoneticMaps += `${index === 0 ? '' : '/'}${key}`;
-      });
-
-      return phoneticMaps;
+      return phoneticMap;
     },
   },
 });

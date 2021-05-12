@@ -81,9 +81,7 @@ export enum PhoneticArabicSpecialWords {
 
 export enum PhoneticArabicTanween {
   an = 'an',
-  en = 'en',
   in = 'in',
-  on = 'on',
   un = 'un',
 }
 
@@ -95,7 +93,6 @@ export enum PhoneticArabicVowel {
   i = 'i',
   ii = 'ii',
   maddah = '~',
-  o = 'o',
   oo = 'oo',
   u = 'u',
   uu = 'uu',

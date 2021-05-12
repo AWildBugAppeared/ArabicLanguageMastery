@@ -82,10 +82,14 @@ export class PhoneticConverterService {
 
       if (
         secondLastArabicCharacter === ArabicLetter.hamzaSmall &&
+        lastArabicCharacter !== ' ' &&
         Object.values(PhoneticArabicLetter).includes(
           character as PhoneticArabicLetter
         ) &&
-        nextCharacter !== ' '
+        (!Object.values(PhoneticArabicTanween).includes(
+          `${previousCharacter}${character}` as PhoneticArabicTanween
+        ) ||
+          english[i + 1] !== ' ')
       ) {
         arabic = `${arabic.substr(0, arabic.length - 2)}${
           ArabicLetter.yaaHamzah
@@ -122,7 +126,8 @@ export class PhoneticConverterService {
       ) {
         if (
           this.isPhoneticVowel(character) ||
-          `${character}${nextCharacter}` === PhoneticArabicVowel.ee
+          `${character}${nextCharacter}` === PhoneticArabicVowel.ee ||
+          `${character}${nextCharacter}` === PhoneticArabicVowel.oo
         ) {
           const vowel =
             character === nextCharacter
@@ -140,6 +145,11 @@ export class PhoneticConverterService {
                 arabic[arabic.length - 2] as ArabicVowel
               )))
         ) {
+          if (lastArabicCharacter === ArabicLetter.hamzaSmall) {
+            arabic = `${arabic.substr(0, arabic.length - 1)}${
+              ArabicLetter.yaaHamzah
+            }`;
+          }
           arabic += ArabicMiscCharacter.sukoon;
         }
       }
