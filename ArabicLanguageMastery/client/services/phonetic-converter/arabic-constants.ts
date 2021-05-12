@@ -2,6 +2,7 @@ export enum ArabicLetter {
   alif = 'ا',
   baa = 'ب',
   taa = 'ت',
+  taaMarbootah = 'ة',
   thaa = 'ث',
   jeem = 'ج',
   Haa = 'ح',
@@ -93,5 +94,5 @@ export enum ArabicVowel {
   standingAlifSub = '\u0656',
 }
 
-export const arabicLettersWhichDontAcceptAlif = ['ى', 'ء', 'إ', 'أ', 'ا'];
+export const arabicLettersWhichDontAcceptAlif = ['ى', 'ء', 'إ', 'أ', 'ا', 'ة'];
 export const arabicStandingHamzahs = ['إ', 'أ'];

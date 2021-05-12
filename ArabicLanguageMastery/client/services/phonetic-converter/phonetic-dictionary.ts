@@ -18,6 +18,8 @@ const phoneticDictionary: { [id: string]: string } = {};
 phoneticDictionary[PhoneticArabicLetter.alif] = ArabicLetter.alif;
 phoneticDictionary[PhoneticArabicLetter.baa] = ArabicLetter.baa;
 phoneticDictionary[PhoneticArabicLetter.taa] = ArabicLetter.taa;
+phoneticDictionary[PhoneticArabicLetter.taaMarbootah] =
+  ArabicLetter.taaMarbootah;
 phoneticDictionary[PhoneticArabicLetter.thaa] = ArabicLetter.thaa;
 phoneticDictionary[PhoneticArabicLetter.jeem] = ArabicLetter.jeem;
 phoneticDictionary[PhoneticArabicLetter.Haa] = ArabicLetter.Haa;

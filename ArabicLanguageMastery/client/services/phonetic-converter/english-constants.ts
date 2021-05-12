@@ -2,6 +2,7 @@ export enum PhoneticArabicLetter {
   alif = 'a',
   baa = 'b',
   taa = 't',
+  taaMarbootah = 'a-t',
   thaa = 'th',
   jeem = 'j',
   Haa = 'H',

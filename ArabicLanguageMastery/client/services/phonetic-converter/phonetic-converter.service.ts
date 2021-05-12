@@ -61,6 +61,16 @@ export class PhoneticConverterService {
         continue;
       }
 
+      // Check for Taa Marbootah
+      if (
+        `${previousCharacter}${character}${nextCharacter}` ===
+        PhoneticArabicLetter.taaMarbootah
+      ) {
+        arabic += ArabicLetter.taaMarbootah;
+        i++;
+        continue;
+      }
+
       // Check for shaddah
       if (
         lastArabicCharacter === thirdLastArabicCharacter &&
@@ -102,9 +112,7 @@ export class PhoneticConverterService {
           this.isPhoneticVowel(character) ||
           `${character}${nextCharacter}` === PhoneticArabicVowel.ee
         ) {
-          let vowel = '';
-
-          vowel =
+          const vowel =
             character === nextCharacter
               ? `${character}${characterArray[++i]}`
               : character;

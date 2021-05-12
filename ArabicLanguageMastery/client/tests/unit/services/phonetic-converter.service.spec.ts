@@ -147,6 +147,15 @@ describe('PhoneticConverterService', () => {
 
     expect(arabic).toEqual(expectedArabic);
   });
+
+  it('should support taa marbootah', () => {
+    const english = 'Taaliba-tun Taaliba-tan Taaliba-tin Taaliba-tu aleilmi';
+    const expectedArabic = 'طَالِبَةٌ طَالِبَةً طَالِبَةٍ طَالِبَةُ الْعِلْمِ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
   /*
   it('should ', () => {
   });
