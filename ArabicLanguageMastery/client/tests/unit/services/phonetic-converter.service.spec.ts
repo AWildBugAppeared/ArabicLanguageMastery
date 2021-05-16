@@ -174,4 +174,13 @@ describe('PhoneticConverterService', () => {
 
     expect(arabic).toEqual(expectedArabic);
   });
+
+  it('should write alif after plural masculine verbs', () => {
+    const english = 'kafaroo ';
+    const expectedArabic = 'كَفَرُوْا ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
 });

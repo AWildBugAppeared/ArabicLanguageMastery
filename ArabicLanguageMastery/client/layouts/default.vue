@@ -1,6 +1,13 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer v-model="drawer" fixed app>
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="clipped"
+      temporary
+      :right="isMobile"
+      fixed
+      app
+    >
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -18,10 +25,14 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
+    <v-app-bar :clipped-left="clipped" fixed app>
+      <v-col :order="isMobile ? 'first' : 'last'">
+        <v-toolbar-title v-text="title" />
+      </v-col>
+      <v-spacer v-if="isMobile"></v-spacer>
+      <v-col xs="2" sm="1" :order="isMobile ? 'last' : 'first'">
+        <v-app-bar-nav-icon class="text-right" @click.stop="drawer = !drawer" />
+      </v-col>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -31,16 +42,22 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   data() {
     return {
+      clipped: false,
       drawer: true,
       items: [
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-lead-pencil',
           title: 'Write Arabic',
           to: '/english-to-arabic',
+        },
+        {
+          icon: 'mdi-email-outline',
+          title: 'Contact Us',
+          to: '/contact-us',
         },
       ],
       miniVariant: false,
@@ -48,8 +65,14 @@ export default {
     };
   },
 
+  computed: {
+    isMobile(): boolean {
+      return this.$vuetify.breakpoint.xs;
+    },
+  },
+
   created() {
-    this.drawer = !this.$vuetify.breakpoint.mobile;
+    this.drawer = !this.isMobile;
   },
 };
 </script>

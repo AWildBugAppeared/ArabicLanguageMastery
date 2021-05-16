@@ -83,7 +83,7 @@
       <v-col cols="12">
         <v-textarea
           v-model="input"
-          label="Type arabic as it sounds phonetically in English"
+          label="Type arabic as it sounds in English. Use the legend above and the example as a guide for the more difficult Arabic characters."
           data-phonetic-text-area
         ></v-textarea>
       </v-col>

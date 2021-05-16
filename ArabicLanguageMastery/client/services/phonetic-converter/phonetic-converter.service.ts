@@ -96,6 +96,16 @@ export class PhoneticConverterService {
         }${arabic.substr(arabic.length - 1)}`;
       }
 
+      // Check for plural masculine verb which requires an Alif to be appended
+      if (
+        character === ' ' &&
+        `${thirdLastArabicCharacter}${secondLastArabicCharacter}${lastArabicCharacter}` ===
+          ArabicVowel.harfIllahWaw
+      ) {
+        arabic += `${ArabicLetter.alif} `;
+        continue;
+      }
+
       // Check for tanween
       if (
         character === ' ' &&
