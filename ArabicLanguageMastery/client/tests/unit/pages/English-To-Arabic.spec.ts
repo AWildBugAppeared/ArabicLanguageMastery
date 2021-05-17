@@ -54,7 +54,7 @@ describe('English-To-Arabic.vue', () => {
     await wrapper.vm.$nextTick();
 
     const textArea = wrapper.find('[data-phonetic-text-area]');
-    textArea.setValue('wa ##Allah##u Aakbaru');
+    textArea.setValue('wa ((Allah))u Aakbaru');
     await wrapper.vm.$nextTick();
 
     const arabicText = wrapper.find('[data-arabic]');

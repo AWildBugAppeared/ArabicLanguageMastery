@@ -193,4 +193,15 @@ describe('PhoneticConverterService', () => {
 
     expect(arabic).toEqual(expectedArabic);
   });
+
+  it('should process special words', () => {
+    const english =
+      'Aanzala ((Allah))u ((jlh)) rasoolahu ((saw)) Iilaynaa faadeoo ((Allahumma)) ahdinaa bisunna-ti rasoolika';
+    const expectedArabic =
+      'أَنْزَلَ ﷲُ ﷻ رَسُوْلَهُ ﷺ إِلَيْنَا فَادْعُوْا اللّٰهُمَّ اهْدِنَا بِسُنَّةِ رَسُوْلِكَ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
 });

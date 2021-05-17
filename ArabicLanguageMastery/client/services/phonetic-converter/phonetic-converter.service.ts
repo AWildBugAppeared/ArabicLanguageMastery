@@ -1,8 +1,8 @@
 import {
   ArabicLetter,
   arabicLettersWhichDontAcceptAlif,
-  ArabicLigature,
   ArabicMiscCharacter,
+  ArabicSpecialWord,
   arabicStandingHamzahs,
   ArabicVowel,
 } from './arabic-constants';
@@ -40,7 +40,9 @@ export class PhoneticConverterService {
 
       // Check for special words
       if (`${character}${nextCharacter}` === specialWordPrefixTag) {
-        const results = english.substring(i).match(/(?<=##)[^#]+(?=##)/);
+        const results = english
+          .substring(i)
+          .match(/(?<=\(\()[^\(\(^\)^\)]+(?=\)\))/);
 
         if (results && results?.length > 0) {
           const specialWord = results[0];
@@ -130,7 +132,7 @@ export class PhoneticConverterService {
 
       // Check for vowels & sukoon
       if (
-        (this.isArabicLigature(lastArabicCharacter) ||
+        (this.isArabicSpecialWord(lastArabicCharacter) ||
           this.isArabicLetter(lastArabicCharacter)) &&
         lastArabicCharacter !== ArabicLetter.alif
       ) {
@@ -195,8 +197,10 @@ export class PhoneticConverterService {
     );
   }
 
-  isArabicLigature(ligature: string): boolean {
-    return Object.values(ArabicLigature).includes(ligature as ArabicLigature);
+  isArabicSpecialWord(specialWord: string): boolean {
+    return Object.values(ArabicSpecialWord).includes(
+      specialWord as ArabicSpecialWord
+    );
   }
 
   isEnglishConsonant(character: string): boolean {

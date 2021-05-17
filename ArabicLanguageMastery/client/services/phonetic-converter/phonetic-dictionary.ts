@@ -2,7 +2,7 @@ import {
   ArabicLetter,
   ArabicNumber,
   ArabicPunctuation,
-  ArabicSpecialWords,
+  ArabicSpecialWord,
   ArabicVowel,
 } from './arabic-constants';
 import {
@@ -100,9 +100,12 @@ phoneticDictionary[EnglishPunctuation.underscore] =
 // #endregion
 
 // #region Special words
-phoneticDictionary[PhoneticArabicSpecialWords.Allah] = ArabicSpecialWords.Allah;
+phoneticDictionary[PhoneticArabicSpecialWords.Allah] = ArabicSpecialWord.Allah;
 phoneticDictionary[PhoneticArabicSpecialWords.Allahumma] =
-  ArabicSpecialWords.Allahumma;
+  ArabicSpecialWord.Allahumma;
+phoneticDictionary[PhoneticArabicSpecialWords.jallajalaaluhu] =
+  ArabicSpecialWord.jallajalaaluhu;
+phoneticDictionary[PhoneticArabicSpecialWords.saw] = ArabicSpecialWord.saw;
 // #endregion
 
 // #region Vowels

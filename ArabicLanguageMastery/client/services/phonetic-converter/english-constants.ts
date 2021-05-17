@@ -90,6 +90,8 @@ export enum EnglishPunctuation {
 export enum PhoneticArabicSpecialWords {
   Allah = 'Allah',
   Allahumma = 'Allahumma',
+  jallajalaaluhu = 'jlh',
+  saw = 'saw',
 }
 
 export enum PhoneticArabicTanween {
@@ -122,4 +124,4 @@ export const dualCharacterMappingsFirstLetters = [
   'z',
 ];
 export const dualCharacterMappingsSecondLetter = 'h';
-export const specialWordPrefixTag = '##';
+export const specialWordPrefixTag = '((';

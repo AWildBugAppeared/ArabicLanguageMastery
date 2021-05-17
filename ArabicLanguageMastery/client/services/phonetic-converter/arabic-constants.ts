@@ -36,10 +36,6 @@ export enum ArabicLetter {
   yaaHamzah = 'ئ',
 }
 
-export enum ArabicLigature {
-  Allah = '\uFDF2',
-}
-
 export enum ArabicMiscCharacter {
   shaddah = 'ّ',
   sukoon = 'ْ',
@@ -74,9 +70,11 @@ export enum ArabicPunctuation {
   underscore = '_',
 }
 
-export enum ArabicSpecialWords {
+export enum ArabicSpecialWord {
   Allah = '\uFDF2',
-  Allahumma = 'اللهُمَّ',
+  Allahumma = 'اللّ\u0670هُمَّ',
+  jallajalaaluhu = '\uFDFB',
+  saw = '\uFDFA',
 }
 
 export enum ArabicNumber {

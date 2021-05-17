@@ -78,6 +78,28 @@
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          <h2 class="py-5">Special Words</h2>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-row dir="rtl">
+            <v-col
+              v-for="arabicWord in arabicSpecialWords"
+              :key="arabicWord"
+              cols="2"
+            >
+              <span class="arabic-sm">{{ arabicWord }}</span>
+              <span class="px-2">-</span> {{ getPhoneticMap(arabicWord) }}
+            </v-col>
+          </v-row>
+
+          <div class="py-5">
+            Special words are usually unconventionally written. To use them, wrap the word in (()) e.g. ((Allah))
+          </div>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </v-expansion-panels>
     <v-row>
       <v-col cols="12">
@@ -88,10 +110,14 @@
         ></v-textarea>
       </v-col>
       <v-col cols="12" class="text-right">
-        <div dir="rtl" class="arabic" data-arabic>{{ convertedInput }}</div>
-        <v-btn data-copy-btn @click="copy">Copy</v-btn>
+        <div dir="rtl" class="arabic converted-text" data-arabic>
+          {{ convertedInput }}
+        </div>
       </v-col>
     </v-row>
+    <div class="text-right mt-2">
+      <v-btn data-copy-btn @click="copy">Copy</v-btn>
+    </div>
   </v-container>
 </template>
 
@@ -100,6 +126,7 @@ import Vue from 'vue';
 
 import {
   ArabicLetter,
+  ArabicSpecialWord,
   ArabicVowel,
 } from '@/services/phonetic-converter/arabic-constants';
 
@@ -112,6 +139,7 @@ export default Vue.extend({
   data() {
     return {
       arabicLetters: ArabicLetter,
+      arabicSpecialWords: ArabicSpecialWord,
       arabicVowels: ArabicVowel,
       input: '',
       convertedInput: '',
@@ -140,6 +168,10 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
+.converted-text {
+  white-space: pre-wrap;
+}
+
 .v-expansion-panel {
   background-color: #121212;
 }
