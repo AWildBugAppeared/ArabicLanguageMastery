@@ -43,7 +43,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   data() {
     return {
       clipped: false,
@@ -72,7 +74,7 @@ export default {
   },
 
   created() {
-    this.drawer = !this.isMobile;
+    this.drawer = !this.$vuetify.breakpoint.xs;
   },
-};
+});
 </script>

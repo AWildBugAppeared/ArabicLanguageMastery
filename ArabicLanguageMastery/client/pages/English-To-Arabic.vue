@@ -89,6 +89,7 @@
       </v-col>
       <v-col cols="12" class="text-right">
         <div dir="rtl" class="arabic" data-arabic>{{ convertedInput }}</div>
+        <v-btn data-copy-btn @click="copy">Copy</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -124,6 +125,10 @@ export default Vue.extend({
   },
 
   methods: {
+    copy() {
+      navigator.clipboard.writeText(this.convertedInput);
+    },
+
     getPhoneticMap(value: string): string | undefined {
       const phoneticMap = Object.keys(phoneticDictionary).find(
         (key) => phoneticDictionary[key] === value
