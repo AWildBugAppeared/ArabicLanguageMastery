@@ -1,10 +1,12 @@
 import {
   ArabicLetter,
+  ArabicNumber,
   ArabicPunctuation,
   ArabicSpecialWords,
   ArabicVowel,
 } from './arabic-constants';
 import {
+  EnglishNumber,
   EnglishPunctuation,
   PhoneticArabicLetter,
   PhoneticArabicSpecialWords,
@@ -119,6 +121,19 @@ phoneticDictionary[PhoneticArabicVowel.u] = ArabicVowel.dammah;
 phoneticDictionary[PhoneticArabicVowel.uu] = ArabicVowel.dammahInverted;
 phoneticDictionary[PhoneticArabicTanween.un] = ArabicVowel.dammatain;
 phoneticDictionary[PhoneticArabicVowel.x] = '';
+// #endregion
+
+// #region Numbers
+phoneticDictionary[EnglishNumber.zero] = ArabicNumber.zero;
+phoneticDictionary[EnglishNumber.one] = ArabicNumber.one;
+phoneticDictionary[EnglishNumber.two] = ArabicNumber.two;
+phoneticDictionary[EnglishNumber.three] = ArabicNumber.three;
+phoneticDictionary[EnglishNumber.four] = ArabicNumber.four;
+phoneticDictionary[EnglishNumber.five] = ArabicNumber.five;
+phoneticDictionary[EnglishNumber.six] = ArabicNumber.six;
+phoneticDictionary[EnglishNumber.seven] = ArabicNumber.seven;
+phoneticDictionary[EnglishNumber.eight] = ArabicNumber.eight;
+phoneticDictionary[EnglishNumber.nine] = ArabicNumber.nine;
 // #endregion
 
 export { phoneticDictionary };

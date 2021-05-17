@@ -18,6 +18,16 @@ describe('PhoneticConverterService', () => {
     expect(arabic).toEqual(expectedArabic);
   });
 
+  it('should return the arabic alphabet', () => {
+    const english = '1 2 3 4 5 6 7 8 9 0';
+    const expectedArabic =
+      '\u0661 \u0662 \u0663 \u0664 \u0665 \u0666 \u0667 \u0668 \u0669 \u0660';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+
   it('should return the short Arabic vowels', () => {
     const english = 'yajidu';
     const expectedArabic = 'يَجِدُ';

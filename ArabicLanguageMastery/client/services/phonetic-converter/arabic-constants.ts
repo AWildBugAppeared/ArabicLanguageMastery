@@ -79,6 +79,19 @@ export enum ArabicSpecialWords {
   Allahumma = 'اللهُمَّ',
 }
 
+export enum ArabicNumber {
+  zero = '\u0660',
+  one = '\u0661',
+  two = '\u0662',
+  three = '\u0663',
+  four = '\u0664',
+  five = '\u0665',
+  six = '\u0666',
+  seven = '\u0667',
+  eight = '\u0668',
+  nine = '\u0669',
+}
+
 export enum ArabicVowel {
   dammah = 'ُ',
   dammahInverted = '\u0657',
