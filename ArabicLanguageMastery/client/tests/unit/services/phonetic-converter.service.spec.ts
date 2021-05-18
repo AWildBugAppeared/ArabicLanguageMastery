@@ -60,9 +60,9 @@ describe('PhoneticConverterService', () => {
     });
   });
 
-  it('should not put sukoon on alif', () => {
-    const english = 'waaHid';
-    const expectedArabic = 'وَاحِد';
+  it('should not put sukoon on alif/alif maqsoor', () => {
+    const english = "jaahidoo Iil'Y ";
+    const expectedArabic = 'جَاهِدُوْا إِلٰى ';
 
     const arabic = service.convertToArabic(english);
 

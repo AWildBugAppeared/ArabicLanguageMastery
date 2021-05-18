@@ -1,16 +1,37 @@
 <template>
-  <v-container class="text-center">
-    <v-expansion-panels multiple hover>
-      <v-expansion-panel class="test">
+  <v-container>
+    <p class="mb-2 mb-md-10">
+      See the example below which contains most/all of the difficult mappings.
+      The rest should be quick, simple and intuitive. The full character
+      mappings can be found at the bottom of the page.
+    </p>
+
+    <v-textarea
+      v-model="input"
+      label="Type here to convert to Arabic"
+      data-phonetic-text-area
+    ></v-textarea>
+    <div dir="rtl" class="arabic converted-text" data-arabic>
+      {{ convertedInput }}
+    </div>
+
+    <div class="text-right mt-2 my-5">
+      <v-btn data-copy-btn @click="copy">Copy</v-btn>
+    </div>
+
+    <v-expansion-panels multiple hover class="text-center">
+      <v-expansion-panel>
         <v-expansion-panel-header>
           <h2 class="pb-5">Arabic Letters</h2>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-row dir="rtl">
+          <v-row dir="rtl" justify="center">
             <v-col
               v-for="arabicLetter in arabicLetters"
               :key="arabicLetter"
-              cols="1"
+              cols="4"
+              sm="2"
+              lg="1"
             >
               <span v-if="arabicLetter === arabicLetters.alif"
                 ><span class="arabic-sm">{{ arabicLetter }}</span>
@@ -45,11 +66,13 @@
           <h2 class="py-5">Arabic Vowels</h2>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-row dir="rtl">
+          <v-row dir="rtl" justify="center">
             <v-col
               v-for="arabicVowel in arabicVowels"
               :key="arabicVowel"
-              cols="1"
+              cols="4"
+              sm="2"
+              lg="1"
             >
               <span v-if="arabicVowel === arabicVowels.harfIllahAlif"
                 ><span class="arabic-sm">{{ arabicVowel }}</span>
@@ -84,11 +107,12 @@
           <h2 class="py-5">Special Words</h2>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-row dir="rtl">
+          <v-row dir="rtl" justify="center">
             <v-col
               v-for="arabicWord in arabicSpecialWords"
               :key="arabicWord"
-              cols="2"
+              cols="4"
+              sm="3"
             >
               <span class="arabic-sm">{{ arabicWord }}</span>
               <span class="px-2">-</span> {{ getPhoneticMap(arabicWord) }}
@@ -96,28 +120,12 @@
           </v-row>
 
           <div class="py-5">
-            Special words are usually unconventionally written. To use them, wrap the word in (()) e.g. ((Allah))
+            Special words are usually unconventionally written. To use them,
+            wrap the word in (()) e.g. ((Allah))
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-    <v-row>
-      <v-col cols="12">
-        <v-textarea
-          v-model="input"
-          label="Type arabic as it sounds in English. Use the legend above and the example as a guide for the more difficult Arabic characters."
-          data-phonetic-text-area
-        ></v-textarea>
-      </v-col>
-      <v-col cols="12" class="text-right">
-        <div dir="rtl" class="arabic converted-text" data-arabic>
-          {{ convertedInput }}
-        </div>
-      </v-col>
-    </v-row>
-    <div class="text-right mt-2">
-      <v-btn data-copy-btn @click="copy">Copy</v-btn>
-    </div>
   </v-container>
 </template>
 
@@ -169,6 +177,7 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .converted-text {
+  height: initial;
   white-space: pre-wrap;
 }
 

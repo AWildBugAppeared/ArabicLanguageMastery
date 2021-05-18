@@ -1,6 +1,7 @@
 import {
   ArabicLetter,
   arabicLettersWhichDontAcceptAlif,
+  arabicLettersWhichDontAcceptSukoon,
   ArabicMiscCharacter,
   ArabicSpecialWord,
   arabicStandingHamzahs,
@@ -42,7 +43,7 @@ export class PhoneticConverterService {
       if (`${character}${nextCharacter}` === specialWordPrefixTag) {
         const results = english
           .substring(i)
-          .match(/(?<=\(\()[^\(\(^\)^\)]+(?=\)\))/);
+          .match(/(?<=\(\()[^((^)^)]+(?=\)\))/);
 
         if (results && results?.length > 0) {
           const specialWord = results[0];
@@ -134,7 +135,7 @@ export class PhoneticConverterService {
       if (
         (this.isArabicSpecialWord(lastArabicCharacter) ||
           this.isArabicLetter(lastArabicCharacter)) &&
-        lastArabicCharacter !== ArabicLetter.alif
+        this.isArabicLetterWhichAcceptsSukoon(lastArabicCharacter)
       ) {
         if (
           this.isPhoneticVowel(character) ||
@@ -188,6 +189,10 @@ export class PhoneticConverterService {
   deleteLastCharacter(input: string): string {
     input = input.substring(0, input.length - 1);
     return input;
+  }
+
+  isArabicLetterWhichAcceptsSukoon(character: string): boolean {
+    return !arabicLettersWhichDontAcceptSukoon.includes(character);
   }
 
   isArabicLetter(character: string): boolean {
