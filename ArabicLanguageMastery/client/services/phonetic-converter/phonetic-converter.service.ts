@@ -3,6 +3,7 @@ import {
   arabicLettersWhichDontAcceptAlif,
   arabicLettersWhichDontAcceptSukoon,
   ArabicMiscCharacter,
+  arabicShamsLetters,
   ArabicSpecialWord,
   arabicStandingHamzahs,
   ArabicVowel,
@@ -163,9 +164,14 @@ export class PhoneticConverterService {
               ArabicLetter.yaaHamzah
             }`;
           }
+
           arabic += ArabicMiscCharacter.sukoon;
         }
       }
+
+      const isDefiniteArticlePresent =
+        ` ${secondLastArabicCharacter}${lastArabicCharacter}` ===
+        ` ${ArabicLetter.alif}${ArabicLetter.laam}`;
 
       if (
         nextCharacter &&
@@ -173,10 +179,17 @@ export class PhoneticConverterService {
         dualCharacterMappingsSecondLetter === nextCharacter
       ) {
         arabic += this.convert(`${character}${characterArray[++i]}`);
-        continue;
-      }
+      } else arabic += this.convert(character);
 
-      arabic += this.convert(character);
+      // Check for shams letters after al which will need the sukoon on the laam removing
+      if (
+        isDefiniteArticlePresent &&
+        arabicShamsLetters.includes(arabic[arabic.length - 1])
+      ) {
+        arabic = `${arabic.substr(0, arabic.length - 2)}${
+          arabic[arabic.length - 1]
+        }`;
+      }
     }
 
     return arabic;

@@ -6,6 +6,11 @@
       mappings can be found at the bottom of the page.
     </p>
 
+    <v-row>
+      <v-col cols="6">{{ exampleInput }}</v-col>
+      <v-col cols="6" class="arabic">{{ exampleConvertedInput }}</v-col>
+    </v-row>
+
     <v-textarea
       v-model="input"
       label="Type here to convert to Arabic"
@@ -149,6 +154,9 @@ export default Vue.extend({
       arabicLetters: ArabicLetter,
       arabicSpecialWords: ArabicSpecialWord,
       arabicVowels: ArabicVowel,
+      exampleInput:
+        "Aanzala ((Allah))u alqurA~na Iil'Y alrrajuli wa alnnisaaái",
+      exampleConvertedInput: '',
       input: '',
       convertedInput: '',
     };
@@ -158,6 +166,12 @@ export default Vue.extend({
     input(value) {
       this.convertedInput = phoneticConverterService.convertToArabic(value);
     },
+  },
+
+  created() {
+    this.exampleConvertedInput = phoneticConverterService.convertToArabic(
+      this.exampleInput
+    );
   },
 
   methods: {
@@ -177,7 +191,6 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .converted-text {
-  height: initial;
   white-space: pre-wrap;
 }
 

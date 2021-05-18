@@ -117,5 +117,19 @@ export const arabicLettersWhichDontAcceptAlif = [
 ];
 
 export const arabicLettersWhichDontAcceptSukoon = ['ى', 'ا', 'ة'];
-
+export const arabicShamsLetters = [
+  'ت',
+  'ث',
+  'د',
+  'ذ',
+  'ر',
+  'ز',
+  'س',
+  'ش',
+  'ص',
+  'ض',
+  'ط',
+  'ظ',
+  'ن',
+];
 export const arabicStandingHamzahs = ['إ', 'أ'];
