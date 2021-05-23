@@ -15,7 +15,7 @@ import {
   PhoneticArabicLetter,
   PhoneticArabicTanween,
   PhoneticArabicVowel,
-  specialWordPrefixTag as ligatureWordPrefixTag,
+  ligaturePrefixTag,
 } from './english-constants';
 import { phoneticDictionary } from './phonetic-dictionary';
 
@@ -32,6 +32,8 @@ export class PhoneticConverterService {
     let character = '';
     let nextCharacter = '';
 
+    let previousWord = '';
+
     for (let i = 0; i < characterArray.length; i++) {
       thirdLastArabicCharacter = arabic[arabic.length - 3];
       secondLastArabicCharacter = arabic[arabic.length - 2];
@@ -42,7 +44,12 @@ export class PhoneticConverterService {
 
       const isCharacterASpace = character === ' ';
 
-      // Check for Allah, lillah, and allahumma
+      if (isCharacterASpace)
+        previousWord = (english.substring(0, i + 1).match(/[^ ]+ $/) ?? [
+          previousWord,
+        ])[0];
+
+      // Check for special words
       if (
         (!previousCharacter && !isCharacterASpace) ||
         previousCharacter === ' '
@@ -89,7 +96,7 @@ export class PhoneticConverterService {
       }
 
       // Check for ligatures
-      if (`${character}${nextCharacter}` === ligatureWordPrefixTag) {
+      if (`${character}${nextCharacter}` === ligaturePrefixTag) {
         const results = english
           .substring(i)
           .match(/(?<=\(\()[^((^)^)]+(?=\)\))/);
@@ -99,7 +106,7 @@ export class PhoneticConverterService {
           arabic += this.convert(ligature);
           // ##Allah##
           // ^Current character index which needs to be placed at the end
-          i += ligature.length + ligatureWordPrefixTag.length + 1;
+          i += ligature.length + ligaturePrefixTag.length + 1;
           continue;
         }
       }
@@ -132,6 +139,7 @@ export class PhoneticConverterService {
         arabic += ArabicMiscCharacter.shaddah;
       }
 
+      // Check for small hamza at the end or joined hamza in the middle of a word
       if (
         secondLastArabicCharacter === ArabicLetter.hamzaSmall &&
         lastArabicCharacter !== ' ' &&
@@ -161,6 +169,7 @@ export class PhoneticConverterService {
       // Check for tanween
       if (
         isCharacterASpace &&
+        previousWord.length > 4 &&
         english[i - 5] &&
         english[i - 5] !== ' ' &&
         this.isLastWordEndingInTanween(english, i)
@@ -182,8 +191,7 @@ export class PhoneticConverterService {
 
       // Check for vowels & sukoon
       if (
-        (this.isArabicSpecialWord(lastArabicCharacter) ||
-          this.isArabicLetter(lastArabicCharacter)) &&
+        this.isArabicLetter(lastArabicCharacter) &&
         this.isArabicLetterWhichAcceptsSukoon(lastArabicCharacter)
       ) {
         if (
@@ -212,7 +220,6 @@ export class PhoneticConverterService {
               ArabicLetter.yaaHamzah
             }`;
           }
-
           arabic += ArabicMiscCharacter.sukoon;
         }
       }
@@ -260,12 +267,6 @@ export class PhoneticConverterService {
     return (
       !Object.values(ArabicVowel).includes(character as ArabicVowel) &&
       Object.values(ArabicLetter).includes(character as ArabicLetter)
-    );
-  }
-
-  isArabicSpecialWord(specialWord: string): boolean {
-    return Object.values(ArabicSpecialWord).includes(
-      specialWord as ArabicSpecialWord
     );
   }
 

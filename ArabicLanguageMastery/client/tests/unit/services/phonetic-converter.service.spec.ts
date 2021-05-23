@@ -103,17 +103,13 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should not add tanween to two letter words', () => {
-    const words = ['man ', 'min '];
+    const english = 'wa man wa min taHtihim ';
 
-    const maljaAn = 'مَنْ ';
-    const sky = 'مِنْ ';
+    const expectedArabic = 'وَ مَنْ وَ مِنْ تَحْتِهِمْ ';
 
-    const expectedArabicWords = [maljaAn, sky];
+    const arabic = service.convertToArabic(english);
 
-    words.forEach((word: string, index: number) => {
-      const arabic = service.convertToArabic(word);
-      expect(arabic).toEqual(expectedArabicWords[index]);
-    });
+    expect(arabic).toEqual(expectedArabic);
   });
 
   it('should not add alif after kasratain for letters which do not accept alif', () => {

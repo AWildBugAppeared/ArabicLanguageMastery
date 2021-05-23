@@ -128,4 +128,4 @@ export const dualCharacterMappingsFirstLetters = [
   'z',
 ];
 export const dualCharacterMappingsSecondLetter = 'h';
-export const specialWordPrefixTag = '((';
+export const ligaturePrefixTag = '((';

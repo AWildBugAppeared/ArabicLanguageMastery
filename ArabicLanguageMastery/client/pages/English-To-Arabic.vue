@@ -73,7 +73,8 @@ export default Vue.extend({
   data() {
     return {
       arabicLigatures: ArabicLigature,
-      exampleInput: "Aanzala Allahu alqurA~na Iil'Y alnnaasi maweiZa-tan min alrrabbikum",
+      exampleInput:
+        "Aanzala Allahu alqurA~na Iil'Y alnnaasi maweiZa-tan min alrrabbikum",
       exampleConvertedInput: '',
       input: '',
       convertedInput: '',
