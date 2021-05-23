@@ -18,7 +18,8 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Scheherazade&display=swap',
+        href:
+          'https://fonts.googleapis.com/css2?family=Scheherazade&display=swap',
       },
     ],
   },
@@ -68,6 +69,9 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    defaultAssets: {
+      icons: false,
+    },
     theme: {
       dark: true,
       themes: {

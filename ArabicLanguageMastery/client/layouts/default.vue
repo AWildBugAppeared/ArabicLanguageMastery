@@ -45,6 +45,8 @@
 <script lang="ts">
 import Vue from 'vue';
 
+import { mdiEmailOutline, mdiLeadPencil } from '@mdi/js';
+
 export default Vue.extend({
   data() {
     return {
@@ -52,12 +54,12 @@ export default Vue.extend({
       drawer: true,
       items: [
         {
-          icon: 'mdi-lead-pencil',
+          icon: mdiLeadPencil,
           title: 'Write Arabic',
           to: '/english-to-arabic',
         },
         {
-          icon: 'mdi-email-outline',
+          icon: mdiEmailOutline,
           title: 'Contact Us',
           to: '/contact-us',
         },
