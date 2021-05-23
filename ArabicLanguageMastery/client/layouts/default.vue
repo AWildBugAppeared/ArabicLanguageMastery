@@ -31,7 +31,9 @@
       </v-col>
       <v-spacer v-if="isMobile"></v-spacer>
       <v-col xs="2" sm="1" :order="isMobile ? 'last' : 'first'">
-        <v-app-bar-nav-icon class="text-right" @click.stop="drawer = !drawer" />
+        <v-app-bar-nav-icon class="text-right" @click.stop="drawer = !drawer"
+          ><v-icon>{{ menuIcon }}</v-icon></v-app-bar-nav-icon
+        >
       </v-col>
     </v-app-bar>
     <v-main>
@@ -45,13 +47,14 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import { mdiEmailOutline, mdiLeadPencil } from '@mdi/js';
+import { mdiEmailOutline, mdiLeadPencil, mdiMenu } from '@mdi/js';
 
 export default Vue.extend({
   data() {
     return {
       clipped: false,
       drawer: true,
+      menuIcon: mdiMenu,
       items: [
         {
           icon: mdiLeadPencil,
