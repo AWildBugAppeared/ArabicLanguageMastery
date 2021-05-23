@@ -32,6 +32,7 @@ export enum PhoneticArabicLetter {
   hamzah = 'A',
   hamzahKasrah = 'I',
   hamzahSmall = 'á',
+  hamzahSmallTwo = 'c',
   yaa = 'y',
   alifMaqsoor = 'Y',
   yaaHamzah = 'yh',
@@ -87,11 +88,14 @@ export enum EnglishPunctuation {
   underscore = '_',
 }
 
-export enum PhoneticArabicSpecialWords {
-  Allah = 'Allah',
-  Allahumma = 'Allahumma',
+export enum PhoneticArabicLigature {
   jallajalaaluhu = 'jlh',
   saw = 'saw',
+}
+
+export enum PhoneticArabicSpecialWord {
+  Allah = 'Allah',
+  Allahumma = 'Allahumma',
 }
 
 export enum PhoneticArabicTanween {

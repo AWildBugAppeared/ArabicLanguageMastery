@@ -9,9 +9,9 @@ describe('PhoneticConverterService', () => {
 
   it('should return the arabic alphabet', () => {
     const english =
-      'a b t th j H kh d zh r z s sh S D T Z e g gh f q k l m n w W h A I á y Y yh';
+      'a b t th j H kh d zh r z s sh S D T Z e g gh f q k l m n w W h A I á c y Y yh';
     const expectedArabic =
-      'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ غ ف ق ك ل م ن و ؤ ه أ إ ء ي ى ئ';
+      'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ غ ف ق ك ل م ن و ؤ ه أ إ ء ء ي ى ئ';
 
     const arabic = service.convertToArabic(english);
 
@@ -186,8 +186,8 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should support writing hamza joined in the middle using standard phonetic letter for small hamzah', () => {
-    const english = 'siy~áat jiánaa siy~áat';
-    const expectedArabic = 'سِيٓئَتْ جِئْنَا سِيٓئَت';
+    const english = 'siy~áat jiánaa siy~áat siy~cat jicnaa siy~cat';
+    const expectedArabic = 'سِيٓئَتْ جِئْنَا سِيٓئَتْ سِيٓئَتْ جِئْنَا سِيٓئَت';
 
     const arabic = service.convertToArabic(english);
 
@@ -203,9 +203,18 @@ describe('PhoneticConverterService', () => {
     expect(arabic).toEqual(expectedArabic);
   });
 
-  it('should process special words', () => {
+  it('should convert Allah (u/a/i) and lillahi', () => {
+    const english = 'Allahu Allaha Allahi lillahi';
+    const expectedArabic = 'ﷲُ ﷲَ ﷲِ لِلّ\u0670هِ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+
+  it('should process ligatures', () => {
     const english =
-      'Aanzala ((Allah))u ((jlh)) rasoolahu ((saw)) Iilaynaa faadeoo ((Allahumma)) ahdinaa bisunna-ti rasoolika';
+      'Aanzala Allahu ((jlh)) rasoolahu ((saw)) Iilaynaa faadeoo ((Allahumma)) ahdinaa bisunna-ti rasoolika';
     const expectedArabic =
       'أَنْزَلَ ﷲُ ﷻ رَسُوْلَهُ ﷺ إِلَيْنَا فَادْعُوْا اللّٰهُمَّ اهْدِنَا بِسُنَّةِ رَسُوْلِكَ';
 

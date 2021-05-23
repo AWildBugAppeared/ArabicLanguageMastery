@@ -15,7 +15,7 @@ import {
   PhoneticArabicLetter,
   PhoneticArabicTanween,
   PhoneticArabicVowel,
-  specialWordPrefixTag,
+  specialWordPrefixTag as ligatureWordPrefixTag,
 } from './english-constants';
 import { phoneticDictionary } from './phonetic-dictionary';
 
@@ -40,18 +40,66 @@ export class PhoneticConverterService {
       character = characterArray[i];
       nextCharacter = characterArray[i + 1];
 
-      // Check for special words
-      if (`${character}${nextCharacter}` === specialWordPrefixTag) {
+      const isCharacterASpace = character === ' ';
+
+      // Check for Allah, lillah, and allahumma
+      if (
+        (!previousCharacter && !isCharacterASpace) ||
+        previousCharacter === ' '
+      ) {
+        const results = english.substring(i).match(/[^ ]+/);
+
+        if (results && results?.length > 0) {
+          if (results[0] === 'Allahu') {
+            arabic += `${ArabicSpecialWord.Allah}${ArabicVowel.dammah}`;
+            i += 5;
+            continue;
+          }
+
+          if (results[0] === 'Allaha') {
+            arabic += `${ArabicSpecialWord.Allah}${ArabicVowel.fathah}`;
+            i += 5;
+            continue;
+          }
+
+          if (results[0] === 'Allahi') {
+            arabic += `${ArabicSpecialWord.Allah}${ArabicVowel.kasrah}`;
+            i += 5;
+            continue;
+          }
+
+          if (results[0] === 'lillah') {
+            arabic += ArabicSpecialWord.lillah;
+            i += 5;
+            continue;
+          }
+
+          if (results[0] === 'lillahi') {
+            arabic += ArabicSpecialWord.lillahi;
+            i += 6;
+            continue;
+          }
+
+          if (results[0] === 'Allahumma') {
+            arabic += ArabicSpecialWord.Allahumma;
+            i += 8;
+            continue;
+          }
+        }
+      }
+
+      // Check for ligatures
+      if (`${character}${nextCharacter}` === ligatureWordPrefixTag) {
         const results = english
           .substring(i)
           .match(/(?<=\(\()[^((^)^)]+(?=\)\))/);
 
         if (results && results?.length > 0) {
-          const specialWord = results[0];
-          arabic += this.convert(specialWord);
+          const ligature = results[0];
+          arabic += this.convert(ligature);
           // ##Allah##
           // ^Current character index which needs to be placed at the end
-          i += specialWord.length + specialWordPrefixTag.length + 1;
+          i += ligature.length + ligatureWordPrefixTag.length + 1;
           continue;
         }
       }
@@ -112,7 +160,7 @@ export class PhoneticConverterService {
 
       // Check for tanween
       if (
-        character === ' ' &&
+        isCharacterASpace &&
         english[i - 5] &&
         english[i - 5] !== ' ' &&
         this.isLastWordEndingInTanween(english, i)

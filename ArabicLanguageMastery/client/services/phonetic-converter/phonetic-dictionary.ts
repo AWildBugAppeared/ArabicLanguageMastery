@@ -1,5 +1,6 @@
 import {
   ArabicLetter,
+  ArabicLigature,
   ArabicNumber,
   ArabicPunctuation,
   ArabicSpecialWord,
@@ -9,7 +10,8 @@ import {
   EnglishNumber,
   EnglishPunctuation,
   PhoneticArabicLetter,
-  PhoneticArabicSpecialWords,
+  PhoneticArabicLigature,
+  PhoneticArabicSpecialWord,
   PhoneticArabicTanween,
   PhoneticArabicVowel,
 } from './english-constants';
@@ -52,9 +54,19 @@ phoneticDictionary[PhoneticArabicLetter.hamzah] = ArabicLetter.hamza;
 phoneticDictionary[PhoneticArabicLetter.hamzahKasrah] =
   ArabicLetter.hamzaKasrah;
 phoneticDictionary[PhoneticArabicLetter.hamzahSmall] = ArabicLetter.hamzaSmall;
+phoneticDictionary[PhoneticArabicLetter.hamzahSmallTwo] =
+  ArabicLetter.hamzaSmall;
 phoneticDictionary[PhoneticArabicLetter.yaa] = ArabicLetter.yaa;
 phoneticDictionary[PhoneticArabicLetter.alifMaqsoor] = ArabicLetter.alifMaqsoor;
 phoneticDictionary[PhoneticArabicLetter.yaaHamzah] = ArabicLetter.yaaHamzah;
+// #endregion
+
+// #region
+
+phoneticDictionary[PhoneticArabicLigature.jallajalaaluhu] =
+  ArabicLigature.jallajalaaluhu;
+phoneticDictionary[PhoneticArabicLigature.saw] = ArabicLigature.saw;
+
 // #endregion
 
 // #region Punctuation
@@ -100,12 +112,9 @@ phoneticDictionary[EnglishPunctuation.underscore] =
 // #endregion
 
 // #region Special words
-phoneticDictionary[PhoneticArabicSpecialWords.Allah] = ArabicSpecialWord.Allah;
-phoneticDictionary[PhoneticArabicSpecialWords.Allahumma] =
+phoneticDictionary[PhoneticArabicSpecialWord.Allah] = ArabicSpecialWord.Allah;
+phoneticDictionary[PhoneticArabicSpecialWord.Allahumma] =
   ArabicSpecialWord.Allahumma;
-phoneticDictionary[PhoneticArabicSpecialWords.jallajalaaluhu] =
-  ArabicSpecialWord.jallajalaaluhu;
-phoneticDictionary[PhoneticArabicSpecialWords.saw] = ArabicSpecialWord.saw;
 // #endregion
 
 // #region Vowels
