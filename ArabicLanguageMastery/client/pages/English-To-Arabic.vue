@@ -27,6 +27,10 @@
       data-phonetic-text-area
     ></v-textarea>
 
+    <div class="text-center pb-5">
+      <img src="../assets/arabic-keyboard.png" />
+    </div>
+
     <v-expansion-panels multiple hover class="text-center">
       <v-expansion-panel>
         <v-expansion-panel-header>
@@ -52,10 +56,6 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-
-    <div class="text-center">
-      <img src="../assets/arabic-keyboard.png" />
-    </div>
   </v-container>
 </template>
 
@@ -74,7 +74,7 @@ export default Vue.extend({
     return {
       arabicLigatures: ArabicLigature,
       exampleInput:
-        "Aanzala Allahu alqurA~na Iil'Y alnnaasi maweiZa-tan min alrrabbikum",
+        "Aanzala Allahu alqurA~na Iil'Y muHammadun rasoolu Allahi ((saw)) maweiZa-tan lilnnaasi",
       exampleConvertedInput: '',
       input: '',
       convertedInput: '',

@@ -78,6 +78,15 @@ describe('PhoneticConverterService', () => {
     expect(arabic).toEqual(expectedArabic);
   });
 
+  it('should not put sukoon on the laam of lil if the next letter is a shams letter', () => {
+    const english = 'lilnnaasi';
+    const expectedArabic = 'لِلنَّاسِ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+
   it('should differentiate between وَشِرٌ and وَسْهِرٌ', () => {
     const english = 'washirun wasxhirun ';
     const expectedArabic = 'وَشِرٌ وَسْهِرٌ ';

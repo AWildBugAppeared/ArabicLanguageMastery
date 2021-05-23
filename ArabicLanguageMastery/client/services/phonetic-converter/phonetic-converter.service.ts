@@ -224,10 +224,6 @@ export class PhoneticConverterService {
         }
       }
 
-      const isDefiniteArticlePresent =
-        ` ${secondLastArabicCharacter}${lastArabicCharacter}` ===
-        ` ${ArabicLetter.alif}${ArabicLetter.laam}`;
-
       if (
         nextCharacter &&
         dualCharacterMappingsFirstLetters.includes(character) &&
@@ -236,9 +232,27 @@ export class PhoneticConverterService {
         arabic += this.convert(`${character}${characterArray[++i]}`);
       } else arabic += this.convert(character);
 
+      const isDefiniteArticlePresent =
+        ` ${secondLastArabicCharacter}${lastArabicCharacter}` ===
+        ` ${ArabicLetter.alif}${ArabicLetter.laam}`;
+
       // Check for shams letters after al which will need the sukoon on the laam removing
       if (
         isDefiniteArticlePresent &&
+        arabicShamsLetters.includes(arabic[arabic.length - 1])
+      ) {
+        arabic = `${arabic.substr(0, arabic.length - 2)}${
+          arabic[arabic.length - 1]
+        }`;
+      }
+
+      const isPossessiveDefiniteArticlePresent =
+        ` ${thirdLastArabicCharacter}${secondLastArabicCharacter}${lastArabicCharacter}` ===
+        ` ${ArabicLetter.laam}${ArabicVowel.kasrah}${ArabicLetter.laam}`;
+
+      // Check for shams letters after al which will need the sukoon on the laam removing
+      if (
+        isPossessiveDefiniteArticlePresent &&
         arabicShamsLetters.includes(arabic[arabic.length - 1])
       ) {
         arabic = `${arabic.substr(0, arabic.length - 2)}${
