@@ -30,7 +30,7 @@ export default Vue.extend({
     };
   },
   created() {
-    this.$router.push('/english-to-arabic');
+    this.$router.push('/english-to-arabic/');
   },
 });
 </script>

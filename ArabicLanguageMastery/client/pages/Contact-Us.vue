@@ -1,16 +1,16 @@
 <template>
   <v-container class="text-center">
-    <form name="contact" method="POST" data-netlify="true">
-      <p>
-        <v-text-field type="text" name="name" label="Your Name" />
-      </p>
-      <p><v-text-field type="email" name="email" label="Your Email" /></p>
-      <p>
-        <v-textarea name="message" label="Message"></v-textarea>
-      </p>
-      <p>
-        <v-btn type="submit">Send</v-btn>
-      </p>
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <input type="hidden" value="contact" name="form-name" />
+      <v-text-field type="text" name="name" label="Your Name" />
+      <v-text-field type="email" name="email" label="Your Email" />
+      <v-textarea name="message" label="Message" value=""></v-textarea>
+      <v-btn type="submit">Send</v-btn>
     </form>
   </v-container>
 </template>
@@ -22,7 +22,9 @@ export default Vue.extend({
   name: 'ContactUs',
 
   data() {
-    return {};
+    return {
+      message: '',
+    };
   },
 });
 </script>

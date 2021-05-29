@@ -59,12 +59,12 @@ export default Vue.extend({
         {
           icon: mdiLeadPencil,
           title: 'Write Arabic',
-          to: '/english-to-arabic',
+          to: '/english-to-arabic/',
         },
         {
           icon: mdiEmailOutline,
           title: 'Contact Us',
-          to: '/contact-us',
+          to: '/contact-us/',
         },
       ],
       miniVariant: false,
