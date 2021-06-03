@@ -5,7 +5,6 @@ import {
   ArabicMiscCharacter,
   arabicShamsLetters,
   ArabicSpecialWord,
-  arabicStandingHamzahs,
   ArabicVowel,
 } from './arabic-constants';
 import {
@@ -75,12 +74,6 @@ export class PhoneticConverterService {
             continue;
           }
 
-          if (results[0] === 'lillah') {
-            arabic += ArabicSpecialWord.lillah;
-            i += 5;
-            continue;
-          }
-
           if (results[0] === 'lillahi') {
             arabic += ArabicSpecialWord.lillahi;
             i += 6;
@@ -104,7 +97,7 @@ export class PhoneticConverterService {
         if (results && results?.length > 0) {
           const ligature = results[0];
           arabic += this.convert(ligature);
-          // ##Allah##
+          // ((saw))
           // ^Current character index which needs to be placed at the end
           i += ligature.length + ligaturePrefixTag.length + 1;
           continue;
@@ -268,11 +261,6 @@ export class PhoneticConverterService {
     return phoneticDictionary[character] ?? character;
   }
 
-  deleteLastCharacter(input: string): string {
-    input = input.substring(0, input.length - 1);
-    return input;
-  }
-
   isArabicLetterWhichAcceptsSukoon(character: string): boolean {
     return !arabicLettersWhichDontAcceptSukoon.includes(character);
   }
@@ -312,9 +300,5 @@ export class PhoneticConverterService {
     return Object.values(PhoneticArabicVowel).includes(
       character as PhoneticArabicVowel
     );
-  }
-
-  isStandingHamzah(character: string): boolean {
-    return arabicStandingHamzahs.includes(character);
   }
 }

@@ -66,6 +66,11 @@ export default Vue.extend({
           title: 'Contact Us',
           to: '/contact-us/',
         },
+        {
+          icon: mdiEmailOutline,
+          title: 'Mawsoof Sifah',
+          to: '/mawsoof-sifah/',
+        },
       ],
       miniVariant: false,
       title: 'Phonetic English to Arabic',

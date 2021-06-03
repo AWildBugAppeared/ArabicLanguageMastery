@@ -97,24 +97,18 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should process tanweens', () => {
-    const words = ['Aabun ', 'Aaban ', 'Aabin '];
+    const english = 'Aabun Aaban Aabin ';
+    const expectedArabic = 'أَبٌ أَبًا أَبٍ ';
 
-    const zaydun = 'أَبٌ ';
-    const zaydan = 'أَبًا ';
-    const zaydin = 'أَبٍ ';
+    const arabic = service.convertToArabic(english);
 
-    const expectedArabicWords = [zaydun, zaydan, zaydin];
-
-    words.forEach((word: string, index: number) => {
-      const arabic = service.convertToArabic(word);
-      expect(arabic).toEqual(expectedArabicWords[index]);
-    });
+    expect(arabic).toEqual(expectedArabic);
   });
 
   it('should not add tanween to two letter words', () => {
-    const english = 'wa man wa min taHtihim ';
+    const english = ' wa man wa min taHtihim ';
 
-    const expectedArabic = 'وَ مَنْ وَ مِنْ تَحْتِهِمْ ';
+    const expectedArabic = ' وَ مَنْ وَ مِنْ تَحْتِهِمْ ';
 
     const arabic = service.convertToArabic(english);
 
@@ -209,8 +203,8 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should convert Allah (u/a/i) and lillahi', () => {
-    const english = 'Allahu Allaha Allahi lillahi';
-    const expectedArabic = 'ﷲُ ﷲَ ﷲِ لِلّ\u0670هِ';
+    const english = 'Allahumma Allahu Allaha Allahi lillahi ';
+    const expectedArabic = 'اللّٰهُمَّ ﷲُ ﷲَ ﷲِ لِلّ\u0670هِ ';
 
     const arabic = service.convertToArabic(english);
 
@@ -219,7 +213,7 @@ describe('PhoneticConverterService', () => {
 
   it('should process ligatures', () => {
     const english =
-      'Aanzala Allahu ((jlh)) rasoolahu ((saw)) Iilaynaa faadeoo ((Allahumma)) ahdinaa bisunna-ti rasoolika';
+      'Aanzala Allahu ((jlh)) rasoolahu ((saw)) Iilaynaa faadeoo Allahumma ahdinaa bisunna-ti rasoolika';
     const expectedArabic =
       'أَنْزَلَ ﷲُ ﷻ رَسُوْلَهُ ﷺ إِلَيْنَا فَادْعُوْا اللّٰهُمَّ اهْدِنَا بِسُنَّةِ رَسُوْلِكَ';
 
