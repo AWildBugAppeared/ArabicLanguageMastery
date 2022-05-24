@@ -4,7 +4,6 @@ import {
   arabicLettersWhichDontAcceptSukoon,
   ArabicMiscCharacter,
   arabicShamsLetters,
-  ArabicSpecialWord,
   ArabicVowel,
 } from './arabic-constants';
 import {
@@ -109,7 +108,7 @@ export class PhoneticConverterService {
         lastArabicCharacter === thirdLastArabicCharacter &&
         secondLastArabicCharacter === ArabicMiscCharacter.sukoon
       ) {
-        arabic = arabic.substr(0, arabic.length - 2);
+        arabic = arabic.substring(0, arabic.length - 2);
         arabic += ArabicMiscCharacter.shaddah;
       }
 
@@ -125,9 +124,9 @@ export class PhoneticConverterService {
         ) ||
           english[i + 1] !== ' ')
       ) {
-        arabic = `${arabic.substr(0, arabic.length - 2)}${
+        arabic = `${arabic.substring(0, arabic.length - 2)}${
           ArabicLetter.yaaHamzah
-        }${arabic.substr(arabic.length - 1)}`;
+        }${arabic.substring(arabic.length - 1)}`;
       }
 
       // Check for plural masculine verb which requires an Alif to be appended
@@ -144,15 +143,13 @@ export class PhoneticConverterService {
       if (
         isCharacterASpace &&
         previousWord.length > 4 &&
-        english[i - 5] &&
-        english[i - 5] !== ' ' &&
         this.isLastWordEndingInTanween(english, i)
       ) {
         const secondLastLetter = english[i - 2];
         const lastLetter = english[i - 1];
         const tanweenSyllable = `${secondLastLetter}${lastLetter}`;
 
-        arabic = arabic.substr(0, arabic.length - 2);
+        arabic = arabic.substring(0, arabic.length - 2);
         arabic += this.convert(tanweenSyllable);
         arabic +=
           tanweenSyllable === PhoneticArabicTanween.an &&
@@ -190,7 +187,7 @@ export class PhoneticConverterService {
               )))
         ) {
           if (lastArabicCharacter === ArabicLetter.hamzaSmall) {
-            arabic = `${arabic.substr(0, arabic.length - 1)}${
+            arabic = `${arabic.substring(0, arabic.length - 1)}${
               ArabicLetter.yaaHamzah
             }`;
           }
@@ -216,7 +213,7 @@ export class PhoneticConverterService {
         isDefiniteArticlePresent &&
         arabicShamsLetters.includes(arabic[arabic.length - 1])
       ) {
-        arabic = `${arabic.substr(0, arabic.length - 2)}${
+        arabic = `${arabic.substring(0, arabic.length - 2)}${
           arabic[arabic.length - 1]
         }`;
       }
@@ -230,7 +227,7 @@ export class PhoneticConverterService {
         isPossessiveDefiniteArticlePresent &&
         arabicShamsLetters.includes(arabic[arabic.length - 1])
       ) {
-        arabic = `${arabic.substr(0, arabic.length - 2)}${
+        arabic = `${arabic.substring(0, arabic.length - 2)}${
           arabic[arabic.length - 1]
         }`;
       }
@@ -264,7 +261,7 @@ export class PhoneticConverterService {
     english: string,
     spaceCharacterIndex: number
   ): boolean {
-    const englishTrimmed = english.substr(0, spaceCharacterIndex);
+    const englishTrimmed = english.substring(0, spaceCharacterIndex);
 
     const secondLastLetter = englishTrimmed[englishTrimmed.length - 2];
     const lastLetter = englishTrimmed[englishTrimmed.length - 1];
