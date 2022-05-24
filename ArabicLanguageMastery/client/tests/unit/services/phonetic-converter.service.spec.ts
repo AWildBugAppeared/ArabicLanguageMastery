@@ -69,6 +69,15 @@ describe('PhoneticConverterService', () => {
     expect(arabic).toEqual(expectedArabic);
   });
 
+  it('should allow baa in front of a word with al', () => {
+    const english = 'bialnnaasi';
+    const expectedArabic = 'بِالنَّاسِ';
+
+    const arabic = service.convertToArabic(english);
+
+    expect(arabic).toEqual(expectedArabic);
+  });
+
   it('should not put sukoon on the laam of al if the next letter is a shams letter', () => {
     const english = "Iil'Y alqamari wa alshshamsi";
     const expectedArabic = 'إِلٰى الْقَمَرِ وَ الشَّمْسِ';
@@ -79,8 +88,8 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should not put sukoon on the laam of lil if the next letter is a shams letter', () => {
-    const english = 'lilnnaasi';
-    const expectedArabic = 'لِلنَّاسِ';
+    const english = 'lilshshamsi wa lilnnujoomi';
+    const expectedArabic = 'لِلشَّمْسِ وَ لِلنُّجُوْمِ';
 
     const arabic = service.convertToArabic(english);
 

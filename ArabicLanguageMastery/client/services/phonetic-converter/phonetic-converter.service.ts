@@ -68,6 +68,16 @@ export class PhoneticConverterService {
         }
       }
 
+      // Check for cases like bialnnaasi where an alif comes after a kasrah
+      if (
+        character === PhoneticArabicVowel.i &&
+        nextCharacter === PhoneticArabicLetter.alif
+      ) {
+        arabic += `${ArabicVowel.kasrah}${ArabicLetter.alif}`;
+        i++;
+        continue;
+      }
+
       // Check for ligatures
       if (`${character}${nextCharacter}` === ligaturePrefixTag) {
         const results = english
@@ -205,26 +215,16 @@ export class PhoneticConverterService {
       } else arabic += this.convert(character);
 
       const isDefiniteArticlePresent =
-        ` ${secondLastArabicCharacter}${lastArabicCharacter}` ===
-        ` ${ArabicLetter.alif}${ArabicLetter.laam}`;
-
-      // Check for shams letters after al which will need the sukoon on the laam removing
-      if (
-        isDefiniteArticlePresent &&
-        arabicShamsLetters.includes(arabic[arabic.length - 1])
-      ) {
-        arabic = `${arabic.substring(0, arabic.length - 2)}${
-          arabic[arabic.length - 1]
-        }`;
-      }
+        `${secondLastArabicCharacter}${lastArabicCharacter}` ===
+        `${ArabicLetter.alif}${ArabicLetter.laam}`;
 
       const isPossessiveDefiniteArticlePresent =
-        ` ${thirdLastArabicCharacter}${secondLastArabicCharacter}${lastArabicCharacter}` ===
-        ` ${ArabicLetter.laam}${ArabicVowel.kasrah}${ArabicLetter.laam}`;
+        `${thirdLastArabicCharacter}${secondLastArabicCharacter}${lastArabicCharacter}` ===
+        `${ArabicLetter.laam}${ArabicVowel.kasrah}${ArabicLetter.laam}`;
 
       // Check for shams letters after al which will need the sukoon on the laam removing
       if (
-        isPossessiveDefiniteArticlePresent &&
+        (isDefiniteArticlePresent || isPossessiveDefiniteArticlePresent) &&
         arabicShamsLetters.includes(arabic[arabic.length - 1])
       ) {
         arabic = `${arabic.substring(0, arabic.length - 2)}${
