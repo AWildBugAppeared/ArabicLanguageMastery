@@ -112,9 +112,18 @@ phoneticDictionary[EnglishPunctuation.underscore] =
 // #endregion
 
 // #region Special words
-phoneticDictionary[PhoneticArabicSpecialWord.Allah] = ArabicSpecialWord.Allah;
 phoneticDictionary[PhoneticArabicSpecialWord.Allahumma] =
   ArabicSpecialWord.Allahumma;
+
+phoneticDictionary[PhoneticArabicSpecialWord.Allah] = ArabicSpecialWord.Allah;
+phoneticDictionary[PhoneticArabicSpecialWord.Allahu] = ArabicSpecialWord.Allahu;
+phoneticDictionary[PhoneticArabicSpecialWord.Allaha] = ArabicSpecialWord.Allaha;
+phoneticDictionary[PhoneticArabicSpecialWord.Allahi] = ArabicSpecialWord.Allahi;
+
+phoneticDictionary[PhoneticArabicSpecialWord.lillahi] =
+  ArabicSpecialWord.lillahi;
+phoneticDictionary[PhoneticArabicSpecialWord.tallahi] =
+  ArabicSpecialWord.tallahi;
 // #endregion
 
 // #region Vowels

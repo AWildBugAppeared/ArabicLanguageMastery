@@ -95,7 +95,12 @@ export enum PhoneticArabicLigature {
 
 export enum PhoneticArabicSpecialWord {
   Allah = 'Allah',
+  Allahu = 'Allahu',
+  Allaha = 'Allaha',
+  Allahi = 'Allahi',
   Allahumma = 'Allahumma',
+  lillahi = 'lillahi',
+  tallahi = 'tallahi',
 }
 
 export enum PhoneticArabicTanween {

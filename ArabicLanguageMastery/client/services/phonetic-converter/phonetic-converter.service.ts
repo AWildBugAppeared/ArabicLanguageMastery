@@ -15,6 +15,7 @@ import {
   PhoneticArabicTanween,
   PhoneticArabicVowel,
   ligaturePrefixTag,
+  PhoneticArabicSpecialWord,
 } from './english-constants';
 import { phoneticDictionary } from './phonetic-dictionary';
 
@@ -55,36 +56,16 @@ export class PhoneticConverterService {
       ) {
         const results = english.substring(i).match(/[^ ]+/);
 
-        if (results && results?.length > 0) {
-          if (results[0] === 'Allahu') {
-            arabic += `${ArabicSpecialWord.Allah}${ArabicVowel.dammah}`;
-            i += 5;
-            continue;
-          }
-
-          if (results[0] === 'Allaha') {
-            arabic += `${ArabicSpecialWord.Allah}${ArabicVowel.fathah}`;
-            i += 5;
-            continue;
-          }
-
-          if (results[0] === 'Allahi') {
-            arabic += `${ArabicSpecialWord.Allah}${ArabicVowel.kasrah}`;
-            i += 5;
-            continue;
-          }
-
-          if (results[0] === 'lillahi') {
-            arabic += ArabicSpecialWord.lillahi;
-            i += 6;
-            continue;
-          }
-
-          if (results[0] === 'Allahumma') {
-            arabic += ArabicSpecialWord.Allahumma;
-            i += 8;
-            continue;
-          }
+        if (
+          results &&
+          results?.length > 0 &&
+          Object.values(PhoneticArabicSpecialWord).includes(
+            results[0] as PhoneticArabicSpecialWord
+          )
+        ) {
+          arabic += this.convert(results[0]);
+          i += results[0].length - 1;
+          continue;
         }
       }
 

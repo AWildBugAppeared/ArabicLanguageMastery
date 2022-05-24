@@ -77,7 +77,10 @@ export enum ArabicPunctuation {
 
 export enum ArabicSpecialWord {
   Allah = '\uFDF2',
-  lillah = `لِلّ\u0670ه`,
+  Allahu = '\uFDF2\u064F',
+  Allaha = '\uFDF2\u064E',
+  Allahi = '\uFDF2\u0650',
+  tallahi = 'تاللّ\u0670هِ',
   lillahi = 'لِلّ\u0670هِ',
   Allahumma = 'اللّ\u0670هُمَّ',
 }

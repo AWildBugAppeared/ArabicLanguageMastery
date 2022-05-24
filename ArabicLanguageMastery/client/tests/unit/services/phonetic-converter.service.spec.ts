@@ -202,9 +202,9 @@ describe('PhoneticConverterService', () => {
     expect(arabic).toEqual(expectedArabic);
   });
 
-  it('should convert Allah (u/a/i) and lillahi', () => {
-    const english = 'Allahumma Allahu Allaha Allahi lillahi ';
-    const expectedArabic = 'اللّٰهُمَّ ﷲُ ﷲَ ﷲِ لِلّ\u0670هِ ';
+  it('should convert special words', () => {
+    const english = 'Allahumma Allahu Allaha Allahi tallahi lillahi ';
+    const expectedArabic = 'اللّٰهُمَّ ﷲُ ﷲَ ﷲِ تاللّٰهِ لِلّٰهِ ';
 
     const arabic = service.convertToArabic(english);
 
