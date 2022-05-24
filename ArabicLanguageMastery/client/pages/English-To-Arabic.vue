@@ -27,7 +27,7 @@
       data-phonetic-text-area
     ></v-textarea>
 
-    <div v-if="!$vuetify.breakpoint.mobile" class="text-center pb-5">
+    <div class="text-center pb-5 keyboard-image">
       <img src="../assets/arabic-keyboard.png" />
     </div>
 
@@ -115,6 +115,10 @@ export default Vue.extend({
 
 .converted-text-container {
   border: 2px solid white;
+}
+
+.keyboard-image {
+  overflow-x: scroll;
 }
 
 .v-expansion-panel {

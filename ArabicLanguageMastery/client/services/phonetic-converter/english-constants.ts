@@ -7,8 +7,8 @@ export enum PhoneticArabicLetter {
   jeem = 'j',
   Haa = 'H',
   khaa = 'kh',
-  dhaal = 'd',
-  zhaal = 'zh',
+  daal = 'd',
+  dhaal = 'dh',
   raa = 'r',
   zaa = 'z',
   seen = 's',
@@ -118,14 +118,6 @@ export enum PhoneticArabicVowel {
   x = 'x',
 }
 
-export const dualCharacterMappingsFirstLetters = [
-  'd',
-  'g',
-  's',
-  't',
-  'k',
-  'y',
-  'z',
-];
+export const dualCharacterMappingsFirstLetters = ['d', 'g', 's', 't', 'k', 'y'];
 export const dualCharacterMappingsSecondLetter = 'h';
 export const ligaturePrefixTag = '((';

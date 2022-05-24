@@ -28,8 +28,8 @@ phoneticDictionary[PhoneticArabicLetter.thaa] = ArabicLetter.thaa;
 phoneticDictionary[PhoneticArabicLetter.jeem] = ArabicLetter.jeem;
 phoneticDictionary[PhoneticArabicLetter.Haa] = ArabicLetter.Haa;
 phoneticDictionary[PhoneticArabicLetter.khaa] = ArabicLetter.khaa;
+phoneticDictionary[PhoneticArabicLetter.daal] = ArabicLetter.daal;
 phoneticDictionary[PhoneticArabicLetter.dhaal] = ArabicLetter.dhaal;
-phoneticDictionary[PhoneticArabicLetter.zhaal] = ArabicLetter.zhaal;
 phoneticDictionary[PhoneticArabicLetter.raa] = ArabicLetter.raa;
 phoneticDictionary[PhoneticArabicLetter.zaa] = ArabicLetter.zaa;
 phoneticDictionary[PhoneticArabicLetter.seen] = ArabicLetter.seen;
@@ -61,7 +61,7 @@ phoneticDictionary[PhoneticArabicLetter.alifMaqsoor] = ArabicLetter.alifMaqsoor;
 phoneticDictionary[PhoneticArabicLetter.yaaHamzah] = ArabicLetter.yaaHamzah;
 // #endregion
 
-// #region
+// #region Ligatures
 
 phoneticDictionary[PhoneticArabicLigature.jallajalaaluhu] =
   ArabicLigature.jallajalaaluhu;

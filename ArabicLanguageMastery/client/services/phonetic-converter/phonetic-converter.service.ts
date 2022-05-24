@@ -217,6 +217,7 @@ export class PhoneticConverterService {
         }
       }
 
+      // Check for dual letter mappings e.g. kh, sh, zh
       if (
         nextCharacter &&
         dualCharacterMappingsFirstLetters.includes(character) &&
