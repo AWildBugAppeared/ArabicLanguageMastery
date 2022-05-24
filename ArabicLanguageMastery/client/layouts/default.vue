@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :clipped="clipped"
@@ -65,6 +65,11 @@ export default Vue.extend({
           icon: mdiEmailOutline,
           title: 'Contact Us',
           to: '/contact-us/',
+        },
+        {
+          icon: mdiEmailOutline,
+          title: 'Introduction to Sarf',
+          to: '/introduction-to-sarf/',
         },
         {
           icon: mdiEmailOutline,

@@ -7,7 +7,9 @@ import Vue from 'vue';
 
 export default Vue.extend({
   components: {},
-  data() {},
+  data() {
+    return {};
+  },
   created() {
     this.$router.push('/english-to-arabic/');
   },

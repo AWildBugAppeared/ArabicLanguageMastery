@@ -27,7 +27,7 @@
       data-phonetic-text-area
     ></v-textarea>
 
-    <div class="text-center pb-5">
+    <div v-if="!$vuetify.breakpoint.mobile" class="text-center pb-5">
       <img src="../assets/arabic-keyboard.png" />
     </div>
 
@@ -74,7 +74,7 @@ export default Vue.extend({
     return {
       arabicLigatures: ArabicLigature,
       exampleInput:
-        "Aanzala Allahu alqurA~na Iil'Y muHammadun rasoolu Allahi ((saw)) maweiZa-tan lilnnaasi",
+        "Aanzala Allahu alqurA~na Iil'Y rasoolihi muHammadin ((saw)) maweiZa-tan lilnnaasi",
       exampleConvertedInput: '',
       input: '',
       convertedInput: '',

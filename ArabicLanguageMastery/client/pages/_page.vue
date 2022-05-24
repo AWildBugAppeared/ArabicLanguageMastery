@@ -1,13 +1,18 @@
 <template>
   <div v-if="page">
-    <h1>{{ page.title }}</h1>
+    <h1 class="text-center py-3">{{ page.title }}</h1>
     <!-- eslint-disable-next-line vue/no-v-html -->
-    <div data-page-content v-html="sanitisedLessonContent"></div>
+    <v-runtime-template
+      data-page-content
+      :template="sanitisedLessonContent"
+    ></v-runtime-template>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+
+import VRuntimeTemplate from 'v-runtime-template';
 
 import {
   htmlSanitisationService,
@@ -15,10 +20,16 @@ import {
 } from '~/services/service-exporter';
 
 export default Vue.extend({
+  components: {
+    VRuntimeTemplate,
+  },
+
   data() {
     return {
-      page: null,
-      sanitisedLessonContent: null,
+      page: {
+        content: '',
+      },
+      sanitisedLessonContent: '',
     };
   },
 

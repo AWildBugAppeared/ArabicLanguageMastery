@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_page.vue should display sanitised page content on creation 1`] = `
+"<div>
+  <h1 class=\\"text-center py-3\\">Title</h1>
+  <div data-page-content=\\"\\">sanitised hey</div>
+</div>"
+`;

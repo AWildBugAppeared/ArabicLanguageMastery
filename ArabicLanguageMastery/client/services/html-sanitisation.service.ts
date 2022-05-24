@@ -3,13 +3,32 @@ import sanitizeHtml from 'sanitize-html';
 export class HtmlSanitisationService {
   sanitizeHtml(html: string) {
     let sanitisedHtml = sanitizeHtml(html, {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
       allowedAttributes: {
         p: ['style'],
+        span: ['style'],
+        img: ['src'],
       },
-      allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
     });
+
+    // Style Notes
+    sanitisedHtml = sanitisedHtml.replace(
+      /\[Note\]/g,
+      '<v-alert border="left" color="teal darken-1" class="ma-2" dark>'
+    );
+    sanitisedHtml = sanitisedHtml.replace(/\[\/Note\]/g, '</v-alert>');
+
+    // Style Arabic
+    sanitisedHtml = sanitisedHtml.replace(
+      /\(\(arabic-l /g,
+      '<span class="arabic-l">'
+    );
     sanitisedHtml = sanitisedHtml.replace(/\(\(/g, '<span class="arabic">');
     sanitisedHtml = sanitisedHtml.replace(/\)\)/g, '</span>');
+
+    // Required for the V Runtime Template package that allows dynamic vue components
+    // to be used at runtime
+    sanitisedHtml = `<div>${sanitisedHtml}</div>`;
 
     return sanitisedHtml;
   }

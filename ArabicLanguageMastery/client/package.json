@@ -27,7 +27,8 @@
     "core-js": "^3.9.1",
     "cosmicjs": "^4.1.2",
     "nuxt": "^2.15.3",
-    "sanitize-html": "^2.4.0"
+    "sanitize-html": "^2.4.0",
+    "v-runtime-template": "^1.10.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.3",

@@ -14,7 +14,7 @@ import {
 } from '~/services/service-exporter';
 
 describe('_page.vue', () => {
-  const sanitisedHtml = 'sanitised hey';
+  const sanitisedHtml = '<div>sanitised hey</div>';
   htmlSanitisationService.sanitizeHtml = jest
     .fn()
     .mockReturnValue(sanitisedHtml);
@@ -74,11 +74,7 @@ describe('_page.vue', () => {
     expect(
       (htmlSanitisationService.sanitizeHtml as jest.Mock).mock.calls[0][0]
     ).toBe(cdnResponse.content);
-    expect(wrapper.html()).toMatchInlineSnapshot(`
-      "<div>
-        <h1>Title</h1>
-        <div data-page-content=\\"\\">sanitised hey</div>
-      </div>"
-    `);
+
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });
