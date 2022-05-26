@@ -1,5 +1,5 @@
 <template>
-  <div v-if="page">
+  <div v-if="page" class="page-container">
     <h1 class="text-center py-3">{{ page.title }}</h1>
     <!-- eslint-disable-next-line vue/no-v-html -->
     <v-runtime-template
@@ -41,3 +41,10 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.page-container {
+  max-width: 1000px;
+  margin: auto;
+}
+</style>

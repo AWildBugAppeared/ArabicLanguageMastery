@@ -1,5 +1,10 @@
 <template>
   <v-container class="text-center">
+    <div>
+      This site is still under construction so please bear with us while it is
+      being worked on. If you have any suggestions, or have found any bugs,
+      please contact us using the form below
+    </div>
     <form
       name="contact"
       method="POST"

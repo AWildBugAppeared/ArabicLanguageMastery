@@ -78,7 +78,7 @@ export default Vue.extend({
         },
       ],
       miniVariant: false,
-      title: 'Phonetic English to Arabic',
+      title: 'Master Arabic',
     };
   },
 

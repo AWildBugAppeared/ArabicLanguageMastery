@@ -18,6 +18,13 @@ export class HtmlSanitisationService {
     );
     sanitisedHtml = sanitisedHtml.replace(/\[\/Note\]/g, '</v-alert>');
 
+    // Style Summary
+    sanitisedHtml = sanitisedHtml.replace(
+      /\[Summary\]/g,
+      '<v-alert border="left" color="blue darken-1" class="ma-2" dark><h2 class="mt-n1 pb-2">Summary</h2>'
+    );
+    sanitisedHtml = sanitisedHtml.replace(/\[\/Summary\]/g, '</v-alert>');
+
     // Style Arabic
     sanitisedHtml = sanitisedHtml.replace(
       /\(\(arabic-l /g,
