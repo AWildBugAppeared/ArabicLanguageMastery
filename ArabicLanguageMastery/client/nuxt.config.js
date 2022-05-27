@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors';
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -84,9 +82,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extend(config, { isDev, isClient }) {
-      config.resolve.alias["vue"] = "vue/dist/vue.common";
-    }
+      config.resolve.alias.vue = 'vue/dist/vue.common';
+    },
   },
   server: {
     port: 8000,

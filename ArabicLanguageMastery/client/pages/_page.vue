@@ -1,7 +1,8 @@
 <template>
   <div v-if="page" class="page-container">
     <h1 class="text-center py-3">{{ page.title }}</h1>
-    <!-- eslint-disable-next-line vue/no-v-html -->
+    <!-- This is here to prevent tree shaking from not loading the vuetify style for alerts which are dynamically injected -->
+    <v-alert v-if="false"></v-alert>
     <v-runtime-template
       data-page-content
       :template="sanitisedLessonContent"
