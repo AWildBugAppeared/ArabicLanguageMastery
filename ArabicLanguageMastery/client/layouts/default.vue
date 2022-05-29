@@ -16,11 +16,8 @@
           router
           exact
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="text-wrap" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -47,7 +44,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import { mdiEmailOutline, mdiLeadPencil, mdiMenu } from '@mdi/js';
+import { mdiMenu } from '@mdi/js';
 
 export default Vue.extend({
   data() {
@@ -57,24 +54,32 @@ export default Vue.extend({
       menuIcon: mdiMenu,
       items: [
         {
-          icon: mdiLeadPencil,
+          title: 'The Arabic Sciences',
+          to: '/the-arabic-sciences/',
+        },
+        // {
+        //   title: 'The Three Parts of Speech',
+        //   to: '/the-three-parts-of-speech/',
+        // },
+        {
+          title: 'Introduction to Sarf',
+          to: '/introduction-to-sarf/',
+        },
+        // {
+        //   title: 'Introduction to Nahw',
+        //   to: '/introduction-to-nahw/',
+        // },
+        {
+          title: 'The Descriptive Phrase - Mawsoof Sifah',
+          to: '/mawsoof-sifah/',
+        },
+        {
           title: 'Write Arabic',
           to: '/english-to-arabic/',
         },
         {
-          icon: mdiEmailOutline,
           title: 'Contact Us',
           to: '/contact-us/',
-        },
-        {
-          icon: mdiEmailOutline,
-          title: 'Introduction to Sarf',
-          to: '/introduction-to-sarf/',
-        },
-        {
-          icon: mdiEmailOutline,
-          title: 'Mawsoof Sifah',
-          to: '/mawsoof-sifah/',
         },
       ],
       miniVariant: false,

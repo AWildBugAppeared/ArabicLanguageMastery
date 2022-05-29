@@ -11,7 +11,7 @@ export default Vue.extend({
     return {};
   },
   created() {
-    this.$router.push('/english-to-arabic/');
+    this.$router.push('/the-arabic-sciences/');
   },
 });
 </script>

@@ -2,6 +2,11 @@
 
 exports[`ContactUs.vue should display contact us form 1`] = `
 "<div class=\\"container text-center\\">
+  <div>
+    This site is still under construction so please bear with us while it is
+    being worked on. If you have any suggestions, or have found any bugs,
+    please contact us using the form below
+  </div>
   <form name=\\"contact\\" method=\\"POST\\" data-netlify=\\"true\\" data-netlify-honeypot=\\"bot-field\\"><input type=\\"hidden\\" value=\\"contact\\" name=\\"form-name\\">
     <div class=\\"v-input theme--light v-text-field\\">
       <div class=\\"v-input__control\\">

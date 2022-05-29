@@ -11,10 +11,16 @@ export class HtmlSanitisationService {
       },
     });
 
+    // Style ordered lists
+    sanitisedHtml = sanitisedHtml.replace(/<ol>/g, '<ol class="pb-2">');
+
+    // Style unordered lists
+    sanitisedHtml = sanitisedHtml.replace(/<ul>/g, '<ul class="pb-2">');
+
     // Style Notes
     sanitisedHtml = sanitisedHtml.replace(
       /\[Note\]/g,
-      '<v-alert border="left" color="teal darken-1" class="ma-2" dark>'
+      '<v-alert border="left" color="teal darken-1" class="ma-2" dark><h4 class="mt-n1 pb-2">Note</h4>'
     );
     sanitisedHtml = sanitisedHtml.replace(/\[\/Note\]/g, '</v-alert>');
 
