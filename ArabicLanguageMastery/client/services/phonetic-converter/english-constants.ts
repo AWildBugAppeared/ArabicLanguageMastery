@@ -35,7 +35,7 @@ export enum PhoneticArabicLetter {
   hamzahSmallTwo = 'c',
   yaa = 'y',
   alifMaqsoor = 'Y',
-  yaaHamzah = 'yh',
+  yaaHamzah = 'v',
 }
 
 export enum EnglishNumber {
@@ -123,6 +123,6 @@ export enum PhoneticArabicVowel {
   x = 'x',
 }
 
-export const dualCharacterMappingsFirstLetters = ['d', 'g', 's', 't', 'k', 'y'];
+export const dualCharacterMappingsFirstLetters = ['d', 'g', 's', 't', 'k'];
 export const dualCharacterMappingsSecondLetter = 'h';
 export const ligaturePrefixTag = '((';

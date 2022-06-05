@@ -17,21 +17,24 @@ export class HtmlSanitisationService {
     // Style unordered lists
     sanitisedHtml = sanitisedHtml.replace(/<ul>/g, '<ul class="pb-2">');
 
-    // Style Notes
+    sanitisedHtml = sanitisedHtml.replace(
+      /\[Important\]/g,
+      '<v-alert border="left" color="purple darken-2" class="ma-2" dark><h2 class="mt-n1 pb-2">Important</h2>'
+    );
+    sanitisedHtml = sanitisedHtml.replace(/\[\/Important\]/g, '</v-alert>');
+
     sanitisedHtml = sanitisedHtml.replace(
       /\[Note\]/g,
       '<v-alert border="left" color="teal darken-1" class="ma-2" dark><h4 class="mt-n1 pb-2">Note</h4>'
     );
     sanitisedHtml = sanitisedHtml.replace(/\[\/Note\]/g, '</v-alert>');
 
-    // Style Summary
     sanitisedHtml = sanitisedHtml.replace(
       /\[Summary\]/g,
       '<v-alert border="left" color="blue darken-1" class="ma-2" dark><h2 class="mt-n1 pb-2">Summary</h2>'
     );
     sanitisedHtml = sanitisedHtml.replace(/\[\/Summary\]/g, '</v-alert>');
 
-    // Style Arabic
     sanitisedHtml = sanitisedHtml.replace(
       /\(\(arabic-l /g,
       '<span class="arabic-l">'

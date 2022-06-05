@@ -9,7 +9,7 @@ describe('PhoneticConverterService', () => {
 
   it('should return the arabic alphabet', () => {
     const english =
-      'a b t th j H kh d dh r z s sh S D T Z e g gh f q k l m n w W h A I á c y Y yh';
+      'a b t th j H kh d dh r z s sh S D T Z e g gh f q k l m n w W h A I á c y Y v';
     const expectedArabic =
       'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ غ ف ق ك ل م ن و ؤ ه أ إ ء ء ي ى ئ';
 

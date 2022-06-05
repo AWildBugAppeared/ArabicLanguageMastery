@@ -36,6 +36,16 @@ describe('HtmlSanitisationService', () => {
     );
   });
 
+  it('should style important sections', () => {
+    const unsanitisedHtml = '[Important]This is important[/Important]';
+
+    const sanitisedHtml = service.sanitizeHtml(unsanitisedHtml);
+
+    expect(sanitisedHtml).toBe(
+      '<div><v-alert border="left" color="purple darken-2" class="ma-2" dark><h4 class="mt-n1 pb-2">Important</h4>This is important</v-alert></div>'
+    );
+  });
+
   it('should style notes', () => {
     const unsanitisedHtml = '[Note]This is a note[/Note]';
 

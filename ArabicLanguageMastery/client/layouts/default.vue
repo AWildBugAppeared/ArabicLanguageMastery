@@ -65,13 +65,21 @@ export default Vue.extend({
           title: 'Introduction to Sarf',
           to: '/introduction-to-sarf/',
         },
-        // {
-        //   title: 'Introduction to Nahw',
-        //   to: '/introduction-to-nahw/',
-        // },
+        {
+          title: 'Introduction to Phrases',
+          to: '/introduction-to-phrases/',
+        },
         {
           title: 'The Descriptive Phrase - Mawsoof Sifah',
           to: '/mawsoof-sifah/',
+        },
+        {
+          title: 'The Possessive Phrase - Mudaaf Mudaaf Ilayhi',
+          to: '/the-possessive-phrase/',
+        },
+        {
+          title: 'Introduction to Nahw Part 1 - The Two Types of Sentences',
+          to: '/introduction-to-nahw-part-1-the-two-types-of-sentences/',
         },
         {
           title: 'Write Arabic',
