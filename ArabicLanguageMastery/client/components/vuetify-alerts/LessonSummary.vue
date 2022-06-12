@@ -1,8 +1,8 @@
 <template>
-  <v-alert border="left" color="blue darken-1" class="ma-2" dark>
-    <h2 class="text-h5 mt-n1 pb-2">Summary</h2>
+  <base-alert color="blue darken-1">
+    <template #heading>Summary</template>
     <slot></slot>
-  </v-alert>
+  </base-alert>
 </template>
 
 <script lang="ts">
