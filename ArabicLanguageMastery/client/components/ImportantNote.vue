@@ -1,6 +1,6 @@
 <template>
-  <v-alert border="left" color="blue darken-1" class="ma-2" dark>
-    <h2 class="text-h5 mt-n1 pb-2">Summary</h2>
+  <v-alert border="left" color="purple darken-2" class="ma-2" dark>
+    <h2 class="text-h5 mt-n1 pb-2">Important</h2>
     <slot></slot>
   </v-alert>
 </template>
@@ -9,7 +9,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'Summary',
+  name: 'ImportantNote',
 
   data() {
     return {};

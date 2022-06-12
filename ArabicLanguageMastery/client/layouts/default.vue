@@ -55,7 +55,7 @@ export default Vue.extend({
       items: [
         {
           title: 'The Arabic Sciences',
-          to: '/the-arabic-sciences/',
+          to: '/introductory-module/the-arabic-sciences/',
         },
         // {
         //   title: 'The Three Parts of Speech',
@@ -63,23 +63,28 @@ export default Vue.extend({
         // },
         {
           title: 'Introduction to Sarf',
-          to: '/introduction-to-sarf/',
+          to: '/introductory-module/introduction-to-sarf/',
         },
         {
           title: 'Introduction to Phrases',
-          to: '/introduction-to-phrases/',
+          to: '/introductory-module/introduction-to-phrases/',
         },
         {
-          title: 'The Descriptive Phrase - Mawsoof Sifah',
-          to: '/mawsoof-sifah/',
-        },
-        {
-          title: 'The Possessive Phrase - Mudaaf Mudaaf Ilayhi',
-          to: '/the-possessive-phrase/',
+          title: 'The Maadhi Verb (Past Tense)',
+          to: '/introductory-module/the-maadhi-verb/',
         },
         {
           title: 'Introduction to Nahw Part 1 - The Two Types of Sentences',
-          to: '/introduction-to-nahw-part-1-the-two-types-of-sentences/',
+          to:
+            '/introductory-module/introduction-to-nahw-part-1-the-two-types-of-sentences/',
+        },
+        {
+          title: 'The Descriptive Phrase - Mawsoof Sifah',
+          to: '/introductory-module/the-descriptive-phrase/',
+        },
+        {
+          title: 'The Possessive Phrase - Mudaaf Mudaaf Ilayhi',
+          to: '/introductory-module/the-possessive-phrase/',
         },
         {
           title: 'Write Arabic',
