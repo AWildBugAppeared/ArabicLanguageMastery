@@ -36,7 +36,8 @@
     "**/*.tsx",
     "**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "plugins/pascal-to-normal-case.js"
   ],
   "exclude": [
     "node_modules",

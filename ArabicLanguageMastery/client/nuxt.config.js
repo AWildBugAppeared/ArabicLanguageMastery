@@ -26,7 +26,7 @@ export default {
   css: ['@/global-styles.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/pascal-to-normal-case.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
