@@ -68,7 +68,7 @@
         Let's take the word 'book', and the person 'David'. On their own they
         represent two separate things in our minds. English grammar tells us, by
         inserting the word 'of', or through the use of an apostrophee and 's',
-        we get:&nbsp;
+        we get:
       </p>
       <ul>
         <li>book of David</li>

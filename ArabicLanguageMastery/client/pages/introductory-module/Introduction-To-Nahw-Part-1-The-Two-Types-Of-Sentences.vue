@@ -7,11 +7,11 @@
       <p>
         Nahw is the Arabic science which states how words can be grouped
         together in order to add additional meanings. We have already discussed
-        the example of &#39;tall boy&#39;, where we have the word &#39;tall&#39;
-        conveying the meaning of height, the word &#39;boy&#39; referring to an
-        entity, and by placing them together in that order we create the
-        descriptive phrase and associate the two entities together. Had we said
-        &#39;boy tall&#39; instead, we would have a meaningless phrase.
+        the example of 'tall boy', where we have the word 'tall' conveying the
+        meaning of height, the word 'boy' referring to an entity, and by placing
+        them together in that order we create the descriptive phrase and
+        associate the two entities together. Had we said 'boy tall' instead, we
+        would have a meaningless phrase.
       </p>
       <p>
         Building on this, in Arabic, Nahw (Grammar) revolves around two main

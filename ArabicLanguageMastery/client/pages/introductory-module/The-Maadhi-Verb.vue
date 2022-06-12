@@ -43,15 +43,13 @@
         The present tense can be split into two types: Simple Present, and
         Present Continuous. The Present Continuous is exactly what it says, it
         is something that is happening right now, and the action is still
-        ongoing. &#39;I am saying..., I am walking..., I am listening....&#39;.
-        The simple present is used to refer to a habitual action that isn&#39;t
-        necessarily going on right now, &#39;I say...., I do......, I
-        write...&#39;
+        ongoing. 'I am saying..., I am walking..., I am listening....'. The
+        simple present is used to refer to a habitual action that isn't
+        necessarily going on right now, 'I say...., I do......, I write...'
       </note>
       <p>
         This is our first Sarf lesson. Our aim is to take the most basic verb,
-        ((فَعَلَ)) and be able to fully conjugate it&#39;s Maadhi (past tense)
-        form.
+        ((فَعَلَ)) and be able to fully conjugate it's Maadhi (past tense) form.
       </p>
     </template>
   </base-page>
