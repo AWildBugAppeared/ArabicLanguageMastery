@@ -29,7 +29,9 @@ export default {
   plugins: ['~/plugins/pascal-to-normal-case.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: {
+    dirs: ['~/components', '~/components/vuetify-alerts'],
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [

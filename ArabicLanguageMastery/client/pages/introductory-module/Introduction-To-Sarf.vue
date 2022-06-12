@@ -186,11 +186,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import BasePage from '~/components/Base-Page.vue';
-import LessonSummary from '~/components/Lesson-Summary.vue';
 
 export default Vue.extend({
   name: 'IntroductionToSarf',
-  components: { BasePage, LessonSummary },
+  components: { BasePage },
 
   data() {
     return {};
