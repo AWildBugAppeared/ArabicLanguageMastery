@@ -19,10 +19,8 @@ describe('BasePage.vue', () => {
       localVue,
       vuetify,
       slots: {
-        heading:
-          '<h1>Some text in the heading slot with some ((arabic-l الْعَرَبِيَّةٌ)) added</h1>',
-        default:
-          '<div>Some text in the default slot with some ((الْعَرَبِيَّةٌ)) added</div>',
+        heading: '<h1>Some text in the heading slot',
+        default: '<div>Some text in the default slot',
       },
     });
   };
@@ -44,7 +42,7 @@ describe('BasePage.vue', () => {
   });
 
   describe('render', () => {
-    it('should replace any arabic in slot content with wrapped spans containing appropriate classes', async () => {
+    it('should render base page', async () => {
       mountWrapper();
       await wrapper.vm.$nextTick();
 

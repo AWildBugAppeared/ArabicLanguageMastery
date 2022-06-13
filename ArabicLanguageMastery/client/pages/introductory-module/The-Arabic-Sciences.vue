@@ -7,9 +7,11 @@
       <p>There are 3 Arabic Sciences:</p>
       <div>
         <ul>
-          <li>Sarf ((صَرْفٌ)) - Morphology</li>
-          <li>Nahw ((نَحْوٌ)) - Grammar</li>
-          <li>Balaagha ((بَلَاغَةٌ)) - Rhetoric/Eloquence</li>
+          <li>Sarf <span class="arabic">صَرْفٌ</span> - Morphology</li>
+          <li>Nahw <span class="arabic">نَحْوٌ</span> - Grammar</li>
+          <li>
+            Balaagha <span class="arabic">بَلَاغَةٌ</span> - Rhetoric/Eloquence
+          </li>
         </ul>
       </div>
       <p>
@@ -137,16 +139,17 @@
         The 3 Arabic Sciences are:
         <ul>
           <li>
-            Sarf ((صَرْفٌ)) - the science of using patterns and endings to words
-            to enhance the meaning
+            Sarf <span class="arabic">صَرْفٌ</span> - the science of using
+            patterns and endings to words to enhance the meaning
           </li>
           <li>
-            Nahw ((نَحْوٌ)) - the science of grouping words together in order to
-            enhance the meaning
+            Nahw <span class="arabic">نَحْوٌ</span> - the science of grouping
+            words together in order to enhance the meaning
           </li>
           <li>
-            Balaagha ((بَلَاغَةٌ)) - the science which aims to create the most
-            eloquent speech that will be the most impactful in a given situation
+            Balaagha <span class="arabic">بَلَاغَةٌ</span> - the science which
+            aims to create the most eloquent speech that will be the most
+            impactful in a given situation
           </li>
         </ul>
       </v-alert>

@@ -5,26 +5,28 @@
     </template>
     <template #default>
       <div class="text-center">
-      <h2>
-        Mudaaf Mudaaf Ilayhi
-      </h2>
-      <div>((مُضَافٌ مُضَافٌ إْلَيْهِ))</div>
+        <h2>Mudaaf Mudaaf Ilayhi</h2>
+        <div><span class="arabic">مُضَافٌ مُضَافٌ إْلَيْهِ</span></div>
       </div>
       <p>
         The possessive phrase is made up of two parts, the possessed
-        ((مُضَافٌ)), and the possessor ((مُضَافٌ إْلَيْهِ)). In English, there
-        are two ways of making this phrase. We can either say, 'Zaid's book,' or
-        we can say, 'the book of Zaid.' Both mean the same. In Arabic, the
-        structure is that of the latter, where the possessed (book) comes first,
-        and then the possessor (Zaid). So we would say:
+        <span class="arabic">مُضَافٌ</span>, and the possessor
+        <span class="arabic">مُضَافٌ إْلَيْهِ</span>. In English, there are two
+        ways of making this phrase. We can either say, 'Zaid's book,' or we can
+        say, 'the book of Zaid.' Both mean the same. In Arabic, the structure is
+        that of the latter, where the possessed (book) comes first, and then the
+        possessor (Zaid). So we would say:
       </p>
-      <p class="text-center">((كِتَابُ زَيْدٍ))</p>
+      <p class="text-center"><span class="arabic">كِتَابُ زَيْدٍ</span></p>
       <p>
         Now, from our example above we can notice 2 rules that go into
         constructing the Mudaaf - Madaaf Ilayh phrase:
       </p>
       <ul>
-        <li>The Mudaaf is absent of both al ((ال)) and tanween.</li>
+        <li>
+          The Mudaaf is absent of both al <span class="arabic">ال</span> and
+          tanween.
+        </li>
         <li>The Mudaaf Ilayhi is the state of Jarr.</li>
       </ul>
       <p>
@@ -56,7 +58,7 @@
           </li>
           <li>The Mudaaf will not have Al or tanween</li>
           <li>The Mudaaf Ilayhi will be in the state of Jarr.</li>
-          <li>Zaid's shirt -> ((قَمِيْصُ زَيْدٍ))</li>
+          <li>Zaid's shirt -> <span class="arabic">قَمِيْصُ زَيْدٍ</span></li>
         </ul>
       </lesson-summary>
     </template>

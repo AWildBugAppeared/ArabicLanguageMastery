@@ -49,7 +49,7 @@
       </note>
       <p>
         This is our first Sarf lesson. Our aim is to take the most basic verb,
-        ((فَعَلَ)) and be able to fully conjugate it's Maadhi (past tense) form.
+        <span class="arabic">فَعَلَ</span> and be able to fully conjugate it's Maadhi (past tense) form.
       </p>
     </template>
   </base-page>

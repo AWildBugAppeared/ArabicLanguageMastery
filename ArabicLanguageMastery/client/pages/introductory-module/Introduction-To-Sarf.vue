@@ -12,13 +12,15 @@
         >intended to be remembered. This lesson is just to give you an idea of
         what and how Sarf is used.
       </p>
-      <div class="text-center">((arabic-l اِسْتَنْصَرُوْا))</div>
+      <div class="text-center">
+        <span class="arabic-l"> اِسْتَنْصَرُوْا</span>
+      </div>
       <p>
-        The Arabic word ((اِسْتَنْصَرُوْا)) is one word in Arabic and is best
-        translated as, "They sought help". Notice how it required 3 English
-        words to translate the one word from Arabic. This will often be the case
-        as Arabic words are structured to convey additional meanings via vowels,
-        patterns and endings.
+        The Arabic word <span class="arabic">اِسْتَنْصَرُوْا</span> is one word
+        in Arabic and is best translated as, "They sought help". Notice how it
+        required 3 English words to translate the one word from Arabic. This
+        will often be the case as Arabic words are structured to convey
+        additional meanings via vowels, patterns and endings.
       </p>
       <p data-darkreader-inline-outline="">
         From this translation we are in fact understand a total of 7 unique
@@ -44,7 +46,7 @@
       </p>
       <p>
         Now we can analyse all 7 of the meanings we understand with the word
-        ((اِسْتَنْصَرُوْا)), "they sought help".
+        <span class="arabic">اِسْتَنْصَرُوْا</span>, "they sought help".
       </p>
       <note>
         Do not attempt to remember the mechanisms discussed below. They covered
@@ -64,7 +66,8 @@
         >
       </h2>
       <p>
-        The dictionary meaning of help comes from the 3 root letters ((ن ص ر))
+        The dictionary meaning of help comes from the 3 root letters
+        <span class="arabic">ن ص ر</span>
       </p>
       <p class="text-center">
         <img
@@ -84,7 +87,7 @@
       </h2>
       <p>
         The additional meaning of "seeking" the action (help), comes from the
-        addition of the ((ست)) suffix.
+        addition of the <span class="arabic">ست</span> suffix.
       </p>
       <p class="text-center">
         <img
@@ -104,9 +107,10 @@
       </h2>
       <p>
         Arabic verbs that are in the present/future tense must start with 1 of 4
-        letters: ((أ ت ي ن)) and can be remembered using the word ((أَتَيْنَ)).
-        Since the verb does not start with one of these letters, we know it is
-        in the past tense (they sought help vs they are seeking help).
+        letters: <span class="arabic">أ ت ي ن</span> and can be remembered using
+        the word <span class="arabic">أَتَيْنَ</span>. Since the verb does not
+        start with one of these letters, we know it is in the past tense (they
+        sought help vs they are seeking help).
       </p>
       <p class="text-center">
         <img
@@ -172,9 +176,9 @@
       <p>
         The purpose of this lesson was to introduce the science of Sarf. It was
         to demonstrate that out of the 7 meanings we understand from the word
-        ((اِسْتَنْصَرُوْا)), only one comes from the dictionary. The remaining 6
-        come from Sarf, where patterns, vowels, and endings convey the extra
-        meanings.
+        <span class="arabic">اِسْتَنْصَرُوْا</span>, only one comes from the
+        dictionary. The remaining 6 come from Sarf, where patterns, vowels, and
+        endings convey the extra meanings.
       </p>
     </template>
   </base-page>

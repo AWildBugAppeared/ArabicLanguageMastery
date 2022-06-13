@@ -13,11 +13,11 @@
       </p>
       <p>
         In Arabic, it's the other way around. The noun being described comes
-        first, then the adjective. The word for 'boy' in Arabic is ((وَلَدٌ))
-        and the word for 'tall' is ((طَوِيْلٌ)). So 'tall boy' in Arabic would
-        be:
+        first, then the adjective. The word for 'boy' in Arabic is
+        <span class="arabic">وَلَدٌ</span> and the word for 'tall' is
+        <span class="arabic">طَوِيْلٌ</span>. So 'tall boy' in Arabic would be:
       </p>
-      <p class="text-center">((وَلَدٌ طَوِيْلٌ))</p>
+      <p class="text-center"><span class="arabic">وَلَدٌ طَوِيْلٌ</span></p>
       <p>
         For a descriptive phrase to be valid, the adjective and the noun need to
         match each other in four aspects:
@@ -41,12 +41,13 @@
         gender.
       </p>
       <div class="text-center">
-        <p>((وَلَدٌ طَوِيْلٌ)) - a tall boy</p>
-        <p>((بِنْتٌ طَوِيْلَةٌ)) - a tall girl</p>
+        <p><span class="arabic">وَلَدٌ طَوِيْلٌ</span> - a tall boy</p>
+        <p><span class="arabic">بِنْتٌ طَوِيْلَةٌ</span> - a tall girl</p>
       </div>
       <note>
-        Here the adjective ((طَوِيْلٌ)) is made feminine by the addition of the
-        ((ة)). This is one of the ways a word is made feminine.
+        Here the adjective <span class="arabic">طَوِيْلٌ</span> is made feminine
+        by the addition of the <span class="arabic">ة</span>. This is one of the
+        ways a word is made feminine.
       </note>
       <h2>Number</h2>
       <p>
@@ -54,13 +55,17 @@
         the noun and the adjective need to match in number.
       </p>
       <div class="text-center">
-        <p>((وَلَدٌ طَوِيْلٌ)) - a tall boy</p>
-        <p>((وَلَدَانِ طَوِيْلَانِ)) - two tall boys</p>
-        <p>((مُسْلِمُوْنَ سَاجِدُوْنَ)) - prostrating Muslims</p>
+        <p><span class="arabic">وَلَدٌ طَوِيْلٌ</span> - a tall boy</p>
+        <p><span class="arabic">وَلَدَانِ طَوِيْلَانِ</span> - two tall boys</p>
+        <p>
+          <span class="arabic">مُسْلِمُوْنَ سَاجِدُوْنَ</span> - prostrating
+          Muslims
+        </p>
       </div>
       <note>
-        The ((انِ)) and ((وْنَ)) suffixes are one method of making words dual
-        and plural respectively.
+        The <span class="arabic">انِ</span> and
+        <span class="arabic">وْنَ</span> suffixes are one method of making words
+        dual and plural respectively.
       </note>
       <p>
         <br />
@@ -70,12 +75,16 @@
         When something is definite, it refers to something specific, whereas
         indefinite is when something is generic. It is the difference between
         saying, "The boy," and "A boy." The most common way of making a word
-        definite in Arabic is by prefixing ((اَلْ)) to it and removing the
-        tanween. ((وَلَدٌ)) - a boy, becomes ((أَلْوَلَدُ)) - the boy
+        definite in Arabic is by prefixing <span class="arabic">اَلْ</span> to
+        it and removing the tanween. <span class="arabic">وَلَدٌ</span> - a boy,
+        becomes <span class="arabic">أَلْوَلَدُ</span> - the boy
       </p>
       <p class="text-center">
-        ((وَلَدٌ طَوِيْلٌ)) - a tall boy <br />((أَلْوَلَدُ الطَّوِيْلُ)) - the
-        tall boy
+        <span class="arabic">وَلَدٌ طَوِيْلٌ</span> - a tall boy <br /><span
+          class="arabic"
+          >أَلْوَلَدُ الطَّوِيْلُ</span
+        >
+        - the tall boy
       </p>
       <h2>Grammatical State</h2>
       <p>
@@ -86,10 +95,17 @@
         >
       </p>
       <div class="text-center">
-        <p>((دَرَسَ الطَالِبُ الذَّكِيُّ)) - the smart student studied</p>
-        <p>((رَأَيْتُ الطَالِبَ الذَّكِيَّ)) - I saw the smart student</p>
         <p>
-          ((مَرَرْتُ بِالطَّالِبِ الذَّكِيِّ)) - I passed by the smart student
+          <span class="arabic">دَرَسَ الطَالِبُ الذَّكِيُّ</span> - the smart
+          student studied
+        </p>
+        <p>
+          <span class="arabic">رَأَيْتُ الطَالِبَ الذَّكِيَّ</span> - I saw the
+          smart student
+        </p>
+        <p>
+          <span class="arabic">مَرَرْتُ بِالطَّالِبِ الذَّكِيِّ</span> - I
+          passed by the smart student
         </p>
       </div>
       <lesson-summary>
@@ -102,7 +118,7 @@
             The noun-adjective pair must match in 4 categories: Gender, Number,
             Definiteness, and Grammatical State.
           </li>
-          <li>Small boy -> ((وَلَدٌ صَغِيْرٌ))</li>
+          <li>Small boy -> <span class="arabic">وَلَدٌ صَغِيْرٌ</span></li>
         </ul>
       </lesson-summary>
     </template>

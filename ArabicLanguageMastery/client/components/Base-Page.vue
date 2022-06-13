@@ -16,14 +16,6 @@ export default Vue.extend({
   data() {
     return {};
   },
-
-  mounted() {
-    (this.$refs.page as HTMLElement).innerHTML = (this.$refs
-      .page as HTMLElement).innerHTML
-      .replace(/\(\(arabic-l/g, '<span class="arabic-l">')
-      .replace(/\(\(/g, '<span class="arabic">')
-      .replace(/\)\)/g, '</span>');
-  },
 });
 </script>
 
