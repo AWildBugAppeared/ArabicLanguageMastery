@@ -3,7 +3,7 @@
 exports[`BasePage.vue render should replace any arabic in slot content with wrapped spans containing appropriate classes 1`] = `
 "<div class=\\"container page-container\\">
   <h1 class=\\"text-h3 text-center\\"></h1>
-  <h1>Some text in the heading slot with some <span class=\\"arabic\\">الْعَرَبِيَّةٌ</span> added</h1>
+  <h1>Some text in the heading slot with some <span class=\\"arabic-l\\"> الْعَرَبِيَّةٌ</span> added</h1>
   <div>Some text in the default slot with some <span class=\\"arabic\\">الْعَرَبِيَّةٌ</span> added</div>
 </div>"
 `;

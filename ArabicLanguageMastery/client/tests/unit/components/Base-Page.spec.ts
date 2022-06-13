@@ -20,7 +20,7 @@ describe('BasePage.vue', () => {
       vuetify,
       slots: {
         heading:
-          '<h1>Some text in the heading slot with some ((الْعَرَبِيَّةٌ)) added</h1>',
+          '<h1>Some text in the heading slot with some ((arabic-l الْعَرَبِيَّةٌ)) added</h1>',
         default:
           '<div>Some text in the default slot with some ((الْعَرَبِيَّةٌ)) added</div>',
       },
