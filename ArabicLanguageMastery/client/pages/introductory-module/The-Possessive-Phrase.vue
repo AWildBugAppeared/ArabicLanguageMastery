@@ -1,12 +1,15 @@
 <template>
   <base-page>
     <template #heading>
-      {{ $convertPascalToNormalCase($options.name) }} - Mawsoof Sifah
+      {{ $convertPascalToNormalCase($options.name) }}
     </template>
     <template #default>
-      <h3 class="text-center">
-        Mudaaf Mudaaf Ilayhi - ((مُضَافٌ مُضَافٌ إْلَيْهِ))
-      </h3>
+      <div class="text-center">
+      <h2>
+        Mudaaf Mudaaf Ilayhi
+      </h2>
+      <div>((مُضَافٌ مُضَافٌ إْلَيْهِ))</div>
+      </div>
       <p>
         The possessive phrase is made up of two parts, the possessed
         ((مُضَافٌ)), and the possessor ((مُضَافٌ إْلَيْهِ)). In English, there
@@ -46,7 +49,6 @@
         Nasb, or Jarr.
       </p>
       <lesson-summary>
-        []
         <ul>
           <li>
             The Mudaaf (possessed) comes first, followed by the Mudaaf Ilayhi

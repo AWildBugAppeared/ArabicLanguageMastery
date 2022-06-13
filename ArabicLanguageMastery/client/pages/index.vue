@@ -1,9 +1,11 @@
 <template>
-  <duv></duv>
+  <div></div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+
+import { Routes } from '@/constants/routes';
 
 export default Vue.extend({
   components: {},
@@ -11,7 +13,7 @@ export default Vue.extend({
     return {};
   },
   created() {
-    this.$router.push('/the-arabic-sciences/');
+    this.$router.push(Routes.introductoryModule.theArabicSciences);
   },
 });
 </script>

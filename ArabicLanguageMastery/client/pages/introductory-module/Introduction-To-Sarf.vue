@@ -12,7 +12,7 @@
         >intended to be remembered. This lesson is just to give you an idea of
         what and how Sarf is used.
       </p>
-      <p class="text-center">((arabic-l اِسْتَنْصَرُوْا))</p>
+      <div class="text-center">((arabic-l اِسْتَنْصَرُوْا))</div>
       <p>
         The Arabic word ((اِسْتَنْصَرُوْا)) is one word in Arabic and is best
         translated as, "They sought help". Notice how it required 3 English
@@ -115,8 +115,8 @@
           class="fr-fic fr-dib"
         />
       </p>
-      <p>
-        [Note]The letter at the beginning is
+      <note>
+        The letter at the beginning is
         <strong
           ><em><u>not</u></em></strong
         >
@@ -125,8 +125,8 @@
         solve a pronunciation issue that will be discussed more when Sarf is
         actually taught. The actual hamza usually has a little hamza on top
         whereas this connecting hamza is usually written like an Alif with a
-        vowel to differentiate.[/Note]
-      </p>
+        vowel to differentiate.
+      </note>
       <h2>
         <strong
           ><span
@@ -176,7 +176,6 @@
         come from Sarf, where patterns, vowels, and endings convey the extra
         meanings.
       </p>
-      <lesson-summary></lesson-summary>
     </template>
   </base-page>
 </template>

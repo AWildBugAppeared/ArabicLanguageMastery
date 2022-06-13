@@ -16,5 +16,6 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
   ],
+  coveragePathIgnorePatterns: ['<rootDir>/pages/introductory-module/.+'],
   prettierPath: 'prettier',
 };

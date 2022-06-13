@@ -1,7 +1,7 @@
 <template>
   <base-page>
     <template #heading>
-      {{ $convertPascalToNormalCase($options.name) }}
+      {{ title }}
     </template>
     <template #default>
       <p>
@@ -29,12 +29,13 @@ import Vue from 'vue';
 import BasePage from '~/components/Base-Page.vue';
 
 export default Vue.extend({
-  // eslint-disable-next-line vue/component-definition-name-casing
-  name: 'IntroductionToNahwPart 1 - TheTwoTypesOfSentences',
+  name: 'IntroductionToNahwPart1TheTwoTypesOfSentences',
   components: { BasePage },
 
   data() {
-    return {};
+    return {
+      title: 'Introduction To Nahw Part 1 - The Two Types of Sentences',
+    };
   },
 });
 </script>

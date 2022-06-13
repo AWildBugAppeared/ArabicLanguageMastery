@@ -45,6 +45,7 @@
 import Vue from 'vue';
 
 import { mdiMenu } from '@mdi/js';
+import { Routes } from '~/constants/routes';
 
 export default Vue.extend({
   data() {
@@ -55,7 +56,7 @@ export default Vue.extend({
       items: [
         {
           title: 'The Arabic Sciences',
-          to: '/introductory-module/the-arabic-sciences/',
+          to: Routes.introductoryModule.theArabicSciences,
         },
         // {
         //   title: 'The Three Parts of Speech',
@@ -63,36 +64,35 @@ export default Vue.extend({
         // },
         {
           title: 'Introduction to Sarf',
-          to: '/introductory-module/introduction-to-sarf/',
+          to: Routes.introductoryModule.introductionToSarf,
         },
         {
           title: 'Introduction to Phrases',
-          to: '/introductory-module/introduction-to-phrases/',
+          to: Routes.introductoryModule.introductionToPhrases,
         },
         {
           title: 'The Maadhi Verb (Past Tense)',
-          to: '/introductory-module/the-maadhi-verb/',
+          to: Routes.introductoryModule.theMaadhiVerb
         },
         {
           title: 'Introduction to Nahw Part 1 - The Two Types of Sentences',
-          to:
-            '/introductory-module/introduction-to-nahw-part-1-the-two-types-of-sentences/',
+          to: Routes.introductoryModule.introductionToNahwPart1,
         },
         {
           title: 'The Descriptive Phrase - Mawsoof Sifah',
-          to: '/introductory-module/the-descriptive-phrase/',
+          to: Routes.introductoryModule.theDescriptivePhrase,
         },
         {
           title: 'The Possessive Phrase - Mudaaf Mudaaf Ilayhi',
-          to: '/introductory-module/the-possessive-phrase/',
+          to: Routes.introductoryModule.thePossessivePhrase,
         },
         {
           title: 'Write Arabic',
-          to: '/english-to-arabic/',
+          to: Routes.englishToArabic,
         },
         {
           title: 'Contact Us',
-          to: '/contact-us/',
+          to: Routes.contactUs,
         },
       ],
       miniVariant: false,

@@ -64,7 +64,7 @@ export default {
   },
 
   router: {
-    trailingSlash: true,
+    trailingSlash: false,
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content

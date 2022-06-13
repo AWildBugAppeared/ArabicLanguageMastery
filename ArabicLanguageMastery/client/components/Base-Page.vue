@@ -1,5 +1,5 @@
 <template>
-  <v-container class="page-container">
+  <v-container ref="page" class="page-container">
     <h1 class="text-h3 text-center">
       <slot name="heading"></slot>
     </h1>
@@ -15,6 +15,13 @@ export default Vue.extend({
 
   data() {
     return {};
+  },
+
+  mounted() {
+    (this.$refs.page as HTMLElement).innerHTML = (this.$refs
+      .page as HTMLElement).innerHTML
+      .replace(/\(\(/g, '<span class="arabic">')
+      .replace(/\)\)/g, '</span>');
   },
 });
 </script>
