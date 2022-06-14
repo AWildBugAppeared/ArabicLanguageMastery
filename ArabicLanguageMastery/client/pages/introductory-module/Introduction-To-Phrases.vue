@@ -6,7 +6,7 @@
     <template #default>
       <important-note>
         Phrases are when two or more words combine to create a beneficial
-        meaning upon which silence is not approriate.
+        meaning upon which silence is not appropriate.
       </important-note>
       <p>Let's break this up into 2 parts:</p>
       <ul>

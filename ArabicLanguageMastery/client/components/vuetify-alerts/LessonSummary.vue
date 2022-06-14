@@ -1,7 +1,9 @@
 <template>
-  <base-alert color="blue darken-1">
+  <base-alert color="blue darken-1" icon="mdi-note-text">
     <template #heading>Summary</template>
-    <slot></slot>
+    <template #default>
+      <slot></slot>
+    </template>
   </base-alert>
 </template>
 

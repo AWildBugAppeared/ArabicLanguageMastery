@@ -43,7 +43,7 @@ describe('Note.vue', () => {
     await wrapper.vm.$nextTick();
 
     expect(wrapper.html()).toMatchInlineSnapshot(
-      `"<basealert-stub color=\\"teal darken-1\\"> </basealert-stub>"`
+      `"<basealert-stub color=\\"teal darken-1\\" icon=\\"mdi-information\\"></basealert-stub>"`
     );
   });
 });

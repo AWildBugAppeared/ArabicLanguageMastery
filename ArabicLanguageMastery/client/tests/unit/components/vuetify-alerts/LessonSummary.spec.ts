@@ -43,7 +43,7 @@ describe('LessonSummary.vue', () => {
     await wrapper.vm.$nextTick();
 
     expect(wrapper.html()).toMatchInlineSnapshot(
-      `"<basealert-stub color=\\"blue darken-1\\"> </basealert-stub>"`
+      `"<basealert-stub color=\\"blue darken-1\\" icon=\\"mdi-note-text\\">Summary</basealert-stub>"`
     );
   });
 });

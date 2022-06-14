@@ -23,7 +23,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/global-styles.scss'],
+  css: ['@/global-styles.scss', '@mdi/font/css/materialdesignicons.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/pascal-to-normal-case.js'],
@@ -74,7 +74,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     defaultAssets: {
-      icons: false,
+      icons: true,
     },
     theme: {
       dark: false,

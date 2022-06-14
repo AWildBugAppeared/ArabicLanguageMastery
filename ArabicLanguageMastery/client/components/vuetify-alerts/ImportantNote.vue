@@ -1,7 +1,8 @@
 <template>
-  <base-alert color="purple darken-2">
-    <template #heading>Important</template>
-    <slot></slot>
+  <base-alert color="purple darken-2" icon="mdi-head-snowflake">
+    <template #default>
+      <slot></slot>
+    </template>
   </base-alert>
 </template>
 

@@ -1,5 +1,12 @@
 <template>
-  <v-alert border="left" :color="color" class="mx-2 my-5" dark>
+  <v-alert
+    border="left"
+    :color="color"
+    class="mx-2 my-5"
+    dark
+    :icon="icon"
+    prominent
+  >
     <h2 class="text-h5 mt-n1 pb-2">
       <slot name="heading"></slot>
     </h2>
@@ -17,6 +24,11 @@ export default Vue.extend({
     color: {
       type: String,
       required: true,
+    },
+    icon: {
+      type: String,
+      required: false,
+      default: null,
     },
   },
 
