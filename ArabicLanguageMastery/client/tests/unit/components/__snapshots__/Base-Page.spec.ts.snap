@@ -2,9 +2,6 @@
 
 exports[`BasePage.vue render should render base page 1`] = `
 "<div class=\\"container page-container\\">
-  <h1 class=\\"text-h3 text-center\\">
-    <h1>Some text in the heading slot</h1>
-  </h1>
-  <div>Some text in the default slot</div>
+  <h1 class=\\"text-h3 text-center\\">Some text in the heading slot</h1> Some text in the default slot
 </div>"
 `;

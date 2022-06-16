@@ -8,6 +8,7 @@
           class="ml-2"
           x-small
           outlined
+          spec-show-answer-btn
           @click="showAnswer = true"
           >Show</v-btn
         >

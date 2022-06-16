@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ElicitingQuestion.vue should display answer when the show answer button is clicked 1`] = `
+"<basealert-stub color=\\"brown lighten-1\\" icon=\\"mdi-head-question\\">
+  <p>This is the question
+    <!---->
+  </p>
+  <p class=\\"answer\\">This is the answer</p>
+</basealert-stub>"
+`;
+
+exports[`ElicitingQuestion.vue should display component with answer hidden 1`] = `
+"<basealert-stub color=\\"brown lighten-1\\" icon=\\"mdi-head-question\\">
+  <p>This is the question <button type=\\"button\\" class=\\"ml-2 v-btn v-btn--outlined theme--light v-size--x-small\\" spec-show-answer-btn=\\"\\"><span class=\\"v-btn__content\\">Show</span></button></p>
+  <!---->
+</basealert-stub>"
+`;

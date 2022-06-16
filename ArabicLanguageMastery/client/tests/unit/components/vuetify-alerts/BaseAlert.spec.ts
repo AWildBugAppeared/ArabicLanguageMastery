@@ -18,6 +18,9 @@ describe('BaseAlert.vue', () => {
     wrapper = shallowMount(BaseAlert, {
       localVue,
       vuetify,
+      propsData: {
+        color: 'blue',
+      },
     });
   };
 
@@ -42,7 +45,7 @@ describe('BaseAlert.vue', () => {
     await wrapper.vm.$nextTick();
 
     expect(wrapper.html()).toMatchInlineSnapshot(`
-      "<v-alert-stub dark=\\"true\\" tag=\\"div\\" value=\\"true\\" border=\\"left\\" closelabel=\\"$vuetify.close\\" closeicon=\\"$cancel\\" prominent=\\"true\\" class=\\"mx-2 my-5\\">
+      "<v-alert-stub color=\\"blue\\" dark=\\"true\\" tag=\\"div\\" value=\\"true\\" border=\\"left\\" closelabel=\\"$vuetify.close\\" closeicon=\\"$cancel\\" prominent=\\"true\\" class=\\"mx-2 my-5\\">
         <h2 class=\\"text-h5 mt-n1 pb-2\\"></h2>
       </v-alert-stub>"
     `);

@@ -19,8 +19,8 @@ describe('BasePage.vue', () => {
       localVue,
       vuetify,
       slots: {
-        heading: '<h1>Some text in the heading slot',
-        default: '<div>Some text in the default slot',
+        heading: 'Some text in the heading slot',
+        default: 'Some text in the default slot',
       },
     });
   };
