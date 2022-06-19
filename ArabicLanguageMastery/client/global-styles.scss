@@ -1,4 +1,5 @@
-.arabic {
+.arabic,
+.v-data-table>.v-data-table__wrapper>table>tbody>tr>td.arabic {
   font-family: 'Scheherazade', serif;
   line-height: 1.5em;
   font-size: 2.5em;
@@ -11,4 +12,8 @@
 
 .arabic-sm {
   font-size: 1.5em;
+}
+
+.v-data-table {
+  margin-bottom: 20px;
 }

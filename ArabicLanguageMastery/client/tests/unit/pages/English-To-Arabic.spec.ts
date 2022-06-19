@@ -10,13 +10,16 @@ import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import EnglishToArabic from '@/pages/English-To-Arabic.vue';
 
 describe('English-To-Arabic.vue', () => {
+  let clipboardContents = '';
+
   Object.assign(navigator, {
     clipboard: {
-      writeText: () => {},
+      writeText: jest.fn((text) => {
+        clipboardContents = text;
+      }),
+      readText: jest.fn(() => clipboardContents),
     },
   });
-
-  const clipboardWriteTextSpy = (navigator.clipboard.writeText = jest.fn());
 
   const localVue = createLocalVue();
   let wrapper: Wrapper<Vue & { [key: string]: any }>;
@@ -62,18 +65,15 @@ describe('English-To-Arabic.vue', () => {
     expect(arabicText.html()).toMatchSnapshot();
   });
 
-  it('should copy the arabic text Arabic', async () => {
+  it('should copy the arabic text and trim trailing end space', async () => {
     mountWrapper();
     await wrapper.vm.$nextTick();
 
-    wrapper.vm.convertedInput = 'الُّغَةُ الْعَرَبِيَّةُ'
+    wrapper.vm.convertedInput = 'الُّغَةُ الْعَرَبِيَّةُ ';
     const copyButton = wrapper.find('[data-copy-btn]');
     copyButton.trigger('click');
     await wrapper.vm.$nextTick();
 
-    expect(clipboardWriteTextSpy.mock.calls.length).toBe(1);
-    expect(clipboardWriteTextSpy.mock.calls[0][0]).toBe(
-      wrapper.vm.convertedInput
-    );
+    expect(clipboardContents).toEqual(wrapper.vm.convertedInput.trimEnd());
   });
 });

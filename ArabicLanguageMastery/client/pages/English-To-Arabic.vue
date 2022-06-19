@@ -95,7 +95,7 @@ export default Vue.extend({
 
   methods: {
     copy() {
-      navigator.clipboard.writeText(this.convertedInput);
+      navigator.clipboard.writeText(this.convertedInput.trimEnd());
     },
 
     getPhoneticMap(value: string): string | undefined {
