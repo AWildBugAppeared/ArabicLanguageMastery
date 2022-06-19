@@ -10,6 +10,6 @@ export const Routes = {
     theDescriptivePhrase: `/${introductoryModuleRoute}/the-descriptive-phrase`,
     thePossessivePhrase: `/${introductoryModuleRoute}/the-possessive-phrase`,
   },
-  contactUs: 'contact-us',
-  englishToArabic: 'english-to-arabic',
+  contactUs: '/contact-us',
+  englishToArabic: '/english-to-arabic',
 };
