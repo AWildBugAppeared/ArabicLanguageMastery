@@ -212,8 +212,8 @@ describe('PhoneticConverterService', () => {
   });
 
   it('should convert special words', () => {
-    const english = 'Allahumma Allahu Allaha Allahi tallahi lillahi ';
-    const expectedArabic = 'اللّٰهُمَّ ﷲُ ﷲَ ﷲِ تاللّٰهِ لِلّٰهِ ';
+    const english = 'Allahumma Allahu Allaha Allahi tallahi lillahi billahi ';
+    const expectedArabic = 'اللّٰهُمَّ ﷲُ ﷲَ ﷲِ تاللّٰهِ لِلّٰهِ بِاللّٰهِ ';
 
     const arabic = service.convertToArabic(english);
 

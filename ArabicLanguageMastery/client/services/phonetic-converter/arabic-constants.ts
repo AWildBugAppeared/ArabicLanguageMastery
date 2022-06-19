@@ -81,6 +81,7 @@ export enum ArabicSpecialWord {
   Allaha = '\uFDF2\u064E',
   Allahi = '\uFDF2\u0650',
   tallahi = 'تاللّ\u0670هِ',
+  billahi = 'بِاللّ\u0670هِ',
   lillahi = 'لِلّ\u0670هِ',
   Allahumma = 'اللّ\u0670هُمَّ',
 }

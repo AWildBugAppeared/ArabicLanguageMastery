@@ -120,6 +120,8 @@ phoneticDictionary[PhoneticArabicSpecialWord.Allahu] = ArabicSpecialWord.Allahu;
 phoneticDictionary[PhoneticArabicSpecialWord.Allaha] = ArabicSpecialWord.Allaha;
 phoneticDictionary[PhoneticArabicSpecialWord.Allahi] = ArabicSpecialWord.Allahi;
 
+phoneticDictionary[PhoneticArabicSpecialWord.billahi] =
+  ArabicSpecialWord.billahi;
 phoneticDictionary[PhoneticArabicSpecialWord.lillahi] =
   ArabicSpecialWord.lillahi;
 phoneticDictionary[PhoneticArabicSpecialWord.tallahi] =

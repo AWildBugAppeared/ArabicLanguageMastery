@@ -131,9 +131,12 @@
       </p>
 
       <important-note>
-        The Active Voice is when the focus is on the one doing the verb. The
-        Passive Voice is when the focus is on the one receiving/experiencing the
-        verb. 'I saved him' vs 'He was saved by me'.
+        <p>The Active Voice is when the focus is on the one doing the verb.</p>
+        <p>
+          The Passive Voice is when the focus is on the one
+          receiving/experiencing the verb.
+        </p>
+        <p>'I saved him' vs 'He was saved by me'.</p>
       </important-note>
 
       <p>

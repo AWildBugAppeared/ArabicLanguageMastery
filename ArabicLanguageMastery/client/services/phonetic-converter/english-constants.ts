@@ -99,6 +99,7 @@ export enum PhoneticArabicSpecialWord {
   Allaha = 'Allaha',
   Allahi = 'Allahi',
   Allahumma = 'Allahumma',
+  billahi = 'billahi',
   lillahi = 'lillahi',
   tallahi = 'tallahi',
 }
