@@ -9,6 +9,7 @@ export const Routes = {
     introductionToPhrases: `/${introductoryModuleRoute}/introduction-to-phrases`,
     theDescriptivePhrase: `/${introductoryModuleRoute}/the-descriptive-phrase`,
     thePossessivePhrase: `/${introductoryModuleRoute}/the-possessive-phrase`,
+    theThreePartsOfSpeech: `/${introductoryModuleRoute}/the-three-parts-of-speech`,
   },
   contactUs: '/contact-us',
   englishToArabic: '/english-to-arabic',

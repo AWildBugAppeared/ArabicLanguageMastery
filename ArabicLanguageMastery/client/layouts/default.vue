@@ -55,13 +55,13 @@ export default Vue.extend({
       menuIcon: mdiMenu,
       items: [
         {
+          title: 'The Three Parts of Speech',
+          to: Routes.introductoryModule.theThreePartsOfSpeech,
+        },
+        {
           title: 'The Arabic Sciences',
           to: Routes.introductoryModule.theArabicSciences,
         },
-        // {
-        //   title: 'The Three Parts of Speech',
-        //   to: '/the-three-parts-of-speech/',
-        // },
         {
           title: 'Introduction to Sarf',
           to: Routes.introductoryModule.introductionToSarf,

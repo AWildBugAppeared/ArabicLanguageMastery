@@ -32,9 +32,10 @@
 
       <important-note>
         In Arabic, there are only 3 kinds of verbs. The past tense verb which is
-        called Maadiy ((مَاضِي)), the present tense and future tense are grouped
-        together and called Mudaari' ((مُضَارِعٌ)), and the command verb called
-        Amr ((أَمْرٌ))
+        called Maadiy <span class="arabic">مَاضِي</span>, the present tense and
+        future tense are grouped together and called Mudaari'
+        <span class="arabic">مُضَارِعٌ</span>, and the command verb called Amr
+        <span class="arabic">أَمْرٌ</span>
       </important-note>
 
       <p>
@@ -146,11 +147,12 @@
       </p>
 
       <p>
-        The verb ((فَعَلَ)) literally means, 'he did', and it is the word chosen
-        by default that is used to practice Sarf. The idea being if you can
-        conjugate ((فَعَلَ)), then you can conjugate any other word that follows
-        the same pattern, such as ((ضَرَبَ)). You just substitute the letters
-        and follow the learned pattern.
+        The verb <span class="arabic">فَعَلَ</span> literally means, 'he did',
+        and it is the word chosen by default that is used to practice Sarf. The
+        idea being if you can conjugate <span class="arabic">فَعَلَ</span>, then
+        you can conjugate any other word that follows the same pattern, such as
+        <span class="arabic">ضَرَبَ</span>. You just substitute the letters and
+        follow the learned pattern.
       </p>
 
       <v-data-table
@@ -208,12 +210,15 @@
         <ul>
           There are 3 kinds of verbs in Arabic:
           <ol>
-            <li>The Past Tense Verb ((مَاضِي)) eg: He ate.</li>
             <li>
-              The Present/Future Tense Verb ((مُضَارِع)) eg Present continuous:
-              I am eating. Simple Present: I eat, Future: I will eat.
+              The Past Tense Verb <span class="arabic">مَاضِي</span> eg: He ate.
             </li>
-            <li>The Command Verb ((أَمْر)) eg: Eat</li>
+            <li>
+              The Present/Future Tense Verb
+              <span class="arabic">مُضَارِع</span> eg Present continuous: I am
+              eating. Simple Present: I eat, Future: I will eat.
+            </li>
+            <li>The Command Verb <span class="arabic">أَمْر</span> eg: Eat</li>
           </ol>
 
           <li>

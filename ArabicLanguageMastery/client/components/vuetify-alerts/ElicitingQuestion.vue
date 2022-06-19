@@ -37,4 +37,8 @@ export default Vue.extend({
   color: cyan;
   font-weight: bold;
 }
+
+::v-deep .answer > .arabic {
+  font-weight: normal;
+}
 </style>

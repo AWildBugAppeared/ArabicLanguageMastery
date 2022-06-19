@@ -11,11 +11,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import BasePage from '~/components/Base-Page.vue';
 
 export default Vue.extend({
   name: 'BlankLessonTemplate',
-  components: { BasePage },
 
   data() {
     return {};
