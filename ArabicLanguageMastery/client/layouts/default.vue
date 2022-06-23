@@ -59,6 +59,10 @@ export default Vue.extend({
           to: Routes.introductoryModule.theThreePartsOfSpeech,
         },
         {
+          title: 'Subclassifying The Three Parts of Speech',
+          to: Routes.introductoryModule.subclassifyingTheThreePartsOfSpeech,
+        },
+        {
           title: 'The Arabic Sciences',
           to: Routes.introductoryModule.theArabicSciences,
         },

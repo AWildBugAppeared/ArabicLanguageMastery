@@ -7,6 +7,7 @@ export const Routes = {
     introductionToNahwPart1: `/${introductoryModuleRoute}/introduction-to-nahw-part-1-the-two-types-of-sentences`,
     theMaadhiVerb: `/${introductoryModuleRoute}/the-maadhi-verb`,
     introductionToPhrases: `/${introductoryModuleRoute}/introduction-to-phrases`,
+    subclassifyingTheThreePartsOfSpeech: `/${introductoryModuleRoute}/subclassifying-the-three-parts-of-speech`,
     theDescriptivePhrase: `/${introductoryModuleRoute}/the-descriptive-phrase`,
     thePossessivePhrase: `/${introductoryModuleRoute}/the-possessive-phrase`,
     theThreePartsOfSpeech: `/${introductoryModuleRoute}/the-three-parts-of-speech`,

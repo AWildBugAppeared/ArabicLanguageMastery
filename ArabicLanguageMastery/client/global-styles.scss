@@ -17,3 +17,15 @@
 .v-data-table {
   margin-bottom: 20px;
 }
+
+.v-data-table.no-hover-highlight {
+  .v-data-table__wrapper {
+    table {
+      tbody {
+        tr:hover {
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+}

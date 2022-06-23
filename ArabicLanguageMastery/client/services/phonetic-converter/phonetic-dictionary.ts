@@ -1,6 +1,7 @@
 import {
   ArabicLetter,
   ArabicLigature,
+  ArabicMiscCharacter,
   ArabicNumber,
   ArabicPunctuation,
   ArabicSpecialWord,
@@ -143,7 +144,7 @@ phoneticDictionary[PhoneticArabicVowel.oo] = ArabicVowel.harfIllahWaw;
 phoneticDictionary[PhoneticArabicVowel.u] = ArabicVowel.dammah;
 phoneticDictionary[PhoneticArabicVowel.uu] = ArabicVowel.dammahInverted;
 phoneticDictionary[PhoneticArabicTanween.un] = ArabicVowel.dammatain;
-phoneticDictionary[PhoneticArabicVowel.x] = '';
+phoneticDictionary[PhoneticArabicVowel.x] = ArabicMiscCharacter.sukoon;
 // #endregion
 
 // #region Numbers
