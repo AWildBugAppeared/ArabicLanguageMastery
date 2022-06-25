@@ -1,6 +1,13 @@
+@import 'global-variables.scss';
+
+.arabic-sm,
+.arabic,
+.arabic-l {
+  font-family: $arabic-font;
+}
+
 .arabic,
 .v-data-table>.v-data-table__wrapper>table>tbody>tr>td.arabic {
-  font-family: 'Scheherazade', serif;
   line-height: 1.5em;
   font-size: 2.5em;
   padding: 0 8px;
@@ -11,7 +18,7 @@
 }
 
 .arabic-sm {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .v-data-table {

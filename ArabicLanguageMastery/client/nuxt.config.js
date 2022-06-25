@@ -23,7 +23,8 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/global-styles.scss', '@mdi/font/css/materialdesignicons.css'],
+  css: ['@mdi/font/css/materialdesignicons.css'],
+
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/pascal-to-normal-case.js'],
@@ -49,7 +50,13 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    // https://www.npmjs.com/package/@nuxtjs/style-resources
+    '@nuxtjs/style-resources',
   ],
+
+  styleResources: {
+    scss: ['@/global-variables.scss', '@/global-styles.scss'],
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
