@@ -62,7 +62,7 @@
               This is the source word from which others are derived. In English
               they are called the Infinitive/Gerund. They represent actions and
               get a 'to (blank)/(blank)ing' translation eg.
-              <span class="arabic-sm">سَمْعٌ</span> (to hear/hearing),
+              <span class="arabic">سَمْعٌ</span> (to hear/hearing),
               <span class="arabic">شُرْبٌ</span> (to drink/drinking). Of the
               three types discussed, this one is the most important which you
               should remember.

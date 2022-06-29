@@ -2,19 +2,25 @@
   <v-container class="arabic-l text-center">
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="answer" v-html="answer"></div>
+    <div class="answer">{{ arabic }}</div>
 
-    <div>Test</div>
-
-    <div class="answer">
-      <span>مُ</span><span>بْ</span><span>تَ</span><span>دَ</span><span>أ</span>
+    <div dir="rtl">
+      <v-btn
+        v-for="tarkeebPlace in tarkeebPlaces"
+        :id="tarkeebPlace"
+        :key="tarkeebPlace"
+        class="mx-2 px-2 pb-5 pt-6 primary"
+        @click="setBox(tarkeebPlace)"
+        ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+      >
     </div>
-
-    <v-btn @click="setBox('mubtada')">مبتدأ</v-btn>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+
+import { TarkeebPlaces } from '~/constants/tarkeeb-places';
 
 export default Vue.extend({
   name: 'Tarkeeb',
@@ -29,17 +35,22 @@ export default Vue.extend({
   data() {
     return {
       answer: '',
+      arabicCharArray: [] as string[],
+      tarkeebPlaces: Object.values(TarkeebPlaces),
     };
   },
 
   created() {
-    this.answer = this.arabic;
+    this.arabicCharArray = this.arabic.split('');
+
+    for (let i = 0; i < this.arabicCharArray.length; i++) {
+      this.answer += `<span id="${i}">${this.arabicCharArray[i]}</span>`;
+    }
   },
 
   methods: {
-    setBox(place: string) {
+    setBox(tarkeebPlace: string) {
       const selection = window.getSelection();
-      console.log(selection ?? ''.toString());
 
       if (!selection) {
         return;
@@ -57,30 +68,59 @@ export default Vue.extend({
         focusOffset = selection.focusOffset;
       }
 
-      console.log(selection.anchorOffset);
+      const fieldSetStartTag = `<fieldset><legend>${tarkeebPlace}</legend>`;
+      const fieldSetEndTag = '</fieldset>';
 
-      const selectedText = selection.toString();
-      const preSelection = this.answer.slice(0, anchorOffset);
-      const postSelection = this.answer.slice(focusOffset);
-      const fieldSetStartTag = '<fieldset><legend>مبتدأ</legend><span>';
-      const fieldSetEndTag = '</span></fieldset>';
+      const regexString = `<span id="${anchorOffset}">.+<span id="${
+        focusOffset - 1
+      }">.<\\/span>`;
+      const regex = new RegExp(regexString, 'g');
 
-      console.log(preSelection);
-      console.log(postSelection);
+      const matches = this.answer.match(regex);
 
-      switch (place) {
-        default:
-          this.answer = `${preSelection}${fieldSetStartTag}${selectedText}${fieldSetEndTag}${postSelection}`;
+      if (!matches) {
+        return;
       }
 
-      return this.answer;
+      const spaceAtStartRegex = /^<span id="[0-9]+"> <\/span>/g;
+      const spaceAtEndRegex = /<span id="[0-9]+"> <\/span>$/g;
+
+      const spaceAtStartMatches = matches[0].match(spaceAtStartRegex);
+      const spaceAtEndMatches = matches[0].match(spaceAtEndRegex);
+
+      let replaceAnswerString = '';
+
+      if (spaceAtStartMatches) {
+        replaceAnswerString += spaceAtStartMatches[0];
+        matches[0] = matches[0].replace(spaceAtStartMatches[0], '');
+      }
+
+      replaceAnswerString += fieldSetStartTag;
+
+      if (spaceAtEndMatches) {
+        matches[0] = matches[0].replace(spaceAtEndMatches[0], '');
+        replaceAnswerString += matches[0];
+        replaceAnswerString += fieldSetEndTag;
+        replaceAnswerString += spaceAtEndMatches[0];
+      } else {
+        replaceAnswerString += matches[0];
+        replaceAnswerString += fieldSetEndTag;
+      }
+
+      this.answer = this.answer.replace(regex, replaceAnswerString);
     },
   },
 });
 </script>
 
 <style lang="scss">
+$fieldset-color: blue;
+$first-child-fieldset-color: red;
+$second-child-fieldset-color: green;
+$third-child-fieldset-color: orange;
+
 fieldset {
+  border-color: $fieldset-color;
   display: inline-block;
   direction: rtl;
   padding: 0 8px 8px 8px;
@@ -91,6 +131,28 @@ fieldset {
   legend {
     font-size: 0.8em;
     line-height: 1;
+    color: $fieldset-color;
+  }
+
+  fieldset {
+    border-color: $first-child-fieldset-color;
+    legend {
+      color: $first-child-fieldset-color;
+    }
+
+    fieldset {
+      border-color: $second-child-fieldset-color;
+      legend {
+        color: $second-child-fieldset-color;
+      }
+
+      fieldset {
+        border-color: $third-child-fieldset-color;
+        legend {
+          color: $third-child-fieldset-color;
+        }
+      }
+    }
   }
 }
 

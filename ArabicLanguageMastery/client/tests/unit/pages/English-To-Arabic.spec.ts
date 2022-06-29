@@ -8,6 +8,7 @@ import Vuetify from 'vuetify';
 import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 
 import EnglishToArabic from '@/pages/English-To-Arabic.vue';
+import { phoneticConverterService } from '@/services/service-exporter';
 
 describe('English-To-Arabic.vue', () => {
   let clipboardContents = '';
@@ -20,6 +21,11 @@ describe('English-To-Arabic.vue', () => {
       readText: jest.fn(() => clipboardContents),
     },
   });
+
+  const convertedText = 'arabic text';
+  phoneticConverterService.convertToArabic = jest
+    .fn()
+    .mockReturnValue(convertedText);
 
   const localVue = createLocalVue();
   let wrapper: Wrapper<Vue & { [key: string]: any }>;
@@ -56,12 +62,22 @@ describe('English-To-Arabic.vue', () => {
     mountWrapper();
     await wrapper.vm.$nextTick();
 
+    const textToConvert = 'wa ((Allah))u Aakbaru';
     const textArea = wrapper.find('[data-phonetic-text-area]');
-    textArea.setValue('wa ((Allah))u Aakbaru');
+    textArea.setValue(textToConvert);
     await wrapper.vm.$nextTick();
 
     const arabicText = wrapper.find('[data-arabic]');
 
+    const converterServiceSpy = (phoneticConverterService.convertToArabic as jest.Mock)
+      .mock;
+
+    expect(
+      converterServiceSpy.calls[converterServiceSpy.calls.length - 1][0]
+    ).toBe(textToConvert);
+    expect(
+      converterServiceSpy.calls[converterServiceSpy.calls.length - 1][1]
+    ).toBe(true);
     expect(arabicText.html()).toMatchSnapshot();
   });
 
