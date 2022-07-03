@@ -1,7 +1,6 @@
 <template>
   <v-container class="arabic-l text-center">
-    <!-- eslint-disable-next-line vue/no-v-html -->
-    <div class="answer" v-html="answer"></div>
+    <v-runtime-template class="answer" :template="answer"></v-runtime-template>
     <div class="answer">{{ arabic }}</div>
 
     <div dir="rtl">
@@ -20,10 +19,12 @@
 <script lang="ts">
 import Vue from 'vue';
 
+import VRuntimeTemplate from 'v-runtime-template';
 import { TarkeebPlaces } from '~/constants/tarkeeb-places';
 
 export default Vue.extend({
   name: 'Tarkeeb',
+  components: { VRuntimeTemplate },
 
   props: {
     arabic: {
@@ -43,12 +44,28 @@ export default Vue.extend({
   created() {
     this.arabicCharArray = this.arabic.split('');
 
+    this.answer += '<div id="answer">';
+
     for (let i = 0; i < this.arabicCharArray.length; i++) {
-      this.answer += `<span id="${i}">${this.arabicCharArray[i]}</span>`;
+      this.answer += `<span id="${i}">${
+        this.arabicCharArray[i] === ' ' ? '&nbsp;' : this.arabicCharArray[i]
+      }</span>`;
     }
+
+    this.answer += '</div>';
   },
 
   methods: {
+    removeBox(id: string) {
+      const regexString = `<fieldset id="${id}">.+<!-- ${id.replace(
+        'f',
+        'l'
+      )} --><\\/legend>`;
+      const regex = new RegExp(regexString);
+      this.answer = this.answer.replace(regex, '');
+      this.answer = this.answer.replace(`<!-- ${id} --></fieldset>`, '');
+    },
+
     setBox(tarkeebPlace: string) {
       const selection = window.getSelection();
 
@@ -68,8 +85,27 @@ export default Vue.extend({
         focusOffset = selection.focusOffset;
       }
 
-      const fieldSetStartTag = `<fieldset><legend>${tarkeebPlace}</legend>`;
-      const fieldSetEndTag = '</fieldset>';
+      const selectionText = selection.toString();
+
+      if (selectionText.charAt(0) === ' ') {
+        anchorOffset++;
+      }
+
+      if (selectionText.charAt(selectionText.length - 1) === ' ') {
+        focusOffset--;
+      }
+
+      const randomValues = new Uint32Array(1);
+      crypto.getRandomValues(randomValues);
+
+      const id = randomValues[0];
+
+      const fieldSetStartTag = `<fieldset id="${
+        'fs-' + id
+      }"><legend><span @click="removeBox('fs-' + ${id})">${tarkeebPlace}</span><!-- ${
+        'ls-' + id
+      } --></legend>`;
+      const fieldSetEndTag = `<!-- ${'fs-' + id} --></fieldset>`;
 
       const regexString = `<span id="${anchorOffset}">.+<span id="${
         focusOffset - 1
