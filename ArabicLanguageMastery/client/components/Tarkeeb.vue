@@ -84,7 +84,28 @@ export default Vue.extend({
       ].includes(character);
     },
 
+    removeSelection(id: string) {
+      this.answer = this.answer.replace(
+        `<span id="${id}" class="selected" @click="setSelected(${id})"`,
+        `<span id="${id}" @click="setSelected(${id})"`
+      );
+    },
+
     setSelected(id: string) {
+      const spanId = parseInt(id);
+
+      if (this.firstSelectedIndex === spanId) {
+        this.firstSelectedIndex = -1;
+        this.removeSelection(id);
+        return;
+      }
+
+      if (this.secondSelectedIndex === spanId) {
+        this.secondSelectedIndex = -1;
+        this.removeSelection(id);
+        return;
+      }
+
       if (this.firstSelectedIndex > -1 && this.secondSelectedIndex > -1) {
         return;
       }
@@ -119,7 +140,7 @@ export default Vue.extend({
     },
 
     setBox(tarkeebPlace: string) {
-      if (this.firstSelectedIndex === -1 || this.secondSelectedIndex === -1) {
+      if (this.firstSelectedIndex === -1 && this.secondSelectedIndex === -1) {
         return;
       }
 
@@ -135,7 +156,11 @@ export default Vue.extend({
       } --></legend>`;
       const fieldSetEndTag = `<!-- ${'fs-' + id} --></fieldset>`;
 
-      const regexString = `<span id="${this.firstSelectedIndex}" class="selected" @click="setSelected\\(${this.firstSelectedIndex}\\)">.+<span id="${this.secondSelectedIndex}" class="selected" @click="setSelected\\(${this.secondSelectedIndex}\\)">.<\\/span>`;
+      const regexString =
+        this.firstSelectedIndex > -1 && this.secondSelectedIndex > -1
+          ? `<span id="${this.firstSelectedIndex}" class="selected" @click="setSelected\\(${this.firstSelectedIndex}\\)">.+<span id="${this.secondSelectedIndex}" class="selected" @click="setSelected\\(${this.secondSelectedIndex}\\)">.<\\/span>`
+          : `<span id="${this.firstSelectedIndex}" class="selected" @click="setSelected\\(${this.firstSelectedIndex}\\)">.<\\/span>`;
+
       const regex = new RegExp(regexString, 'g');
 
       const matches = this.answer.match(regex);
@@ -166,19 +191,24 @@ export default Vue.extend({
 
       replaceAnswerString += matches[0];
 
-      const nextCharacter = this.arabicCharArray[this.secondSelectedIndex + 1];
+      const highestSelectedIndex =
+        this.secondSelectedIndex > -1
+          ? this.secondSelectedIndex
+          : this.firstSelectedIndex;
+      const nextCharacter = this.arabicCharArray[highestSelectedIndex + 1];
 
       if (
+        nextCharacter &&
         this.isNonConsonantCharacter(nextCharacter) &&
         nextCharacter !== ' '
       ) {
         replaceAnswerString +=
           this.answer.match(
-            new RegExp(`<span id="${this.secondSelectedIndex + 1}">.<\\/span>`)
+            new RegExp(`<span id="${highestSelectedIndex + 1}">.<\\/span>`)
           )?.[0] ?? '';
 
         this.answer = this.answer.replace(
-          new RegExp(`<span id="${this.secondSelectedIndex + 1}">.<\\/span>`),
+          new RegExp(`<span id="${highestSelectedIndex + 1}">.<\\/span>`),
           ''
         );
 
@@ -197,7 +227,6 @@ export default Vue.extend({
       );
 
       this.answer = this.answer.replace(regex, replaceAnswerString);
-      console.log(this.answer);
 
       this.firstSelectedIndex = this.secondSelectedIndex = -1;
     },
