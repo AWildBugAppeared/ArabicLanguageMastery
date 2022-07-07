@@ -1,7 +1,6 @@
 <template>
   <v-container class="arabic-l text-center">
     <v-runtime-template class="answer" :template="answer"></v-runtime-template>
-    <div class="answer">{{ arabic }}</div>
 
     <div dir="rtl">
       <v-btn
@@ -37,6 +36,8 @@ export default Vue.extend({
     return {
       answer: '',
       arabicCharArray: [] as string[],
+      firstSelectedIndex: -1,
+      secondSelectedIndex: -1,
       tarkeebPlaces: Object.values(TarkeebPlaces),
     };
   },
@@ -46,8 +47,16 @@ export default Vue.extend({
 
     this.answer += '<div id="answer">';
 
+    let isNonConsonantCharacter = false;
+
     for (let i = 0; i < this.arabicCharArray.length; i++) {
-      this.answer += `<span id="${i}">${
+      isNonConsonantCharacter = this.isNonConsonantCharacter(
+        this.arabicCharArray[i]
+      );
+
+      this.answer += `<span id="${i}"${
+        isNonConsonantCharacter ? '' : ` @click="setSelected(${i})"`
+      }>${
         this.arabicCharArray[i] === ' ' ? '&nbsp;' : this.arabicCharArray[i]
       }</span>`;
     }
@@ -56,6 +65,49 @@ export default Vue.extend({
   },
 
   methods: {
+    isNonConsonantCharacter(character: string) {
+      return [
+        '\u064B',
+        '\u064C',
+        '\u064D',
+        '\u064E',
+        '\u064F',
+        '\u0650',
+        '\u0651',
+        '\u0652',
+        '\u0653',
+        '\u0654',
+        '\u0655',
+        '\u0656',
+        '\u0657',
+        ' ',
+      ].includes(character);
+    },
+
+    setSelected(id: string) {
+      if (this.firstSelectedIndex > -1 && this.secondSelectedIndex > -1) {
+        return;
+      }
+
+      if (this.firstSelectedIndex === -1) {
+        this.firstSelectedIndex = parseInt(id);
+      } else if (this.secondSelectedIndex === -1) {
+        this.secondSelectedIndex = parseInt(id);
+
+        // This is done to support the user highlight from rtl as well as ltr
+        if (this.firstSelectedIndex > this.secondSelectedIndex) {
+          const originalFirstSelectedIndex = this.firstSelectedIndex;
+          this.firstSelectedIndex = this.secondSelectedIndex;
+          this.secondSelectedIndex = originalFirstSelectedIndex;
+        }
+      }
+
+      this.answer = this.answer.replace(
+        `<span id="${id}"`,
+        `<span id="${id}" class="selected"`
+      );
+    },
+
     removeBox(id: string) {
       const regexString = `<fieldset id="${id}">.+<!-- ${id.replace(
         'f',
@@ -67,32 +119,8 @@ export default Vue.extend({
     },
 
     setBox(tarkeebPlace: string) {
-      const selection = window.getSelection();
-
-      if (!selection) {
+      if (this.firstSelectedIndex === -1 || this.secondSelectedIndex === -1) {
         return;
-      }
-
-      let anchorOffset = 0;
-      let focusOffset = 0;
-
-      // This is done to support the user highlight from rtl as well as ltr
-      if (selection.anchorOffset > selection.focusOffset) {
-        anchorOffset = selection.focusOffset;
-        focusOffset = selection.anchorOffset;
-      } else {
-        anchorOffset = selection.anchorOffset;
-        focusOffset = selection.focusOffset;
-      }
-
-      const selectionText = selection.toString();
-
-      if (selectionText.charAt(0) === ' ') {
-        anchorOffset++;
-      }
-
-      if (selectionText.charAt(selectionText.length - 1) === ' ') {
-        focusOffset--;
       }
 
       const randomValues = new Uint32Array(1);
@@ -107,9 +135,7 @@ export default Vue.extend({
       } --></legend>`;
       const fieldSetEndTag = `<!-- ${'fs-' + id} --></fieldset>`;
 
-      const regexString = `<span id="${anchorOffset}">.+<span id="${
-        focusOffset - 1
-      }">.<\\/span>`;
+      const regexString = `<span id="${this.firstSelectedIndex}" class="selected" @click="setSelected\\(${this.firstSelectedIndex}\\)">.+<span id="${this.secondSelectedIndex}" class="selected" @click="setSelected\\(${this.secondSelectedIndex}\\)">.<\\/span>`;
       const regex = new RegExp(regexString, 'g');
 
       const matches = this.answer.match(regex);
@@ -135,15 +161,45 @@ export default Vue.extend({
 
       if (spaceAtEndMatches) {
         matches[0] = matches[0].replace(spaceAtEndMatches[0], '');
-        replaceAnswerString += matches[0];
-        replaceAnswerString += fieldSetEndTag;
         replaceAnswerString += spaceAtEndMatches[0];
+      }
+
+      replaceAnswerString += matches[0];
+
+      const nextCharacter = this.arabicCharArray[this.secondSelectedIndex + 1];
+
+      if (
+        this.isNonConsonantCharacter(nextCharacter) &&
+        nextCharacter !== ' '
+      ) {
+        replaceAnswerString +=
+          this.answer.match(
+            new RegExp(`<span id="${this.secondSelectedIndex + 1}">.<\\/span>`)
+          )?.[0] ?? '';
+
+        this.answer = this.answer.replace(
+          new RegExp(`<span id="${this.secondSelectedIndex + 1}">.<\\/span>`),
+          ''
+        );
+
+        replaceAnswerString += fieldSetEndTag;
       } else {
-        replaceAnswerString += matches[0];
         replaceAnswerString += fieldSetEndTag;
       }
 
+      if (spaceAtEndMatches) {
+        replaceAnswerString += spaceAtEndMatches[0];
+      }
+
+      replaceAnswerString = replaceAnswerString.replaceAll(
+        ' class="selected"',
+        ''
+      );
+
       this.answer = this.answer.replace(regex, replaceAnswerString);
+      console.log(this.answer);
+
+      this.firstSelectedIndex = this.secondSelectedIndex = -1;
     },
   },
 });
@@ -195,5 +251,9 @@ fieldset {
 .answer {
   margin-bottom: 30px;
   direction: rtl;
+}
+
+.selected {
+  background-color: green;
 }
 </style>
