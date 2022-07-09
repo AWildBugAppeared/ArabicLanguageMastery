@@ -1,6 +1,11 @@
 <template>
   <v-container class="arabic-l text-center">
-    <v-runtime-template class="answer" :template="answer"></v-runtime-template>
+    <div ref="answer">
+      <v-runtime-template
+        class="answer"
+        :template="answer"
+      ></v-runtime-template>
+    </div>
 
     <div dir="rtl">
       <v-btn
@@ -169,27 +174,9 @@ export default Vue.extend({
         return;
       }
 
-      const spaceAtStartRegex = /^<span id="[0-9]+"> <\/span>/g;
-      const spaceAtEndRegex = /<span id="[0-9]+"> <\/span>$/g;
-
-      const spaceAtStartMatches = matches[0].match(spaceAtStartRegex);
-      const spaceAtEndMatches = matches[0].match(spaceAtEndRegex);
-
       let replaceAnswerString = '';
 
-      if (spaceAtStartMatches) {
-        replaceAnswerString += spaceAtStartMatches[0];
-        matches[0] = matches[0].replace(spaceAtStartMatches[0], '');
-      }
-
-      replaceAnswerString += fieldSetStartTag;
-
-      if (spaceAtEndMatches) {
-        matches[0] = matches[0].replace(spaceAtEndMatches[0], '');
-        replaceAnswerString += spaceAtEndMatches[0];
-      }
-
-      replaceAnswerString += matches[0];
+      replaceAnswerString += `${fieldSetStartTag}${matches[0]}`;
 
       const highestSelectedIndex =
         this.secondSelectedIndex > -1
@@ -217,10 +204,6 @@ export default Vue.extend({
         replaceAnswerString += fieldSetEndTag;
       }
 
-      if (spaceAtEndMatches) {
-        replaceAnswerString += spaceAtEndMatches[0];
-      }
-
       replaceAnswerString = replaceAnswerString.replaceAll(
         ' class="selected"',
         ''
@@ -235,8 +218,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-$fieldset-color: blue;
-$first-child-fieldset-color: red;
+$fieldset-color: purple;
+$first-child-fieldset-color: blue;
 $second-child-fieldset-color: green;
 $third-child-fieldset-color: orange;
 
