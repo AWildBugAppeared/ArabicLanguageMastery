@@ -8,14 +8,30 @@
     </div>
 
     <div dir="rtl">
-      <v-btn
-        v-for="tarkeebPlace in tarkeebPlaces"
-        :id="tarkeebPlace"
-        :key="tarkeebPlace"
-        class="mx-2 px-2 pb-5 pt-6 primary"
-        @click="setBox(tarkeebPlace)"
-        ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-      >
+      <template v-for="tarkeebPlace in tarkeebPlaces">
+        <hidden-word-faail-dropdown-button
+          v-if="tarkeebPlace === fil"
+          :id="tarkeebPlace"
+          :key="tarkeebPlace"
+          button-classes="mx-2 px-2 pb-5 pt-6 primary"
+          @faailSet="setFaail"
+        ></hidden-word-faail-dropdown-button>
+        <hidden-word-shibhul-fil-dropdown-button
+          v-else-if="tarkeebPlace === mutaalliq"
+          :id="tarkeebPlace"
+          :key="tarkeebPlace"
+          button-classes="mx-2 px-2 pb-5 pt-6 primary"
+          @shibhulFilSet="setShibhulFil"
+        ></hidden-word-shibhul-fil-dropdown-button>
+        <v-btn
+          v-else
+          :id="tarkeebPlace"
+          :key="tarkeebPlace"
+          class="mx-2 px-2 pb-5 pt-6 primary"
+          @click="setBox(tarkeebPlace)"
+          ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+        >
+      </template>
     </div>
   </v-container>
 </template>
@@ -24,11 +40,19 @@
 import Vue from 'vue';
 
 import VRuntimeTemplate from 'v-runtime-template';
+
+import HiddenWordFaailDropdownButton from '~/components/buttons/HiddenWordFaailDropdownButton.vue';
+import HiddenWordShibhulFilDropdownButton from '~/components/buttons/HiddenWordShibhulFilDropdownButton.vue';
+import { HiddenWordTypes } from '~/components/tarkeeb/hidden-word-type';
 import { TarkeebPlaces } from '~/constants/tarkeeb-places';
 
 export default Vue.extend({
   name: 'Tarkeeb',
-  components: { VRuntimeTemplate },
+  components: {
+    HiddenWordFaailDropdownButton,
+    HiddenWordShibhulFilDropdownButton,
+    VRuntimeTemplate,
+  },
 
   props: {
     arabic: {
@@ -41,7 +65,11 @@ export default Vue.extend({
     return {
       answer: '',
       arabicCharArray: [] as string[],
+      fieldSetEndTag: '',
+      fieldSetStartTag: '',
+      fil: TarkeebPlaces.fil,
       firstSelectedIndex: -1,
+      mutaalliq: TarkeebPlaces.mutaalliq,
       secondSelectedIndex: -1,
       tarkeebPlaces: Object.values(TarkeebPlaces),
     };
@@ -70,6 +98,26 @@ export default Vue.extend({
   },
 
   methods: {
+    setFieldSetTags(
+      id: number,
+      tarkeebPlace: string,
+      hiddenWordType: string | null = null
+    ) {
+      let fieldSetId = `fs-${id}`;
+
+      if (hiddenWordType === HiddenWordTypes.faail) {
+        fieldSetId += '-hidden-faail';
+      } else if (hiddenWordType === HiddenWordTypes.shibhulFil) {
+        fieldSetId += '-hidden-shibhul-fil';
+      }
+
+      const legendId = fieldSetId.replace('fs-', 'legend-');
+
+      this.fieldSetStartTag = `<fieldset id="${fieldSetId}"><legend><span @click="removeBox('${fieldSetId}')">${tarkeebPlace}</span><!-- ${legendId} --></legend>`;
+
+      this.fieldSetEndTag = `<!-- ${fieldSetId} --></fieldset>`;
+    },
+
     isNonConsonantCharacter(character: string) {
       return [
         '\u064B',
@@ -87,6 +135,30 @@ export default Vue.extend({
         '\u0657',
         ' ',
       ].includes(character);
+    },
+
+    removeBox(id: string) {
+      let regexString: string;
+      let regex: RegExp;
+
+      if (id.includes('hidden')) {
+        regexString = `<fieldset id="${id}.+<!-- ${id} --></fieldset>`;
+        regex = new RegExp(regexString);
+        this.answer = this.answer.replace(regex, '');
+      } else {
+        regexString = `<fieldset id="${id}">.+<!-- ${id.replace(
+          'fs-',
+          'legend-'
+        )} --><\\/legend>`;
+        regex = new RegExp(regexString);
+        this.answer = this.answer.replace(regex, '');
+        this.answer = this.answer.replace(`<!-- ${id} --></fieldset>`, '');
+
+        // check for hidden words that may have been inserted that will also need to be removed
+        regexString = `<fieldset id="${id}.+</fieldset>`;
+        regex = new RegExp(regexString);
+        this.answer = this.answer.replace(regex, '');
+      }
     },
 
     removeSelection(id: string) {
@@ -134,32 +206,18 @@ export default Vue.extend({
       );
     },
 
-    removeBox(id: string) {
-      const regexString = `<fieldset id="${id}">.+<!-- ${id.replace(
-        'f',
-        'l'
-      )} --><\\/legend>`;
-      const regex = new RegExp(regexString);
-      this.answer = this.answer.replace(regex, '');
-      this.answer = this.answer.replace(`<!-- ${id} --></fieldset>`, '');
-    },
-
-    setBox(tarkeebPlace: string) {
+    setBox(
+      tarkeebPlace: string,
+      hiddenWordType: string | null = null,
+      hiddenWord: string | null = null
+    ) {
       if (this.firstSelectedIndex === -1 && this.secondSelectedIndex === -1) {
         return;
       }
 
       const randomValues = new Uint32Array(1);
       crypto.getRandomValues(randomValues);
-
       const id = randomValues[0];
-
-      const fieldSetStartTag = `<fieldset id="${
-        'fs-' + id
-      }"><legend><span @click="removeBox('fs-' + ${id})">${tarkeebPlace}</span><!-- ${
-        'ls-' + id
-      } --></legend>`;
-      const fieldSetEndTag = `<!-- ${'fs-' + id} --></fieldset>`;
 
       const regexString =
         this.firstSelectedIndex > -1 && this.secondSelectedIndex > -1
@@ -176,7 +234,21 @@ export default Vue.extend({
 
       let replaceAnswerString = '';
 
-      replaceAnswerString += `${fieldSetStartTag}${matches[0]}`;
+      if (hiddenWordType === HiddenWordTypes.shibhulFil) {
+        this.setFieldSetTags(
+          id,
+          TarkeebPlaces.shibhulFil,
+          HiddenWordTypes.shibhulFil
+        );
+
+        replaceAnswerString += this.fieldSetStartTag;
+        replaceAnswerString += `<span>${hiddenWord}</span>`;
+        replaceAnswerString += this.fieldSetEndTag;
+      }
+
+      this.setFieldSetTags(id, tarkeebPlace);
+
+      replaceAnswerString += `${this.fieldSetStartTag}${matches[0]}`;
 
       const highestSelectedIndex =
         this.secondSelectedIndex > -1
@@ -199,9 +271,17 @@ export default Vue.extend({
           ''
         );
 
-        replaceAnswerString += fieldSetEndTag;
+        replaceAnswerString += this.fieldSetEndTag;
       } else {
-        replaceAnswerString += fieldSetEndTag;
+        replaceAnswerString += this.fieldSetEndTag;
+      }
+
+      if (hiddenWordType === HiddenWordTypes.faail) {
+        this.setFieldSetTags(id, TarkeebPlaces.faail, HiddenWordTypes.faail);
+
+        replaceAnswerString += this.fieldSetStartTag;
+        replaceAnswerString += `<span>${hiddenWord}</span>`;
+        replaceAnswerString += this.fieldSetEndTag;
       }
 
       replaceAnswerString = replaceAnswerString.replaceAll(
@@ -212,6 +292,18 @@ export default Vue.extend({
       this.answer = this.answer.replace(regex, replaceAnswerString);
 
       this.firstSelectedIndex = this.secondSelectedIndex = -1;
+    },
+
+    setFaail(faail: string | null = null) {
+      this.setBox(TarkeebPlaces.fil, HiddenWordTypes.faail, faail);
+    },
+
+    setShibhulFil(shibhulFil: string | null = null) {
+      this.setBox(
+        TarkeebPlaces.mutaalliq,
+        HiddenWordTypes.shibhulFil,
+        shibhulFil
+      );
     },
   },
 });
