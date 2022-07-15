@@ -11,14 +11,12 @@
       <template v-for="tarkeebPlace in tarkeebPlaces">
         <hidden-word-faail-dropdown-button
           v-if="tarkeebPlace === fil"
-          :id="tarkeebPlace"
           :key="tarkeebPlace"
           button-classes="mx-2 px-2 pb-5 pt-6 primary"
           @faailSet="setFaail"
         ></hidden-word-faail-dropdown-button>
         <hidden-word-shibhul-fil-dropdown-button
           v-else-if="tarkeebPlace === mutaalliq"
-          :id="tarkeebPlace"
           :key="tarkeebPlace"
           button-classes="mx-2 px-2 pb-5 pt-6 primary"
           @shibhulFilSet="setShibhulFil"
@@ -155,8 +153,13 @@ export default Vue.extend({
         this.answer = this.answer.replace(`<!-- ${id} --></fieldset>`, '');
 
         // check for hidden words that may have been inserted that will also need to be removed
-        regexString = `<fieldset id="${id}.+</fieldset>`;
-        regex = new RegExp(regexString);
+        regex = new RegExp(
+          `<fieldset id="${id}.+ ${id}-hidden-faail --></fieldset>`
+        );
+        this.answer = this.answer.replace(regex, '');
+        regex = new RegExp(
+          `<fieldset id="${id}.+ ${id}-hidden-shibhul-fil --></fieldset>`
+        );
         this.answer = this.answer.replace(regex, '');
       }
     },
@@ -295,15 +298,23 @@ export default Vue.extend({
     },
 
     setFaail(faail: string | null = null) {
-      this.setBox(TarkeebPlaces.fil, HiddenWordTypes.faail, faail);
+      if (faail) {
+        this.setBox(TarkeebPlaces.fil, HiddenWordTypes.faail, faail);
+      } else {
+        this.setBox(TarkeebPlaces.fil);
+      }
     },
 
     setShibhulFil(shibhulFil: string | null = null) {
-      this.setBox(
-        TarkeebPlaces.mutaalliq,
-        HiddenWordTypes.shibhulFil,
-        shibhulFil
-      );
+      if (shibhulFil) {
+        this.setBox(
+          TarkeebPlaces.mutaalliq,
+          HiddenWordTypes.shibhulFil,
+          shibhulFil
+        );
+      } else {
+        this.setBox(TarkeebPlaces.mutaalliq);
+      }
     },
   },
 });

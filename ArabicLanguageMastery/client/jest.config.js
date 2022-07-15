@@ -16,6 +16,9 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
   ],
-  coveragePathIgnorePatterns: ['<rootDir>/pages/introductory-module/.+'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/pages/introductory-module/.+',
+    '<rootDir>/components/tarkeeb/Tarkeeb.vue',
+  ],
   prettierPath: 'prettier',
 };

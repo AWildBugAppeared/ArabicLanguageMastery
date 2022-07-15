@@ -21,4 +21,5 @@ export const TarkeebPlaces = {
   mudaaf: 'مضاف',
   mudaafIlayhi: 'مضاف إليه',
   mutaalliq: 'متعلّق',
+  shibhulFil: 'شبه الفعل',
 };
