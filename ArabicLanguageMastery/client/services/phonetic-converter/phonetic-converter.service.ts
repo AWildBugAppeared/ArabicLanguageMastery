@@ -19,7 +19,7 @@ import {
 import { phoneticDictionary } from './phonetic-dictionary';
 
 export class PhoneticConverterService {
-  public convertToArabic(english: string): string {
+  public convertToArabic(english: string, isVowelMode = true): string {
     const characterArray = english.split('');
 
     let arabic = '';
@@ -231,6 +231,10 @@ export class PhoneticConverterService {
           arabic[arabic.length - 1]
         }`;
       }
+    }
+
+    if (!isVowelMode) {
+      arabic = arabic.replace(/[\u0618-\u061A\u064B-\u0650\u0652-\u0657]/g, '');
     }
 
     return arabic;

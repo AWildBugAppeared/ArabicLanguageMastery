@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`English-To-Arabic.vue should convert phonetic English to Arabic 1`] = `"<div dir=\\"rtl\\" data-arabic=\\"\\" class=\\"arabic converted-text pa-0 ma-0\\">arabic text</div>"`;
+exports[`English-To-Arabic.vue should convert phonetic English to Arabic when input changes 1`] = `"<div dir=\\"rtl\\" data-arabic=\\"\\" class=\\"arabic converted-text pa-0 ma-0\\">arabic text</div>"`;
+
+exports[`English-To-Arabic.vue should convert phonetic English to Arabic when vowel option is changed 1`] = `"<div dir=\\"rtl\\" data-arabic=\\"\\" class=\\"arabic converted-text pa-0 ma-0\\">arabic text 2</div>"`;

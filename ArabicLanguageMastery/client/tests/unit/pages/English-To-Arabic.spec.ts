@@ -22,10 +22,7 @@ describe('English-To-Arabic.vue', () => {
     },
   });
 
-  const convertedText = 'arabic text';
-  phoneticConverterService.convertToArabic = jest
-    .fn()
-    .mockReturnValue(convertedText);
+  let convertedText = 'arabic text';
 
   const localVue = createLocalVue();
   let wrapper: Wrapper<Vue & { [key: string]: any }>;
@@ -50,6 +47,10 @@ describe('English-To-Arabic.vue', () => {
     });
     Vue.use(Vuetify);
     document.body.setAttribute('data-app', 'true');
+
+    phoneticConverterService.convertToArabic = jest
+      .fn()
+      .mockReturnValue(convertedText);
   });
 
   afterEach(() => {
@@ -58,7 +59,7 @@ describe('English-To-Arabic.vue', () => {
     jest.clearAllMocks();
   });
 
-  it('should convert phonetic English to Arabic', async () => {
+  it('should convert phonetic English to Arabic when input changes', async () => {
     mountWrapper();
     await wrapper.vm.$nextTick();
 
@@ -78,6 +79,35 @@ describe('English-To-Arabic.vue', () => {
     expect(
       converterServiceSpy.calls[converterServiceSpy.calls.length - 1][1]
     ).toBe(true);
+    expect(arabicText.html()).toMatchSnapshot();
+  });
+
+  it('should convert phonetic English to Arabic when vowel option is changed', async () => {
+    mountWrapper();
+    await wrapper.vm.$nextTick();
+
+    const textToConvert = 'wa ((Allah))u Aakbaru';
+    const textArea = wrapper.find('[data-phonetic-text-area]');
+    textArea.setValue(textToConvert);
+    await wrapper.vm.$nextTick();
+
+    const converterServiceSpy = (phoneticConverterService.convertToArabic as jest.Mock)
+      .mock;
+
+    convertedText = 'arabic text 2';
+    (phoneticConverterService.convertToArabic as any).mockReturnValue(convertedText);
+    wrapper.setData({ isVowelMode: false });
+    await wrapper.vm.$nextTick();
+
+    const arabicText = wrapper.find('[data-arabic]');
+
+    expect(converterServiceSpy.calls.length).toBe(3);
+    expect(
+      converterServiceSpy.calls[converterServiceSpy.calls.length - 1][0]
+    ).toBe(textToConvert);
+    expect(
+      converterServiceSpy.calls[converterServiceSpy.calls.length - 1][1]
+    ).toBe(false);
     expect(arabicText.html()).toMatchSnapshot();
   });
 

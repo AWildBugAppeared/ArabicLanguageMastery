@@ -20,6 +20,8 @@
       </div>
     </div>
 
+    <v-checkbox v-model="isVowelMode" label="Include vowels"></v-checkbox>
+
     <v-textarea
       v-model="input"
       label="Type here to convert to Arabic"
@@ -44,7 +46,7 @@
               cols="4"
               sm="3"
             >
-              <span class="arabic-sm">{{ arabicWord }}</span>
+              <span class="arabic">{{ arabicWord }}</span>
               <span class="px-2">-</span> {{ getPhoneticMap(arabicWord) }}
             </v-col>
           </v-row>
@@ -77,13 +79,18 @@ export default Vue.extend({
         "Aanzala Allahu alqurA~na Iil'Y rasoolihi muHammadin ((saw)) maweiZa-tan lilnnaasi",
       exampleConvertedInput: '',
       input: '',
+      isVowelMode: true,
       convertedInput: '',
     };
   },
 
   watch: {
-    input(value) {
-      this.convertedInput = phoneticConverterService.convertToArabic(value);
+    isVowelMode() {
+      this.convert();
+    },
+
+    input() {
+      this.convert();
     },
   },
 
@@ -94,6 +101,13 @@ export default Vue.extend({
   },
 
   methods: {
+    convert() {
+      this.convertedInput = phoneticConverterService.convertToArabic(
+        this.input,
+        this.isVowelMode
+      );
+    },
+
     copy() {
       navigator.clipboard.writeText(this.convertedInput.trimEnd());
     },
