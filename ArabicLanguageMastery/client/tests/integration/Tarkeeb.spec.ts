@@ -28,7 +28,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
   it('should add colour selection', async () => {
     await page.click('span[id="10"]');
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -38,7 +38,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     await page.click('span[id="10"]');
     await page.click('span[id="10"]');
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -86,7 +86,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
       window.scroll(0, 0);
     });
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -100,7 +100,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
       element.click()
     );
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -115,7 +115,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
       (element: HTMLElement) => element.click()
     );
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -136,7 +136,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     faailBoxText.click();
     await page.waitForTimeout(20);
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -157,7 +157,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     faailBoxText.click();
     await page.waitForTimeout(20);
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -171,7 +171,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
       element.click()
     );
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -186,7 +186,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
       (element: HTMLElement) => element.click()
     );
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -207,7 +207,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     faailBoxText.click();
     await page.waitForTimeout(20);
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -228,7 +228,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     faailBoxText.click();
     await page.waitForTimeout(20);
 
-    const answerElement = await page.$('#answer');
+    const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();

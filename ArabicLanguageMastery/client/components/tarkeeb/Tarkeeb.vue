@@ -1,9 +1,9 @@
 <template>
   <v-container class="arabic-l text-center">
-    <div ref="answer">
+    <div ref="userAnswer">
       <v-runtime-template
-        class="answer"
-        :template="answer"
+        class="user-answer"
+        :template="userAnswer"
       ></v-runtime-template>
     </div>
 
@@ -61,7 +61,7 @@ export default Vue.extend({
 
   data() {
     return {
-      answer: '',
+      userAnswer: '',
       arabicCharArray: [] as string[],
       fieldSetEndTag: '',
       fieldSetStartTag: '',
@@ -76,7 +76,7 @@ export default Vue.extend({
   created() {
     this.arabicCharArray = this.arabic.split('');
 
-    this.answer += '<div id="answer">';
+    this.userAnswer += '<div id="userAnswer">';
 
     let isNonConsonantCharacter = false;
 
@@ -85,14 +85,14 @@ export default Vue.extend({
         this.arabicCharArray[i]
       );
 
-      this.answer += `<span id="${i}"${
+      this.userAnswer += `<span id="${i}"${
         isNonConsonantCharacter ? '' : ` @click="setSelected(${i})"`
       }>${
         this.arabicCharArray[i] === ' ' ? '&nbsp;' : this.arabicCharArray[i]
       }</span>`;
     }
 
-    this.answer += '</div>';
+    this.userAnswer += '</div>';
   },
 
   methods: {
@@ -142,30 +142,30 @@ export default Vue.extend({
       if (id.includes('hidden')) {
         regexString = `<fieldset id="${id}.+<!-- ${id} --></fieldset>`;
         regex = new RegExp(regexString);
-        this.answer = this.answer.replace(regex, '');
+        this.userAnswer = this.userAnswer.replace(regex, '');
       } else {
         regexString = `<fieldset id="${id}">.+<!-- ${id.replace(
           'fs-',
           'legend-'
         )} --><\\/legend>`;
         regex = new RegExp(regexString);
-        this.answer = this.answer.replace(regex, '');
-        this.answer = this.answer.replace(`<!-- ${id} --></fieldset>`, '');
+        this.userAnswer = this.userAnswer.replace(regex, '');
+        this.userAnswer = this.userAnswer.replace(`<!-- ${id} --></fieldset>`, '');
 
         // check for hidden words that may have been inserted that will also need to be removed
         regex = new RegExp(
           `<fieldset id="${id}.+ ${id}-hidden-faail --></fieldset>`
         );
-        this.answer = this.answer.replace(regex, '');
+        this.userAnswer = this.userAnswer.replace(regex, '');
         regex = new RegExp(
           `<fieldset id="${id}.+ ${id}-hidden-shibhul-fil --></fieldset>`
         );
-        this.answer = this.answer.replace(regex, '');
+        this.userAnswer = this.userAnswer.replace(regex, '');
       }
     },
 
     removeSelection(id: string) {
-      this.answer = this.answer.replace(
+      this.userAnswer = this.userAnswer.replace(
         `<span id="${id}" class="selected" @click="setSelected(${id})"`,
         `<span id="${id}" @click="setSelected(${id})"`
       );
@@ -203,7 +203,7 @@ export default Vue.extend({
         }
       }
 
-      this.answer = this.answer.replace(
+      this.userAnswer = this.userAnswer.replace(
         `<span id="${id}"`,
         `<span id="${id}" class="selected"`
       );
@@ -229,7 +229,7 @@ export default Vue.extend({
 
       const regex = new RegExp(regexString, 'g');
 
-      const matches = this.answer.match(regex);
+      const matches = this.userAnswer.match(regex);
 
       if (!matches) {
         return;
@@ -265,11 +265,11 @@ export default Vue.extend({
         nextCharacter !== ' '
       ) {
         replaceAnswerString +=
-          this.answer.match(
+          this.userAnswer.match(
             new RegExp(`<span id="${highestSelectedIndex + 1}">.<\\/span>`)
           )?.[0] ?? '';
 
-        this.answer = this.answer.replace(
+        this.userAnswer = this.userAnswer.replace(
           new RegExp(`<span id="${highestSelectedIndex + 1}">.<\\/span>`),
           ''
         );
@@ -292,7 +292,7 @@ export default Vue.extend({
         ''
       );
 
-      this.answer = this.answer.replace(regex, replaceAnswerString);
+      this.userAnswer = this.userAnswer.replace(regex, replaceAnswerString);
 
       this.firstSelectedIndex = this.secondSelectedIndex = -1;
     },
@@ -363,7 +363,7 @@ fieldset {
   }
 }
 
-.answer {
+.user-answer {
   margin-bottom: 30px;
   direction: rtl;
 }
