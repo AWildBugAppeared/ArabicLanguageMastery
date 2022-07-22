@@ -233,4 +233,71 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
 
     expect(image).toMatchImageSnapshot();
   });
+
+  it('should not mark box as incorrect when the box is correct', async () => {
+    await page.click('span[id="7"]');
+    await page.click(`#${TarkeebPlaces.atf}`);
+    const [markButton] = await page.$x(`//span[text()="Mark"]`);
+    markButton.click();
+    await page.waitForTimeout(20);
+
+    const answerElement = await page.$('#markedUserAnswer');
+    const image = await answerElement.screenshot();
+
+    expect(image).toMatchImageSnapshot();
+  });
+
+  it('should mark box as incorrect when the contents are correct but label is incorrect', async () => {
+    await page.click('span[id="7"]');
+    await page.click(`#${TarkeebPlaces.haal}`);
+    const [markButton] = await page.$x(`//span[text()="Mark"]`);
+    markButton.click();
+    await page.waitForTimeout(20);
+
+    const answerElement = await page.$('#markedUserAnswer');
+    const image = await answerElement.screenshot();
+
+    expect(image).toMatchImageSnapshot();
+  });
+
+  it('should mark box as incorrect when content is missing but label is correct', async () => {
+    await page.click('span[id="0"]');
+    await page.click('span[id="4"]');
+    await page.click(`#${TarkeebPlaces.matoof}`);
+    await page.click('span[id="0"]');
+    await page.click('span[id="4"]');
+    await page.click(`#${TarkeebPlaces.fil}`);
+    await page.$eval('#no-hidden-faail', (element: HTMLElement) =>
+      element.click()
+    );
+    const [markButton] = await page.$x(`//span[text()="Mark"]`);
+    markButton.click();
+    await page.waitForTimeout(20);
+
+    const answerElement = await page.$('#markedUserAnswer');
+    const image = await answerElement.screenshot();
+
+    expect(image).toMatchImageSnapshot();
+  });
+
+  it('should not mark nested boxes as incorrect when correct', async () => {
+    await page.click('span[id="0"]');
+    await page.click('span[id="4"]');
+    await page.click(`#${TarkeebPlaces.matoof}`);
+    await page.click('span[id="0"]');
+    await page.click('span[id="4"]');
+    await page.click(`#${TarkeebPlaces.fil}`);
+    await page.$eval(
+      `#${HiddenPronounsDropdownText.huwa}`,
+      (element: HTMLElement) => element.click()
+    );
+    const [markButton] = await page.$x(`//span[text()="Mark"]`);
+    markButton.click();
+    await page.waitForTimeout(20);
+
+    const answerElement = await page.$('#markedUserAnswer');
+    const image = await answerElement.screenshot();
+
+    expect(image).toMatchImageSnapshot();
+  });
 });

@@ -1,11 +1,40 @@
 <template>
   <v-container class="arabic-l text-center">
-    <div ref="userAnswer">
+    <div v-if="showUserAnswer" ref="userAnswer">
       <v-runtime-template
         class="user-answer"
         :template="userAnswer"
       ></v-runtime-template>
     </div>
+
+    <div
+      v-if="showUserAnswerMarked"
+      id="markedUserAnswer"
+      ref="userAnswerMarked"
+    >
+      <v-runtime-template
+        class="user-answer"
+        :template="userAnswerMarked"
+      ></v-runtime-template>
+
+      <div
+        :class="isCorrect ? 'correct' : 'error-message'"
+        class="text-overline"
+        spec-marking-feedback-message
+      >
+        {{ errorMessage }}
+      </div>
+    </div>
+
+    <v-btn @click="markAnswer">Mark</v-btn>
+    <v-btn @click="retry">Retry</v-btn>
+    <v-btn @click="showAnswer = !showAnswer">Toggle Answer</v-btn>
+
+    <v-runtime-template
+      v-if="showAnswer"
+      class="user-answer"
+      :template="answer"
+    ></v-runtime-template>
 
     <div dir="rtl">
       <template v-for="tarkeebPlace in tarkeebPlaces">
@@ -57,19 +86,30 @@ export default Vue.extend({
       type: String,
       required: true,
     },
+    answer: {
+      type: String,
+      required: true,
+    },
   },
 
   data() {
     return {
-      userAnswer: '',
       arabicCharArray: [] as string[],
+      errors: [] as HTMLFieldSetElement[],
+      errorMessage: '',
       fieldSetEndTag: '',
       fieldSetStartTag: '',
       fil: TarkeebPlaces.fil,
       firstSelectedIndex: -1,
+      isCorrect: false,
       mutaalliq: TarkeebPlaces.mutaalliq,
       secondSelectedIndex: -1,
+      showAnswer: false,
+      showUserAnswer: true,
+      showUserAnswerMarked: false,
       tarkeebPlaces: Object.values(TarkeebPlaces),
+      userAnswer: '',
+      userAnswerMarked: '',
     };
   },
 
@@ -95,27 +135,23 @@ export default Vue.extend({
     this.userAnswer += '</div>';
   },
 
+  updated() {
+    if (this.showUserAnswerMarked && this.errors.length > 0) {
+      this.errors.forEach((error) => {
+        const fieldSetError = (this.$refs
+          .userAnswerMarked as HTMLElement).querySelector('#' + error.id);
+
+        if (!fieldSetError) {
+          return;
+        }
+
+        fieldSetError.classList.add('tarkeeb-fieldset-error');
+        fieldSetError.children[0].classList.add('tarkeeb-legend-error');
+      });
+    }
+  },
+
   methods: {
-    setFieldSetTags(
-      id: number,
-      tarkeebPlace: string,
-      hiddenWordType: string | null = null
-    ) {
-      let fieldSetId = `fs-${id}`;
-
-      if (hiddenWordType === HiddenWordTypes.faail) {
-        fieldSetId += '-hidden-faail';
-      } else if (hiddenWordType === HiddenWordTypes.shibhulFil) {
-        fieldSetId += '-hidden-shibhul-fil';
-      }
-
-      const legendId = fieldSetId.replace('fs-', 'legend-');
-
-      this.fieldSetStartTag = `<fieldset id="${fieldSetId}"><legend><span @click="removeBox('${fieldSetId}')">${tarkeebPlace}</span><!-- ${legendId} --></legend>`;
-
-      this.fieldSetEndTag = `<!-- ${fieldSetId} --></fieldset>`;
-    },
-
     isNonConsonantCharacter(character: string) {
       return [
         '\u064B',
@@ -135,6 +171,122 @@ export default Vue.extend({
       ].includes(character);
     },
 
+    santiseAnswerForCheckingBoxName(text: string) {
+      return text.replace(/ id="[fl]s.*?"| @click=".*?"|<!-- .*? -->/gm, '');
+    },
+
+    santiseAnswerForCheckingBoxContents(text: string) {
+      return this.santiseAnswerForCheckingBoxName(text).replace(
+        /<legend>.*?<\/legend>|<fieldset>|<\/fieldset>/gm,
+        ''
+      );
+    },
+
+    isBoxContentMatched(userAnswerFieldset: string, answerFieldset: string) {
+      const userAnswerFieldsetSanitised = this.santiseAnswerForCheckingBoxContents(
+        userAnswerFieldset
+      );
+      const answerFieldsetSanitised = this.santiseAnswerForCheckingBoxContents(
+        answerFieldset
+      );
+
+      return userAnswerFieldsetSanitised === answerFieldsetSanitised;
+    },
+
+    isBoxNameMatched(
+      userAnswerFieldsetSanitised: string,
+      answerFieldsetSanitised: string
+    ) {
+      const userFieldsetLegend = userAnswerFieldsetSanitised.match(
+        '<legend.*?</legend>'
+      );
+      const answerFieldsetLegend = answerFieldsetSanitised.match(
+        '<legend.*?</legend>'
+      );
+
+      if (
+        !userFieldsetLegend ||
+        !answerFieldsetLegend ||
+        userFieldsetLegend.length === 0 ||
+        answerFieldsetLegend.length === 0 ||
+        userFieldsetLegend[0] !== answerFieldsetLegend[0]
+      ) {
+        return false;
+      }
+      return true;
+    },
+
+    markAnswer() {
+      this.errors = [];
+      this.isCorrect = false;
+      let correctBoxesNumber = 0;
+
+      const userAnswerTemplate = document.createElement('div');
+      userAnswerTemplate.innerHTML = this.userAnswer;
+      const answerTemplate = document.createElement('div');
+      answerTemplate.innerHTML = this.answer;
+
+      const userAnswerFieldsets = userAnswerTemplate.querySelectorAll(
+        'fieldset'
+      );
+      const answerFieldsets = answerTemplate.querySelectorAll('fieldset');
+
+      userAnswerFieldsets.forEach((userAnswerFieldset) => {
+        let match = false;
+
+        const userAnswerFieldsetSanitised = this.santiseAnswerForCheckingBoxName(
+          userAnswerFieldset.outerHTML
+        );
+
+        for (let i = 0; i < answerFieldsets.length; i++) {
+          const answerFieldsetSanitised = this.santiseAnswerForCheckingBoxName(
+            answerFieldsets[i].outerHTML
+          );
+
+          const isBoxNameMatched = this.isBoxNameMatched(
+            userAnswerFieldsetSanitised,
+            answerFieldsetSanitised
+          );
+
+          if (!isBoxNameMatched) {
+            continue;
+          }
+
+          const isBoxContentMatched = this.isBoxContentMatched(
+            userAnswerFieldsetSanitised,
+            answerFieldsetSanitised
+          );
+
+          if (isBoxContentMatched) {
+            match = true;
+            correctBoxesNumber++;
+            break;
+          }
+        }
+
+        if (!match) {
+          this.errors.push(userAnswerFieldset);
+        }
+      });
+
+      this.errorMessage = `${correctBoxesNumber}/${answerFieldsets.length} correct`;
+
+      if (
+        correctBoxesNumber === answerFieldsets.length &&
+        this.errors.length === 0
+      ) {
+        this.isCorrect = true;
+      }
+
+      this.userAnswerMarked = (this.$refs
+        .userAnswer as HTMLElement).outerHTML.replace(
+        'userAnswer',
+        'userAnswerMarked'
+      );
+      this.showUserAnswer = false;
+      this.showUserAnswerMarked = true;
+    },
+
     removeBox(id: string) {
       let regexString: string;
       let regex: RegExp;
@@ -150,7 +302,10 @@ export default Vue.extend({
         )} --><\\/legend>`;
         regex = new RegExp(regexString);
         this.userAnswer = this.userAnswer.replace(regex, '');
-        this.userAnswer = this.userAnswer.replace(`<!-- ${id} --></fieldset>`, '');
+        this.userAnswer = this.userAnswer.replace(
+          `<!-- ${id} --></fieldset>`,
+          ''
+        );
 
         // check for hidden words that may have been inserted that will also need to be removed
         regex = new RegExp(
@@ -169,6 +324,32 @@ export default Vue.extend({
         `<span id="${id}" class="selected" @click="setSelected(${id})"`,
         `<span id="${id}" @click="setSelected(${id})"`
       );
+    },
+
+    // TODO: Needs testing
+    retry() {
+      this.showUserAnswer = true;
+      this.showUserAnswerMarked = false;
+    },
+
+    setFieldSetTags(
+      id: number,
+      tarkeebPlace: string,
+      hiddenWordType: string | null = null
+    ) {
+      let fieldSetId = `fs-${id}`;
+
+      if (hiddenWordType === HiddenWordTypes.faail) {
+        fieldSetId += '-hidden-faail';
+      } else if (hiddenWordType === HiddenWordTypes.shibhulFil) {
+        fieldSetId += '-hidden-shibhul-fil';
+      }
+
+      const legendId = fieldSetId.replace('fs-', 'legend-');
+
+      this.fieldSetStartTag = `<fieldset id="${fieldSetId}"><legend><span @click="removeBox('${fieldSetId}')">${tarkeebPlace}</span><!-- ${legendId} --></legend>`;
+
+      this.fieldSetEndTag = `<!-- ${fieldSetId} --></fieldset>`;
     },
 
     setSelected(id: string) {
@@ -331,6 +512,7 @@ fieldset {
   display: inline-block;
   direction: rtl;
   padding: 0 8px 8px 8px;
+  margin: 0 2px;
   font-size: unset;
 }
 
@@ -361,6 +543,19 @@ fieldset {
       }
     }
   }
+}
+
+.correct {
+  color: green;
+}
+
+.tarkeeb-fieldset-error {
+  border-color: red;
+}
+
+.tarkeeb-legend-error,
+.error-message {
+  color: red;
 }
 
 .user-answer {
