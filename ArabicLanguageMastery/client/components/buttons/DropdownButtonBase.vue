@@ -1,7 +1,7 @@
 <template>
   <v-menu offset-y>
     <template #activator="{ on, attrs }">
-      <v-btn :id="buttonText" :class="buttonClasses" v-bind="attrs" v-on="on"
+      <v-btn :id="buttonText" :class="buttonClasses" v-bind="attrs" dark v-on="on"
         ><span class="arabic">{{ buttonText }}</span></v-btn
       >
     </template>

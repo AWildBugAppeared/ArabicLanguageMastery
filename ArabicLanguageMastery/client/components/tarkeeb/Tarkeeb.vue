@@ -26,9 +26,37 @@
       </div>
     </div>
 
-    <v-btn @click="markAnswer">Mark</v-btn>
-    <v-btn @click="retry">Retry</v-btn>
-    <v-btn @click="showAnswer = !showAnswer">Toggle Answer</v-btn>
+    <div class="mt-n5">
+      <v-tooltip v-if="!showUserAnswerMarked" top>
+        <template #activator="{ on, attrs }">
+          <v-btn fab color="green" x-small @click="markAnswer"
+            ><v-icon color="white" v-bind="attrs" v-on="on"
+              >mdi-check</v-icon
+            ></v-btn
+          >
+        </template>
+        <span>Mark Answer</span>
+      </v-tooltip>
+      <v-tooltip v-if="showUserAnswerMarked && !isCorrect" top>
+        <template #activator="{ on, attrs }">
+          <v-btn fab color="secondary" x-small @click="retry"
+            ><v-icon v-bind="attrs" v-on="on">mdi-arrow-left</v-icon></v-btn
+          >
+        </template>
+        <span>Try again</span>
+      </v-tooltip>
+
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <v-btn fab color="primary" x-small @click="showAnswer = !showAnswer"
+            ><v-icon v-bind="attrs" v-on="on">{{
+              showAnswer ? 'mdi-eye-off-outline' : 'mdi-eye-outline'
+            }}</v-icon></v-btn
+          >
+        </template>
+        <span>{{ showAnswer ? 'Hide' : 'Show' }} Answer</span>
+      </v-tooltip>
+    </div>
 
     <v-runtime-template
       v-if="showAnswer"
@@ -37,28 +65,64 @@
     ></v-runtime-template>
 
     <div dir="rtl">
-      <template v-for="tarkeebPlace in tarkeebPlaces">
-        <hidden-word-faail-dropdown-button
-          v-if="tarkeebPlace === fil"
-          :key="tarkeebPlace"
-          button-classes="mx-2 px-2 pb-5 pt-6 primary"
-          @faailSet="setFaail"
-        ></hidden-word-faail-dropdown-button>
-        <hidden-word-shibhul-fil-dropdown-button
-          v-else-if="tarkeebPlace === mutaalliq"
-          :key="tarkeebPlace"
-          button-classes="mx-2 px-2 pb-5 pt-6 primary"
-          @shibhulFilSet="setShibhulFil"
-        ></hidden-word-shibhul-fil-dropdown-button>
-        <v-btn
-          v-else
-          :id="tarkeebPlace"
-          :key="tarkeebPlace"
-          class="mx-2 px-2 pb-5 pt-6 primary"
-          @click="setBox(tarkeebPlace)"
-          ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-        >
-      </template>
+      <v-container>
+        <v-row justify="center"
+          ><hidden-word-faail-dropdown-button
+            :button-classes="`${tarkeebButtonsMarginClasses} ${tarkeebButtonsMostPopularColour}`"
+            @faailSet="setFaail"
+          ></hidden-word-faail-dropdown-button>
+          <v-btn
+            v-for="tarkeebPlace in tarkeebPlacesMostPopular"
+            :id="tarkeebPlace"
+            :key="tarkeebPlace"
+            :class="`${tarkeebButtonsMostPopularColour} ${tarkeebButtonsMarginClasses}`"
+            dark
+            @click="setBox(tarkeebPlace)"
+            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+          >
+
+          <v-btn
+            v-for="tarkeebPlace in tarkeebPlacesMafools"
+            :id="tarkeebPlace"
+            :key="tarkeebPlace"
+            :class="`${tarkeebButtonsMafoolColour} ${tarkeebButtonsMarginClasses}`"
+            dark
+            @click="setBox(tarkeebPlace)"
+            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+          >
+          <hidden-word-shibhul-fil-dropdown-button
+            :button-classes="`${tarkeebButtonsMarginClasses} ${tarkeebButtonsMafoolColour}`"
+            @shibhulFilSet="setShibhulFil"
+          ></hidden-word-shibhul-fil-dropdown-button>
+          <v-btn
+            v-for="tarkeebPlace in tarkeebPlacesInnaAndKaana"
+            :id="tarkeebPlace"
+            :key="tarkeebPlace"
+            :class="`${tarkeebButtonsInnaAndKaanaColour} ${tarkeebButtonsMarginClasses}`"
+            dark
+            @click="setBox(tarkeebPlace)"
+            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+          >
+          <v-btn
+            v-for="tarkeebPlace in tarkeebPlacesJaarConstructs"
+            :id="tarkeebPlace"
+            :key="tarkeebPlace"
+            :class="`${tarkeebButtonsJaarConstructsColour} ${tarkeebButtonsMarginClasses}`"
+            dark
+            @click="setBox(tarkeebPlace)"
+            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+          >
+          <v-btn
+            v-for="tarkeebPlace in tarkeebPlacesExtensions"
+            :id="tarkeebPlace"
+            :key="tarkeebPlace"
+            :class="`${tarkeebButtonsExtensionsColour} ${tarkeebButtonsMarginClasses}`"
+            dark
+            @click="setBox(tarkeebPlace)"
+            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
+          >
+        </v-row>
+      </v-container>
     </div>
   </v-container>
 </template>
@@ -107,7 +171,49 @@ export default Vue.extend({
       showAnswer: false,
       showUserAnswer: true,
       showUserAnswerMarked: false,
-      tarkeebPlaces: Object.values(TarkeebPlaces),
+      tarkeebButtonsMarginClasses: 'mx-2 my-2 test px-2 pb-5 pt-6',
+      tarkeebButtonsExtensionsColour: 'orange darken-4',
+      tarkeebButtonsMafoolColour: 'blue darken-3',
+      tarkeebButtonsMostPopularColour: 'purple darken-3',
+      tarkeebButtonsInnaAndKaanaColour: 'green darken-1',
+      tarkeebButtonsJaarConstructsColour: 'brown darken-1',
+      tarkeebPlaces: TarkeebPlaces,
+      tarkeebPlacesMostPopular: [
+        TarkeebPlaces.faail,
+        TarkeebPlaces.mubtada,
+        TarkeebPlaces.khabr,
+      ],
+      tarkeebPlacesMafools: [
+        TarkeebPlaces.mafoolBiHi,
+        TarkeebPlaces.mafoolFiyHi,
+        TarkeebPlaces.mafoolLaHu,
+        TarkeebPlaces.mafoolMutlaq,
+        TarkeebPlaces.mafoolMaeahu,
+      ],
+      tarkeebPlacesInnaAndKaana: [
+        TarkeebPlaces.harfMushabbahahBilFil,
+        TarkeebPlaces.ismHmbf,
+        TarkeebPlaces.khabrHmbf,
+        TarkeebPlaces.filNaaqis,
+        TarkeebPlaces.ismFilNaaqis,
+        TarkeebPlaces.khabrFilNaaqis,
+      ],
+      tarkeebPlacesJaarConstructs: [
+        TarkeebPlaces.mudaaf,
+        TarkeebPlaces.mudaafIlayhi,
+        TarkeebPlaces.jaar,
+        TarkeebPlaces.majroor,
+      ],
+      tarkeebPlacesExtensions: [
+        TarkeebPlaces.mawsoof,
+        TarkeebPlaces.sifah,
+        TarkeebPlaces.matoof,
+        TarkeebPlaces.matoofAlayh,
+        TarkeebPlaces.ismIshaarah,
+        TarkeebPlaces.mushaarunIlayh,
+        TarkeebPlaces.badal,
+        TarkeebPlaces.mubdalMinhu,
+      ],
       userAnswer: '',
       userAnswerMarked: '',
     };
