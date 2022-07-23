@@ -34,6 +34,18 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     expect(image).toMatchImageSnapshot();
   });
 
+  it('should break line for tarkeeb boxes that have long labels', async () => {
+    await page.click('span[id="7"]');
+    await page.click(
+      `#${TarkeebPlaces.harfMushabbahahBilFil.replace(/ /g, '-')}`
+    );
+
+    const answerElement = await page.$('#userAnswer');
+    const image = await answerElement.screenshot();
+
+    expect(image).toMatchImageSnapshot();
+  });
+
   it('should remove colour selection if clicked and is already selected', async () => {
     await page.click('span[id="10"]');
     await page.click('span[id="10"]');
@@ -68,19 +80,25 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
 
     await page.click('span[id="39"]');
     await page.click('span[id="41"]');
-    await page.click(`#${TarkeebPlaces.jaar}`);
+    await page.$eval(`#${TarkeebPlaces.jaar}`, (element: HTMLElement) =>
+      element.click()
+    );
 
     await page.click('span[id="44"]');
     await page.click('span[id="61"]');
-    await page.click(`#${TarkeebPlaces.majroor}`);
+    await page.$eval(`#${TarkeebPlaces.majroor}`, (element: HTMLElement) =>
+      element.click()
+    );
 
     await page.click('span[id="44"]');
     await page.click('span[id="48"]');
-    await page.click(`#${TarkeebPlaces.mudaaf}`);
+    await page.$eval(`#${TarkeebPlaces.mudaaf}`, (element: HTMLElement) =>
+      element.click()
+    );
 
     await page.click('span[id="51"]');
     await page.click('span[id="61"]');
-    await page.click('#مضاف\\ إليه');
+    await page.click(`#${TarkeebPlaces.mudaafIlayhi.replace(' ', '-')}`);
 
     await page.evaluate(() => {
       window.scroll(0, 0);
@@ -134,7 +152,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
       `//legend/span[text()="${TarkeebPlaces.faail}"]`
     );
     faailBoxText.click();
-    await page.waitForTimeout(20);
+    await page.waitForTimeout(30);
 
     const answerElement = await page.$('#userAnswer');
     const image = await answerElement.screenshot();
@@ -237,8 +255,9 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
   it('should not mark box as incorrect when the box is correct', async () => {
     await page.click('span[id="7"]');
     await page.click(`#${TarkeebPlaces.atf}`);
-    const [markButton] = await page.$x(`//span[text()="Mark"]`);
-    markButton.click();
+    await page.$eval('[spec-mark-answer]', (element: HTMLElement) =>
+      element.click()
+    );
     await page.waitForTimeout(20);
 
     const answerElement = await page.$('#markedUserAnswer');
@@ -250,11 +269,16 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
   it('should mark box as incorrect when the contents are correct but label is incorrect', async () => {
     await page.click('span[id="7"]');
     await page.click(`#${TarkeebPlaces.haal}`);
-    const [markButton] = await page.$x(`//span[text()="Mark"]`);
-    markButton.click();
+    await page.$eval('[spec-mark-answer]', (element: HTMLElement) =>
+      element.click()
+    );
     await page.waitForTimeout(20);
 
     const answerElement = await page.$('#markedUserAnswer');
+
+    await page.evaluate(() => {
+      window.scroll(0, 0);
+    });
     const image = await answerElement.screenshot();
 
     expect(image).toMatchImageSnapshot();
@@ -263,16 +287,21 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
   it('should mark box as incorrect when content is missing but label is correct', async () => {
     await page.click('span[id="0"]');
     await page.click('span[id="4"]');
-    await page.click(`#${TarkeebPlaces.matoof}`);
+    await page.$eval(
+      `#${TarkeebPlaces.matoofAlayh.replace(' ', '-')}`,
+      (element: HTMLElement) => element.click()
+    );
     await page.click('span[id="0"]');
     await page.click('span[id="4"]');
-    await page.click(`#${TarkeebPlaces.fil}`);
+    await page.$eval(`#${TarkeebPlaces.fil}`, (element: HTMLElement) =>
+      element.click()
+    );
     await page.$eval('#no-hidden-faail', (element: HTMLElement) =>
       element.click()
     );
-    const [markButton] = await page.$x(`//span[text()="Mark"]`);
-    markButton.click();
-    await page.waitForTimeout(20);
+    await page.$eval('[spec-mark-answer]', (element: HTMLElement) =>
+      element.click()
+    );
 
     const answerElement = await page.$('#markedUserAnswer');
     const image = await answerElement.screenshot();
@@ -283,17 +312,24 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
   it('should not mark nested boxes as incorrect when correct', async () => {
     await page.click('span[id="0"]');
     await page.click('span[id="4"]');
-    await page.click(`#${TarkeebPlaces.matoof}`);
-    await page.click('span[id="0"]');
-    await page.click('span[id="4"]');
-    await page.click(`#${TarkeebPlaces.fil}`);
     await page.$eval(
-      `#${HiddenPronounsDropdownText.huwa}`,
+      `#${TarkeebPlaces.matoofAlayh.replace(' ', '-')}`,
       (element: HTMLElement) => element.click()
     );
-    const [markButton] = await page.$x(`//span[text()="Mark"]`);
-    markButton.click();
-    await page.waitForTimeout(20);
+    await page.click('span[id="0"]');
+    await page.click('span[id="4"]');
+    await page.$eval(`#${TarkeebPlaces.fil}`, (element: HTMLElement) =>
+      element.click()
+    );
+    await page.$eval(
+      `#${HiddenPronounsDropdownText.huwa}`,
+      (element: HTMLElement) => {
+        element.click();
+      }
+    );
+    await page.$eval('[spec-mark-answer]', (element: HTMLElement) =>
+      element.click()
+    );
 
     const answerElement = await page.$('#markedUserAnswer');
     const image = await answerElement.screenshot();

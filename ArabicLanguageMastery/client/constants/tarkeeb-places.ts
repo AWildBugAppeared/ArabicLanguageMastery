@@ -1,7 +1,7 @@
 export const TarkeebPlaces = {
   badal: 'بدل',
   haal: 'حال',
-  harfMushabbahahBilFil: 'حرف مشبه بالفعل',
+  harfMushabbahahBilFil: 'حرف مشبهة بالفعل',
   ismFilNaaqis: 'اسم فعل ناقص',
   ismHmbf: 'اسم حمبف',
   ismIshaarah: 'اسم الإشارة',

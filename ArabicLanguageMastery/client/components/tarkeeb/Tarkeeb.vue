@@ -29,7 +29,7 @@
     <div class="mt-n5">
       <v-tooltip v-if="!showUserAnswerMarked" top>
         <template #activator="{ on, attrs }">
-          <v-btn fab color="green" x-small @click="markAnswer"
+          <v-btn fab color="green" x-small spec-mark-answer @click="markAnswer"
             ><v-icon color="white" v-bind="attrs" v-on="on"
               >mdi-check</v-icon
             ></v-btn
@@ -39,7 +39,12 @@
       </v-tooltip>
       <v-tooltip v-if="showUserAnswerMarked && !isCorrect" top>
         <template #activator="{ on, attrs }">
-          <v-btn fab color="secondary" x-small @click="retry"
+          <v-btn
+            fab
+            color="secondary"
+            x-small
+            spec-retry-question
+            @click="retry"
             ><v-icon v-bind="attrs" v-on="on">mdi-arrow-left</v-icon></v-btn
           >
         </template>
@@ -48,7 +53,12 @@
 
       <v-tooltip top>
         <template #activator="{ on, attrs }">
-          <v-btn fab color="primary" x-small @click="showAnswer = !showAnswer"
+          <v-btn
+            fab
+            color="primary"
+            x-small
+            spec-toggle-answer
+            @click="showAnswer = !showAnswer"
             ><v-icon v-bind="attrs" v-on="on">{{
               showAnswer ? 'mdi-eye-off-outline' : 'mdi-eye-outline'
             }}</v-icon></v-btn
@@ -73,7 +83,7 @@
           ></hidden-word-faail-dropdown-button>
           <v-btn
             v-for="tarkeebPlace in tarkeebPlacesMostPopular"
-            :id="tarkeebPlace"
+            :id="tarkeebPlace.replaceAll(' ', '-').replace(' ', '-')"
             :key="tarkeebPlace"
             :class="`${tarkeebButtonsMostPopularColour} ${tarkeebButtonsMarginClasses}`"
             dark
@@ -83,7 +93,7 @@
 
           <v-btn
             v-for="tarkeebPlace in tarkeebPlacesMafools"
-            :id="tarkeebPlace"
+            :id="tarkeebPlace.replaceAll(' ', '-')"
             :key="tarkeebPlace"
             :class="`${tarkeebButtonsMafoolColour} ${tarkeebButtonsMarginClasses}`"
             dark
@@ -96,7 +106,7 @@
           ></hidden-word-shibhul-fil-dropdown-button>
           <v-btn
             v-for="tarkeebPlace in tarkeebPlacesInnaAndKaana"
-            :id="tarkeebPlace"
+            :id="tarkeebPlace.replaceAll(' ', '-')"
             :key="tarkeebPlace"
             :class="`${tarkeebButtonsInnaAndKaanaColour} ${tarkeebButtonsMarginClasses}`"
             dark
@@ -105,7 +115,7 @@
           >
           <v-btn
             v-for="tarkeebPlace in tarkeebPlacesJaarConstructs"
-            :id="tarkeebPlace"
+            :id="tarkeebPlace.replaceAll(' ', '-')"
             :key="tarkeebPlace"
             :class="`${tarkeebButtonsJaarConstructsColour} ${tarkeebButtonsMarginClasses}`"
             dark
@@ -114,7 +124,7 @@
           >
           <v-btn
             v-for="tarkeebPlace in tarkeebPlacesExtensions"
-            :id="tarkeebPlace"
+            :id="tarkeebPlace.replaceAll(' ', '-')"
             :key="tarkeebPlace"
             :class="`${tarkeebButtonsExtensionsColour} ${tarkeebButtonsMarginClasses}`"
             dark
@@ -207,12 +217,15 @@ export default Vue.extend({
       tarkeebPlacesExtensions: [
         TarkeebPlaces.mawsoof,
         TarkeebPlaces.sifah,
+        TarkeebPlaces.atf,
         TarkeebPlaces.matoof,
         TarkeebPlaces.matoofAlayh,
         TarkeebPlaces.ismIshaarah,
         TarkeebPlaces.mushaarunIlayh,
         TarkeebPlaces.badal,
         TarkeebPlaces.mubdalMinhu,
+        TarkeebPlaces.haal,
+        TarkeebPlaces.dhulHaal,
       ],
       userAnswer: '',
       userAnswerMarked: '',
@@ -278,7 +291,10 @@ export default Vue.extend({
     },
 
     santiseAnswerForCheckingBoxName(text: string) {
-      return text.replace(/ id="[fl]s.*?"| @click=".*?"|<!-- .*? -->/gm, '');
+      return text.replace(
+        / id="[fl]s.*?"| @click=".*?"| class="legend-text"|<!-- .*? -->/gm,
+        ''
+      );
     },
 
     santiseAnswerForCheckingBoxContents(text: string) {
@@ -453,7 +469,7 @@ export default Vue.extend({
 
       const legendId = fieldSetId.replace('fs-', 'legend-');
 
-      this.fieldSetStartTag = `<fieldset id="${fieldSetId}"><legend><span @click="removeBox('${fieldSetId}')">${tarkeebPlace}</span><!-- ${legendId} --></legend>`;
+      this.fieldSetStartTag = `<fieldset id="${fieldSetId}"><legend class="legend-text"><span @click="removeBox('${fieldSetId}')">${tarkeebPlace}</span><!-- ${legendId} --></legend>`;
 
       this.fieldSetEndTag = `<!-- ${fieldSetId} --></fieldset>`;
     },
@@ -655,6 +671,14 @@ fieldset {
   color: green;
 }
 
+.legend-text {
+  max-width: 143px;
+}
+
+.selected {
+  background-color: green;
+}
+
 .tarkeeb-fieldset-error {
   border-color: red;
 }
@@ -667,9 +691,5 @@ fieldset {
 .user-answer {
   margin-bottom: 30px;
   direction: rtl;
-}
-
-.selected {
-  background-color: green;
 }
 </style>
