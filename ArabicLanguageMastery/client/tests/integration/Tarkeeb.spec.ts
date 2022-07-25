@@ -284,7 +284,7 @@ describe(/* Intentionally left blank to reduce file name size of images */ '', (
     expect(image).toMatchImageSnapshot();
   });
 
-  it('should mark box as incorrect when content is missing but label is correct', async () => {
+  it('should mark box as correct when hidden content is missing but label is correct', async () => {
     await page.click('span[id="0"]');
     await page.click('span[id="4"]');
     await page.$eval(

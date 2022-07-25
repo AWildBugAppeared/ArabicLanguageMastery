@@ -37,6 +37,7 @@
         </template>
         <span>Mark Answer</span>
       </v-tooltip>
+
       <v-tooltip v-if="showUserAnswerMarked && !isCorrect" top>
         <template #activator="{ on, attrs }">
           <v-btn
@@ -297,19 +298,31 @@ export default Vue.extend({
       );
     },
 
-    santiseAnswerForCheckingBoxContents(text: string) {
-      return this.santiseAnswerForCheckingBoxName(text).replace(
-        /<legend>.*?<\/legend>|<fieldset>|<\/fieldset>/gm,
-        ''
+    santiseAnswerForCheckingBoxContents(
+      text: string,
+      isComparingHiddenWordFieldset = false
+    ) {
+      const regex = new RegExp(
+        `<legend>.*?</legend>|<fieldset>|</fieldset>${
+          isComparingHiddenWordFieldset ? '' : '|<span>.*?</span>'
+        }`,
+        'gm'
       );
+      return this.santiseAnswerForCheckingBoxName(text).replace(regex, '');
     },
 
-    isBoxContentMatched(userAnswerFieldset: string, answerFieldset: string) {
+    isBoxContentMatched(
+      userAnswerFieldset: string,
+      answerFieldset: string,
+      isComparingHiddenWordFieldset = false
+    ) {
       const userAnswerFieldsetSanitised = this.santiseAnswerForCheckingBoxContents(
-        userAnswerFieldset
+        userAnswerFieldset,
+        isComparingHiddenWordFieldset
       );
       const answerFieldsetSanitised = this.santiseAnswerForCheckingBoxContents(
-        answerFieldset
+        answerFieldset,
+        isComparingHiddenWordFieldset
       );
 
       return userAnswerFieldsetSanitised === answerFieldsetSanitised;
@@ -374,11 +387,15 @@ export default Vue.extend({
             continue;
           }
 
-          const isBoxContentMatched = this.isBoxContentMatched(
-            userAnswerFieldsetSanitised,
-            answerFieldsetSanitised
+          const isHiddenWordFieldset = !!userAnswerFieldset.outerHTML.match(
+            /^<fieldset id="fs-[0-9]{8,13}-.*?hidden/
           );
 
+          const isBoxContentMatched = this.isBoxContentMatched(
+            userAnswerFieldsetSanitised,
+            answerFieldsetSanitised,
+            isHiddenWordFieldset
+          );
           if (isBoxContentMatched) {
             match = true;
             correctBoxesNumber++;
