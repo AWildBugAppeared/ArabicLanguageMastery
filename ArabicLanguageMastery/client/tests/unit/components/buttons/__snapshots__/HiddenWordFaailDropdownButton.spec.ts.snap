@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HiddenWordFaailDropdownButton.vue render should render dropdown button 1`] = `
-"<div class=\\"v-menu\\"><button type=\\"button\\" class=\\"v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary\\" id=\\"فعل\\" role=\\"button\\" aria-haspopup=\\"true\\" aria-expanded=\\"false\\"><span class=\\"v-btn__content\\"><span class=\\"arabic\\">فعل</span></span></button>
+"<div class=\\"v-menu\\"><button type=\\"button\\" class=\\"v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default primary\\" id=\\"فعل\\" role=\\"button\\" aria-haspopup=\\"true\\" aria-expanded=\\"false\\"><span class=\\"v-btn__content\\"><span class=\\"arabic\\">فعل</span></span></button>
   <!---->
 </div>"
 `;
 
 exports[`HiddenWordFaailDropdownButton.vue render should render dropdown button menu 1`] = `
-"<div class=\\"v-menu\\"><button type=\\"button\\" class=\\"v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary\\" id=\\"فعل\\" role=\\"button\\" aria-haspopup=\\"true\\" aria-expanded=\\"true\\"><span class=\\"v-btn__content\\"><span class=\\"arabic\\">فعل</span></span></button>
+"<div class=\\"v-menu\\"><button type=\\"button\\" class=\\"v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default primary\\" id=\\"فعل\\" role=\\"button\\" aria-haspopup=\\"true\\" aria-expanded=\\"true\\"><span class=\\"v-btn__content\\"><span class=\\"arabic\\">فعل</span></span></button>
   <transition-stub name=\\"v-menu-transition\\"></transition-stub>
 </div>"
 `;

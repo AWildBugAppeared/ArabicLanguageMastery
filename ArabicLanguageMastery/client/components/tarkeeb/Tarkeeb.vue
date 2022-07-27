@@ -56,6 +56,29 @@
         <template #activator="{ on, attrs }">
           <v-btn
             fab
+            color="secondary"
+            x-small
+            dark
+            spec-toggle-tarkeeb-options-button
+            @click="
+              showLessPopularTarkeebOptions = !showLessPopularTarkeebOptions
+            "
+            ><v-icon v-bind="attrs" v-on="on">{{
+              showLessPopularTarkeebOptions ? 'mdi-minus' : 'mdi-plus'
+            }}</v-icon></v-btn
+          >
+        </template>
+        <span>{{
+          showLessPopularTarkeebOptions
+            ? 'Show popular options only'
+            : 'Show all options'
+        }}</span>
+      </v-tooltip>
+
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            fab
             color="primary"
             x-small
             spec-toggle-answer
@@ -75,63 +98,32 @@
       :template="answer"
     ></v-runtime-template>
 
-    <div dir="rtl">
+    <div dir="rtl" spec-tarkeeb-options-container>
       <v-container>
         <v-row justify="center"
           ><hidden-word-faail-dropdown-button
-            :button-classes="`${tarkeebButtonsMarginClasses} ${tarkeebButtonsMostPopularColour}`"
+            :button-classes="`purple darken-3 ${tarkeebButtonsMarginClasses}`"
             @faailSet="setFaail"
           ></hidden-word-faail-dropdown-button>
-          <v-btn
-            v-for="tarkeebPlace in tarkeebPlacesMostPopular"
-            :id="tarkeebPlace.replaceAll(' ', '-').replace(' ', '-')"
-            :key="tarkeebPlace"
-            :class="`${tarkeebButtonsMostPopularColour} ${tarkeebButtonsMarginClasses}`"
-            dark
-            @click="setBox(tarkeebPlace)"
-            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-          >
 
-          <v-btn
-            v-for="tarkeebPlace in tarkeebPlacesMafools"
-            :id="tarkeebPlace.replaceAll(' ', '-')"
-            :key="tarkeebPlace"
-            :class="`${tarkeebButtonsMafoolColour} ${tarkeebButtonsMarginClasses}`"
-            dark
-            @click="setBox(tarkeebPlace)"
-            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-          >
+          <template v-for="tarkeebOption in tarkeebOptions">
+            <v-btn
+              v-if="showLessPopularTarkeebOptions || tarkeebOption.isPopular"
+              :id="tarkeebOption.tarkeebPlace.replace(/ /g, '-')"
+              :key="tarkeebOption.tarkeebPlace"
+              :class="`${tarkeebOption.buttonColour} ${tarkeebButtonsMarginClasses}`"
+              dark
+              @click="setBox(tarkeebOption.tarkeebPlace)"
+              ><span class="arabic">{{
+                tarkeebOption.tarkeebPlace
+              }}</span></v-btn
+            >
+          </template>
+
           <hidden-word-shibhul-fil-dropdown-button
-            :button-classes="`${tarkeebButtonsMarginClasses} ${tarkeebButtonsMafoolColour}`"
+            :button-classes="`orange darken-4 ${tarkeebButtonsMarginClasses}`"
             @shibhulFilSet="setShibhulFil"
           ></hidden-word-shibhul-fil-dropdown-button>
-          <v-btn
-            v-for="tarkeebPlace in tarkeebPlacesInnaAndKaana"
-            :id="tarkeebPlace.replaceAll(' ', '-')"
-            :key="tarkeebPlace"
-            :class="`${tarkeebButtonsInnaAndKaanaColour} ${tarkeebButtonsMarginClasses}`"
-            dark
-            @click="setBox(tarkeebPlace)"
-            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-          >
-          <v-btn
-            v-for="tarkeebPlace in tarkeebPlacesJaarConstructs"
-            :id="tarkeebPlace.replaceAll(' ', '-')"
-            :key="tarkeebPlace"
-            :class="`${tarkeebButtonsJaarConstructsColour} ${tarkeebButtonsMarginClasses}`"
-            dark
-            @click="setBox(tarkeebPlace)"
-            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-          >
-          <v-btn
-            v-for="tarkeebPlace in tarkeebPlacesExtensions"
-            :id="tarkeebPlace.replaceAll(' ', '-')"
-            :key="tarkeebPlace"
-            :class="`${tarkeebButtonsExtensionsColour} ${tarkeebButtonsMarginClasses}`"
-            dark
-            @click="setBox(tarkeebPlace)"
-            ><span class="arabic">{{ tarkeebPlace }}</span></v-btn
-          >
         </v-row>
       </v-container>
     </div>
@@ -142,6 +134,8 @@
 import Vue from 'vue';
 
 import VRuntimeTemplate from 'v-runtime-template';
+
+import { TarkeebOptions } from './tarkeeb-options';
 
 import HiddenWordFaailDropdownButton from '~/components/buttons/HiddenWordFaailDropdownButton.vue';
 import HiddenWordShibhulFilDropdownButton from '~/components/buttons/HiddenWordShibhulFilDropdownButton.vue';
@@ -180,54 +174,17 @@ export default Vue.extend({
       mutaalliq: TarkeebPlaces.mutaalliq,
       secondSelectedIndex: -1,
       showAnswer: false,
+      showLessPopularTarkeebOptions: false,
       showUserAnswer: true,
       showUserAnswerMarked: false,
       tarkeebButtonsMarginClasses: 'mx-2 my-2 test px-2 pb-5 pt-6',
-      tarkeebButtonsExtensionsColour: 'orange darken-4',
-      tarkeebButtonsMafoolColour: 'blue darken-3',
-      tarkeebButtonsMostPopularColour: 'purple darken-3',
-      tarkeebButtonsInnaAndKaanaColour: 'green darken-1',
-      tarkeebButtonsJaarConstructsColour: 'brown darken-1',
+      tarkeebButtonsExtensionsColour: '',
+      tarkeebButtonsMafoolColour: '',
+      tarkeebButtonsMostPopularColour: '',
+      tarkeebButtonsInnaAndKaanaColour: '',
+      tarkeebButtonsJaarConstructsColour: '',
       tarkeebPlaces: TarkeebPlaces,
-      tarkeebPlacesMostPopular: [
-        TarkeebPlaces.faail,
-        TarkeebPlaces.mubtada,
-        TarkeebPlaces.khabr,
-      ],
-      tarkeebPlacesMafools: [
-        TarkeebPlaces.mafoolBiHi,
-        TarkeebPlaces.mafoolFiyHi,
-        TarkeebPlaces.mafoolLaHu,
-        TarkeebPlaces.mafoolMutlaq,
-        TarkeebPlaces.mafoolMaeahu,
-      ],
-      tarkeebPlacesInnaAndKaana: [
-        TarkeebPlaces.harfMushabbahahBilFil,
-        TarkeebPlaces.ismHmbf,
-        TarkeebPlaces.khabrHmbf,
-        TarkeebPlaces.filNaaqis,
-        TarkeebPlaces.ismFilNaaqis,
-        TarkeebPlaces.khabrFilNaaqis,
-      ],
-      tarkeebPlacesJaarConstructs: [
-        TarkeebPlaces.mudaaf,
-        TarkeebPlaces.mudaafIlayhi,
-        TarkeebPlaces.jaar,
-        TarkeebPlaces.majroor,
-      ],
-      tarkeebPlacesExtensions: [
-        TarkeebPlaces.mawsoof,
-        TarkeebPlaces.sifah,
-        TarkeebPlaces.atf,
-        TarkeebPlaces.matoof,
-        TarkeebPlaces.matoofAlayh,
-        TarkeebPlaces.ismIshaarah,
-        TarkeebPlaces.mushaarunIlayh,
-        TarkeebPlaces.badal,
-        TarkeebPlaces.mubdalMinhu,
-        TarkeebPlaces.haal,
-        TarkeebPlaces.dhulHaal,
-      ],
+      tarkeebOptions: TarkeebOptions,
       userAnswer: '',
       userAnswerMarked: '',
     };
@@ -607,8 +564,8 @@ export default Vue.extend({
         replaceAnswerString += this.fieldSetEndTag;
       }
 
-      replaceAnswerString = replaceAnswerString.replaceAll(
-        ' class="selected"',
+      replaceAnswerString = replaceAnswerString.replace(
+        / class="selected"/g,
         ''
       );
 
