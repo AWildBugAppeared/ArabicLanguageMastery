@@ -8,7 +8,7 @@
 
       <div class="tense-table mx-auto">
         <v-data-table
-          class="elevation-1"
+          class="elevation-1 no-hover-highlight"
           :headers="tenseHeaders"
           :items="tenseItems"
           hide-default-footer
@@ -57,7 +57,7 @@
 
       <div class="person-table mx-auto">
         <v-data-table
-          class="elevation-1"
+          class="elevation-1 no-hover-highlight"
           :headers="personHeaders"
           :items="personItems"
           hide-default-footer
@@ -492,7 +492,7 @@ export default Vue.extend({
 }
 
 .first-person-neutral {
-  background-color: #81d4fa;
+  background-color: #81d4fa !important;
 }
 
 .tense-table,
@@ -505,19 +505,19 @@ thead > th:first-child.conjugation-table-header {
 }
 
 .third-person-masculine {
-  background-color: #ef9a9a;
+  background-color: #ef9a9a !important;
 }
 
 .third-person-feminine {
-  background-color: #ffcdd2;
+  background-color: #ffcdd2 !important;
 }
 
 .second-person-masculine {
-  background-color: #80cbc4;
+  background-color: #80cbc4 !important;
 }
 
 .second-person-feminine {
-  background-color: #b2dfdb;
+  background-color: #b2dfdb !important;
 }
 </style>
 
