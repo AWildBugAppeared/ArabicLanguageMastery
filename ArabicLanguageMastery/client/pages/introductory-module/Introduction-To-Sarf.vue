@@ -71,7 +71,7 @@
       </p>
       <p class="text-center">
         <img
-          src="~/assets/introduction-to-sarf/Istansaroo-1-Help.png"
+          src="~/assets/introduction-to-sarf/Istansaroo-1-Help.jpg"
           style="width: 300px"
           class="fr-fic fr-dib"
         />
@@ -91,7 +91,7 @@
       </p>
       <p class="text-center">
         <img
-          src="~/assets/introduction-to-sarf/Istansaroo-2-Seeking.png"
+          src="~/assets/introduction-to-sarf/Istansaroo-2-Seeking.jpg"
           style="width: 300px"
           class="fr-fic fr-dib"
         />
@@ -114,7 +114,7 @@
       </p>
       <p class="text-center">
         <img
-          src="~/assets/introduction-to-sarf/Istansaroo-3-Past-Tense.png"
+          src="~/assets/introduction-to-sarf/Istansaroo-3-Past-Tense.jpg"
           style="width: 300px"
           class="fr-fic fr-dib"
         />
@@ -146,7 +146,7 @@
       </p>
       <p class="text-center">
         <img
-          src="~/assets/introduction-to-sarf/Istansaroo-4-Active-Voice.png"
+          src="~/assets/introduction-to-sarf/Istansaroo-4-Active-Voice.jpg"
           style="width: 300px"
           class="fr-fic fr-dib"
         />
@@ -167,7 +167,7 @@
       </p>
       <p class="text-center">
         <img
-          src="~/assets/introduction-to-sarf/Istansaroo-5-6-7-Gender-Plurality-Person.png"
+          src="~/assets/introduction-to-sarf/Istansaroo-5-6-7-Gender-Plurality-Person.jpg"
           style="width: 300px"
           class="fr-fic fr-dib"
         />
