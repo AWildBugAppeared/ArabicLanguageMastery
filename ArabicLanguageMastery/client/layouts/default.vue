@@ -55,6 +55,10 @@ export default Vue.extend({
       menuIcon: mdiMenu,
       items: [
         {
+          title: 'Tarkeeb Test',
+          to: Routes.introductoryModule.tarkeebTest,
+        },
+        {
           title: 'The Three Parts of Speech',
           to: Routes.introductoryModule.theThreePartsOfSpeech,
         },
@@ -79,7 +83,7 @@ export default Vue.extend({
           to: Routes.introductoryModule.theMaadhiVerb
         },
         {
-          title: 'Introduction to Nahw Part 1 - The Two Types of Sentences',
+          title: 'Introduction to Nahw Part 2 - The Nominal Sentence',
           to: Routes.introductoryModule.introductionToNahwPart1,
         },
         {

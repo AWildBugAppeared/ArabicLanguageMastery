@@ -89,18 +89,18 @@
       <h2>Grammatical State</h2>
       <p>
         <strong>
-          >The grammatical states of words are reflected by the last vowel on
-          the word. Dammah, fathah, and kasrah for the grammatical states of
-          Raf', Nasb, and Jarr repectively.</strong
+          The grammatical states of words are reflected by the last vowel on the
+          word. Dammah, fathah, and kasrah for the grammatical states of Raf',
+          Nasb, and Jarr repectively.</strong
         >
       </p>
       <div class="text-center">
         <p>
-          <span class="arabic">دَرَسَ الطَالِبُ الذَّكِيُّ</span> - the smart
+          <span class="arabic">دَرَسَ الطَّالِبُ الذَّكِيُّ</span> - the smart
           student studied
         </p>
         <p>
-          <span class="arabic">رَأَيْتُ الطَالِبَ الذَّكِيَّ</span> - I saw the
+          <span class="arabic">رَأَيْتُ الطَّالِبَ الذَّكِيَّ</span> - I saw the
           smart student
         </p>
         <p>
