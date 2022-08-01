@@ -262,12 +262,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import BasePage from '~/components/Base-Page.vue';
-import ImportantNote from '~/components/vuetify-alerts/ImportantNote.vue';
-import Note from '~/components/vuetify-alerts/Note.vue';
 
 export default Vue.extend({
   name: 'IntroductionToNahwPart2TheNominalSentence',
-  components: { BasePage, ImportantNote, Note },
+  components: { BasePage },
 
   data() {
     return {

@@ -24,7 +24,8 @@ h1 {
   margin-bottom: 24px;
 }
 
-ul {
+ul,
+ol {
   margin-bottom: 16px;
 }
 

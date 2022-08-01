@@ -79,12 +79,16 @@ export default Vue.extend({
           to: Routes.introductoryModule.introductionToPhrases,
         },
         {
+          title: 'Introduction to Nahw Part 1 - Grammatical States',
+          to: Routes.introductoryModule.introductionToNahwPart1,
+        },
+        {
           title: 'The Maadhi Verb (Past Tense)',
           to: Routes.introductoryModule.theMaadhiVerb
         },
         {
           title: 'Introduction to Nahw Part 2 - The Nominal Sentence',
-          to: Routes.introductoryModule.introductionToNahwPart1,
+          to: Routes.introductoryModule.introductionToNahwPart2,
         },
         {
           title: 'The Descriptive Phrase - Mawsoof Sifah',

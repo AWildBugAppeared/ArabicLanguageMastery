@@ -4,7 +4,8 @@ export const Routes = {
   introductoryModule: {
     theArabicSciences: `/${introductoryModuleRoute}/the-arabic-sciences`,
     introductionToSarf: `/${introductoryModuleRoute}/introduction-to-sarf`,
-    introductionToNahwPart1: `/${introductoryModuleRoute}/introduction-to-nahw-part-2-the-nominal-sentence`,
+    introductionToNahwPart1: `/${introductoryModuleRoute}/introduction-to-nahw-part-1-grammatical-states`,
+    introductionToNahwPart2: `/${introductoryModuleRoute}/introduction-to-nahw-part-2-the-nominal-sentence`,
     theMaadhiVerb: `/${introductoryModuleRoute}/the-maadhi-verb`,
     introductionToPhrases: `/${introductoryModuleRoute}/introduction-to-phrases`,
     subclassifyingTheThreePartsOfSpeech: `/${introductoryModuleRoute}/subclassifying-the-three-parts-of-speech`,
